@@ -2,32 +2,60 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Prospects - Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prospects — Admin</title>
     <link rel="stylesheet" href="../assets/css/tokens.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script src="../assets/js/env.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
     <script src="../assets/js/admin-auth.js"></script>
-    <style>
-        body { font-family: var(--font-primary); display: flex; margin: 0; min-height: 100vh; }
-        .sidebar { width: 250px; background: var(--gradient-primary); color: white; padding: 2rem 1rem; }
-        .sidebar a { color: white; text-decoration: none; display: block; margin-bottom: 1rem; font-size: 1.1rem; }
-        .content { flex: 1; padding: 2rem; background: var(--bg-primary); }
-    </style>
 </head>
-<body>
-    <div class="sidebar">
-        <h2>Admin</h2>
+<body class="admin">
+
+<aside class="sidebar">
+    <div class="sidebar__brand">
+        <span class="sidebar__mark">BS</span> Admin
+    </div>
+    <nav>
         <a href="index.html">Dashboard</a>
         <a href="tickets.html">Tickets</a>
-        <a href="prospects.html">Prospects</a>
+        <a href="prospects.html" aria-current="page">Prospects</a>
+        <a href="pricing.html">Pricing</a>
         <a href="playbooks.html">Playbooks</a>
-        <button id="logoutBtn" style="margin-top: 2rem; padding: 0.5rem; width: 100%;">Logout</button>
+    </nav>
+    <div class="sidebar__foot">
+        <button id="logoutBtn" type="button">Sign out</button>
     </div>
-    <div class="content">
-        <h1>Prospect Database</h1>
-        <p>List of all prospects that have been scraped and prepared for outreach.</p>
-        <!-- Mock Data -->
-        <ul>
-            <li><strong>Sample Shop (Autobody)</strong> - <a href="../demos/autobody/sample-shop/">View Demo</a></li>
-        </ul>
+</aside>
+
+<main class="content">
+    <div class="page-head">
+        <div>
+            <h1>Prospect database</h1>
+            <p>Businesses scraped and prepared for outreach.</p>
+        </div>
     </div>
+
+    <!-- NOTE: mock row. site/demos/ does not exist yet, so this link 404s. -->
+    <div class="table-wrap">
+        <table class="data">
+            <thead>
+                <tr>
+                    <th>Business</th>
+                    <th>Niche</th>
+                    <th>Demo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Sample Shop</td>
+                    <td>autobody</td>
+                    <td><a href="../demos/autobody/sample-shop/">View demo</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
 </body>
 </html>

@@ -3,43 +3,987 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Business Site Studio</title>
+    <title>Business Site Studio — We rebuild your site before you pay</title>
+    <meta name="description" content="We rebuild outdated small-business websites into fast, modern, conversion-focused sites. See your new site as a free mockup first — pay only if you want to keep it.">
+
+    <meta property="og:title" content="Business Site Studio — We rebuild your site before you pay">
+    <meta property="og:description" content="See a free redesign of your site before you spend a dollar.">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="assets/css/tokens.css">
+
+    <!-- Enables the scroll-reveal hidden state. If this never runs, content
+         stays visible instead of the page rendering blank. -->
+    <script>document.documentElement.classList.add('js');</script>
+
     <style>
-        body { font-family: var(--font-primary); background-color: var(--bg-primary); color: var(--text-primary); margin: 0; padding: 0; }
-        .hero { text-align: center; padding: 4rem 2rem; background: var(--gradient-primary); color: white; }
-        h1 { margin-bottom: 1rem; }
-        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
-        .cta-button { display: inline-block; padding: 1rem 2rem; background-color: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
-        .niches { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; padding: 2rem; }
-        .niche-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; color: var(--text-primary); text-decoration: none; display: block; border: 1px solid #eee; transition: transform 0.2s; }
-        .niche-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+        /* ---------- Nav ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(2, 6, 23, 0.72);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .nav__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+            height: 68px;
+        }
+        .nav__brand {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 700;
+            font-size: var(--text-lg);
+            color: #fff;
+            letter-spacing: var(--tracking-tight);
+        }
+        .nav__mark {
+            display: grid;
+            place-items: center;
+            width: 32px; height: 32px;
+            border-radius: 9px;
+            background: var(--gradient-accent);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 800;
+        }
+        .nav__links { display: none; gap: 1.75rem; }
+        .nav__links a {
+            color: var(--text-inverse-muted);
+            font-size: var(--text-sm);
+            font-weight: 500;
+        }
+        .nav__links a:hover { color: #fff; }
+        @media (min-width: 900px) { .nav__links { display: flex; } }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            position: relative;
+            background: var(--bg-dark);
+            color: var(--text-inverse);
+            padding-block: clamp(4rem, 10vw, 8rem) clamp(5rem, 11vw, 9rem);
+            overflow: hidden;
+            isolation: isolate;
+        }
+        /* Layered radial glows — cheap depth, no images */
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: -40% -10% auto -10%;
+            height: 120%;
+            background:
+                radial-gradient(48% 46% at 22% 18%, rgba(59, 130, 246, 0.30), transparent 68%),
+                radial-gradient(42% 42% at 82% 8%, rgba(139, 92, 246, 0.26), transparent 70%);
+            filter: blur(10px);
+            z-index: -2;
+        }
+        /* Faint grid, faded out toward the bottom */
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+            background-size: 56px 56px;
+            mask-image: linear-gradient(to bottom, #000 0%, transparent 78%);
+            -webkit-mask-image: linear-gradient(to bottom, #000 0%, transparent 78%);
+            z-index: -1;
+        }
+        .hero__inner { max-width: 820px; }
+        .hero__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.9rem 0.4rem 0.45rem;
+            border-radius: var(--radius-full);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            font-size: var(--text-sm);
+            font-weight: 500;
+            color: #dbe4f5;
+            margin-bottom: var(--space-lg);
+        }
+        .hero__badge b {
+            background: var(--gradient-accent);
+            color: #fff;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        .hero h1 {
+            font-size: var(--text-5xl);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: var(--space-md);
+        }
+        .hero h1 .grad {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .hero__sub {
+            font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+            color: var(--text-inverse-muted);
+            max-width: 60ch;
+            margin-bottom: var(--space-lg);
+        }
+        .hero__cta { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: var(--space-lg); }
+        .hero__points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 1.75rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            font-size: var(--text-sm);
+            color: var(--text-inverse-muted);
+        }
+        .hero__points li { display: flex; align-items: center; gap: 0.45rem; }
+        .hero__points svg { color: #4ade80; flex-shrink: 0; }
+
+        /* ---------- Before / After ---------- */
+        .ba-wrap { max-width: 940px; margin-inline: auto; }
+        .ba {
+            --pos: 50%;
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow-xl);
+            background: #fff;
+            aspect-ratio: 16 / 10;
+            user-select: none;
+        }
+        .ba__pane { position: absolute; inset: 0; overflow: hidden; }
+        /* "Before" sits on top, clipped from the left edge to the handle */
+        .ba__pane--before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); z-index: 2; }
+
+        .ba__range {
+            position: absolute;
+            inset: 0;
+            z-index: 4;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            cursor: ew-resize;
+            background: none;
+            border: none;
+        }
+        .ba__divider {
+            position: absolute;
+            top: 0; bottom: 0;
+            left: var(--pos);
+            width: 2px;
+            background: #fff;
+            box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.15);
+            transform: translateX(-1px);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .ba__knob {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            translate: -50% -50%;
+            width: 42px; height: 42px;
+            border-radius: 50%;
+            background: #fff;
+            box-shadow: var(--shadow-lg);
+            display: grid;
+            place-items: center;
+            color: var(--slate-700);
+        }
+        .ba__tag {
+            position: absolute;
+            top: 14px;
+            z-index: 3;
+            padding: 0.3rem 0.7rem;
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+        .ba__tag--before { left: 14px; background: rgba(15,23,42,0.8); color: #fff; }
+        .ba__tag--after  { right: 14px; background: var(--success); color: #fff; }
+
+        /* Stylised "old site" mockup */
+        .old {
+            height: 100%;
+            background: #d8d8d0;
+            font-family: 'Times New Roman', Times, serif;
+            color: #10108a;
+            padding: 1.2rem;
+            font-size: clamp(0.6rem, 1.4vw, 0.85rem);
+        }
+        .old__bar {
+            background: #000080;
+            color: #ff0;
+            text-align: center;
+            padding: 0.5rem;
+            font-weight: 700;
+            border: 2px outset #999;
+            font-size: clamp(0.75rem, 2vw, 1.15rem);
+        }
+        .old__cols { display: flex; gap: 0.8rem; margin-top: 0.9rem; }
+        .old__side { width: 27%; background: #ececde; border: 2px inset #aaa; padding: 0.5rem; }
+        .old__side a { display: block; color: #00c; text-decoration: underline; margin-bottom: 0.4rem; }
+        .old__body { flex: 1; }
+        .old__img {
+            background: repeating-linear-gradient(45deg, #bbb 0 8px, #cfcfcf 8px 16px);
+            border: 2px inset #aaa;
+            height: 34%;
+            display: grid;
+            place-items: center;
+            color: #555;
+            margin-bottom: 0.6rem;
+        }
+        .old__btn {
+            display: inline-block;
+            margin-top: 0.6rem;
+            background: #c0c0c0;
+            border: 2px outset #eee;
+            padding: 0.25rem 0.8rem;
+            color: #000;
+        }
+        .old__counter {
+            margin-top: 0.7rem;
+            font-size: 0.7em;
+            color: #444;
+            font-family: var(--font-mono);
+        }
+
+        /* Stylised "new site" mockup */
+        .new { height: 100%; background: #fff; display: flex; flex-direction: column; }
+        .new__bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.7rem 1.1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .new__logo { display: flex; align-items: center; gap: 0.45rem; font-weight: 700; font-size: clamp(0.7rem, 1.5vw, 0.95rem); }
+        .new__dot { width: 18px; height: 18px; border-radius: 5px; background: var(--gradient-accent); }
+        .new__navlinks { display: flex; gap: 0.7rem; }
+        .new__navlinks span { width: 30px; height: 6px; border-radius: 3px; background: var(--slate-200); }
+        .new__pill { background: var(--slate-900); color: #fff; font-size: clamp(0.5rem, 1.1vw, 0.7rem); padding: 0.3rem 0.7rem; border-radius: var(--radius-full); font-weight: 600; }
+        .new__hero {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1rem;
+            padding: clamp(0.8rem, 2.5vw, 1.8rem);
+            align-items: center;
+        }
+        .new__h {
+            font-size: clamp(0.95rem, 2.7vw, 1.7rem);
+            font-weight: 800;
+            letter-spacing: var(--tracking-tight);
+            line-height: 1.12;
+            margin-bottom: 0.5rem;
+        }
+        .new__p { font-size: clamp(0.55rem, 1.3vw, 0.8rem); color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.7rem; }
+        .new__cta {
+            display: inline-block;
+            background: var(--accent-color);
+            color: #fff;
+            font-size: clamp(0.55rem, 1.2vw, 0.78rem);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 6px 14px -4px var(--accent-glow);
+        }
+        .new__art {
+            aspect-ratio: 1;
+            border-radius: var(--radius-md);
+            background: var(--gradient-accent);
+            box-shadow: var(--shadow-lg);
+        }
+        .new__strip { display: flex; gap: 0.5rem; padding: 0 clamp(0.8rem, 2.5vw, 1.8rem) clamp(0.8rem, 2.5vw, 1.8rem); }
+        .new__chip { flex: 1; height: clamp(22px, 5vw, 34px); border-radius: var(--radius-sm); background: var(--slate-100); }
+
+        .ba__note {
+            text-align: center;
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+            margin-top: var(--space-md);
+        }
+
+        /* ---------- Symptoms ---------- */
+        .symptoms { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+        .symptom { display: flex; gap: 0.85rem; align-items: flex-start; }
+        .symptom__icon {
+            flex-shrink: 0;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: #fef2f2;
+            color: var(--danger);
+        }
+        .symptom h3 { font-size: var(--text-base); margin-bottom: 0.15rem; }
+        .symptom p { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
+
+        /* ---------- Niches ---------- */
+        .niches { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+        .niche {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            color: var(--text-primary);
+            padding: 1.15rem 1.35rem;
+        }
+        .niche:hover { color: var(--text-primary); }
+        .niche__icon {
+            flex-shrink: 0;
+            width: 42px; height: 42px;
+            border-radius: var(--radius-md);
+            display: grid;
+            place-items: center;
+            background: var(--accent-soft);
+            color: var(--accent-color);
+            transition: background var(--transition), color var(--transition);
+        }
+        .niche:hover .niche__icon { background: var(--accent-color); color: #fff; }
+        .niche__name { font-weight: 600; font-size: var(--text-base); }
+        .niche__meta { font-size: var(--text-sm); color: var(--text-secondary); }
+        .niche__arrow { margin-left: auto; color: var(--slate-300); transition: transform var(--transition), color var(--transition); }
+        .niche:hover .niche__arrow { color: var(--accent-color); transform: translateX(3px); }
+
+        /* ---------- Steps ---------- */
+        .steps { display: grid; gap: clamp(1.25rem, 3vw, 2rem); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); counter-reset: step; }
+        .step { position: relative; padding-top: 3.4rem; }
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            top: 0; left: 0;
+            width: 46px; height: 46px;
+            display: grid;
+            place-items: center;
+            border-radius: var(--radius-md);
+            background: var(--gradient-accent);
+            color: #fff;
+            font-weight: 800;
+            font-size: var(--text-lg);
+            box-shadow: 0 8px 18px -6px var(--accent-glow);
+        }
+        .step h3 { margin-bottom: 0.35rem; }
+        .step p { color: var(--text-secondary); margin: 0; }
+
+        /* ---------- Included ---------- */
+        .features { display: grid; gap: 0.9rem 2rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); list-style: none; margin: 0; padding: 0; }
+        .features li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: var(--text-base); }
+        .features svg { flex-shrink: 0; color: var(--success); margin-top: 4px; }
+        .features b { display: block; font-weight: 600; }
+        .features span { font-size: var(--text-sm); color: var(--text-secondary); }
+
+        /* ---------- Pricing ---------- */
+        .plans { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: start; }
+        .plan { display: flex; flex-direction: column; height: 100%; }
+        .plan--featured {
+            border-color: var(--accent-color);
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+        .plan--featured::after {
+            content: "Most popular";
+            position: absolute;
+            top: -11px; left: 50%;
+            translate: -50% 0;
+            background: var(--accent-color);
+            color: #fff;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            padding: 0.25rem 0.8rem;
+            border-radius: var(--radius-full);
+            white-space: nowrap;
+        }
+        .plan h3 { margin-bottom: 0.25rem; }
+        .plan__price { font-size: var(--text-3xl); font-weight: 800; letter-spacing: var(--tracking-tighter); margin: 0.5rem 0 0.15rem; }
+        .plan__price small { font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary); letter-spacing: 0; }
+        .plan__desc { font-size: var(--text-sm); color: var(--text-secondary); }
+        .plan ul { list-style: none; margin: var(--space-md) 0 var(--space-lg); padding: 0; display: grid; gap: 0.55rem; }
+        .plan li { display: flex; gap: 0.55rem; align-items: flex-start; font-size: var(--text-sm); }
+        .plan li svg { flex-shrink: 0; color: var(--success); margin-top: 3px; }
+        .plan .btn { margin-top: auto; }
+
+        /* ---------- FAQ ---------- */
+        .faq { max-width: var(--container-narrow); margin-inline: auto; }
+        .faq details {
+            border-bottom: 1px solid var(--border);
+            padding: 1.15rem 0;
+        }
+        .faq summary {
+            cursor: pointer;
+            font-weight: 600;
+            font-size: var(--text-lg);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+        }
+        .faq summary::-webkit-details-marker { display: none; }
+        .faq summary::after {
+            content: "+";
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            transition: transform var(--transition);
+            flex-shrink: 0;
+        }
+        .faq details[open] summary::after { transform: rotate(45deg); }
+        .faq details p { margin: 0.75rem 0 0; color: var(--text-secondary); max-width: 68ch; }
+
+        /* ---------- Final CTA ---------- */
+        .final { text-align: center; position: relative; overflow: hidden; isolation: isolate; }
+        .final::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(50% 70% at 50% 0%, rgba(59,130,246,0.28), transparent 72%);
+            z-index: -1;
+        }
+        .final h2 { font-size: var(--text-4xl); }
+        .final p { max-width: 52ch; margin-inline: auto; font-size: var(--text-lg); }
+
+        /* ---------- Footer ---------- */
+        .footer {
+            background: var(--bg-dark);
+            color: var(--text-inverse-muted);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-block: var(--space-lg);
+            font-size: var(--text-sm);
+        }
+        .footer__inner { display: flex; flex-wrap: wrap; gap: var(--space-md); align-items: center; justify-content: space-between; }
+        .footer a { color: var(--text-inverse-muted); }
+        .footer a:hover { color: #fff; }
+        .footer__links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <h1>We Build Sites That Convert.</h1>
-        <p>Rebuilding outdated small-business sites into 2026 conversion-standard engines.</p>
-        <a href="request/" class="cta-button">Get a free redesign mockup</a>
-    </header>
-
-    <main>
-        <h2 style="text-align: center; padding-top: 2rem;">Explore Niches</h2>
-        <div class="niches" id="niche-grid">
-            <!-- Populated via JS -->
+<nav class="nav">
+    <div class="container nav__inner">
+        <a class="nav__brand" href="./">
+            <span class="nav__mark">BS</span>
+            Business Site Studio
+        </a>
+        <div class="nav__links">
+            <a href="#work">The difference</a>
+            <a href="#niches">Who we build for</a>
+            <a href="#how">How it works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
         </div>
-    </main>
+        <a href="request/" class="btn btn--primary">Get my free mockup</a>
+    </div>
+</nav>
 
-    <script>
-        fetch('data/niches.json')
-            .then(res => res.json())
-            .then(data => {
-                const grid = document.getElementById('niche-grid');
-                data.niches.forEach(niche => {
-                    grid.innerHTML += `<a href="#" class="niche-card"><h3>${niche.name}</h3><p>View Demo Gallery</p></a>`;
-                });
+<header class="hero">
+    <div class="container hero__inner">
+        <span class="hero__badge">
+            <b>NO RISK</b> We build it first — you decide after
+        </span>
+
+        <h1>Your competitors' websites are<br><span class="grad">winning the customers you lost.</span></h1>
+
+        <p class="hero__sub">
+            We rebuild outdated small-business websites into fast, modern sites that turn
+            visitors into phone calls. You'll see your new homepage <strong style="color:#fff">before you spend a dollar.</strong>
+        </p>
+
+        <div class="hero__cta">
+            <a href="request/" class="btn btn--primary btn--lg">Get my free redesign mockup</a>
+            <a href="#work" class="btn btn--on-dark btn--lg">See the difference</a>
+        </div>
+
+        <ul class="hero__points">
+            <li>
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+                No payment up front
+            </li>
+            <li>
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+                Built for phones first
+            </li>
+            <li>
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+                You own everything
+            </li>
+        </ul>
+    </div>
+</header>
+
+<!-- ---------------- Before / After ---------------- -->
+<section class="section" id="work">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">The difference</span>
+            <h2>Same business. Fifteen years apart.</h2>
+            <p>Drag the slider. This is the gap between a site that costs you customers and one that earns them.</p>
+        </div>
+
+        <div class="ba-wrap reveal">
+            <div class="ba" id="baSlider">
+                <!-- AFTER (underneath) -->
+                <div class="ba__pane ba__pane--after">
+                    <div class="new">
+                        <div class="new__bar">
+                            <div class="new__logo"><span class="new__dot"></span> Miller Auto Body</div>
+                            <div class="new__navlinks"><span></span><span></span><span></span></div>
+                            <div class="new__pill">Call now</div>
+                        </div>
+                        <div class="new__hero">
+                            <div>
+                                <div class="new__h">Back on the road in 3 days.</div>
+                                <div class="new__p">Free estimates, insurance handled, lifetime warranty on all collision work.</div>
+                                <span class="new__cta">Get a free estimate →</span>
+                            </div>
+                            <div class="new__art"></div>
+                        </div>
+                        <div class="new__strip">
+                            <div class="new__chip"></div>
+                            <div class="new__chip"></div>
+                            <div class="new__chip"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BEFORE (on top, clipped) -->
+                <div class="ba__pane ba__pane--before">
+                    <div class="old">
+                        <div class="old__bar">*** WELCOME TO MILLER AUTO BODY ***</div>
+                        <div class="old__cols">
+                            <div class="old__side">
+                                <a href="#">Home</a>
+                                <a href="#">About Us</a>
+                                <a href="#">Servises</a>
+                                <a href="#">Contact</a>
+                                <a href="#">Guestbook</a>
+                            </div>
+                            <div class="old__body">
+                                <div class="old__img">[ image ]</div>
+                                <div><b>We do auto body work.</b></div>
+                                <div>Call for a quote. We have been in business since 1987.
+                                    Please call during business hours.</div>
+                                <span class="old__btn">Click Here</span>
+                                <div class="old__counter">Visitors: 000417 | Best viewed at 1024x768</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <span class="ba__tag ba__tag--before">Before</span>
+                <span class="ba__tag ba__tag--after">After</span>
+
+                <div class="ba__divider">
+                    <div class="ba__knob">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/><polyline points="9 18 15 12 9 6" transform="translate(6)"/></svg>
+                    </div>
+                </div>
+
+                <input class="ba__range" type="range" min="0" max="100" value="50" step="0.1"
+                       aria-label="Compare the old site with the new site">
+            </div>
+            <p class="ba__note">Illustrative example, not a real client site.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------- Symptoms ---------------- -->
+<section class="section section--subtle">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Sound familiar?</span>
+            <h2>If any of these are true, you're losing work</h2>
+            <p>Most small-business sites weren't built badly. They were built a long time ago — and the world moved.</p>
+        </div>
+
+        <div class="symptoms reveal">
+            <div class="symptom">
+                <span class="symptom__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                <div>
+                    <h3>It's painful on a phone</h3>
+                    <p>Most people find you on a phone. If they have to pinch and zoom, they leave.</p>
+                </div>
+            </div>
+            <div class="symptom">
+                <span class="symptom__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                <div>
+                    <h3>It's slow to load</h3>
+                    <p>Every extra second of loading quietly sends people back to search results.</p>
+                </div>
+            </div>
+            <div class="symptom">
+                <span class="symptom__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                <div>
+                    <h3>There's no obvious next step</h3>
+                    <p>If a visitor can't call, book, or message you in one tap, they won't.</p>
+                </div>
+            </div>
+            <div class="symptom">
+                <span class="symptom__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                <div>
+                    <h3>It looks dated</h3>
+                    <p>People judge whether you're still in business — and worth trusting — in seconds.</p>
+                </div>
+            </div>
+            <div class="symptom">
+                <span class="symptom__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                <div>
+                    <h3>You can't update it yourself</h3>
+                    <p>Changing your hours shouldn't mean emailing whoever built it in 2011.</p>
+                </div>
+            </div>
+            <div class="symptom">
+                <span class="symptom__icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></span>
+                <div>
+                    <h3>You're invisible on Google</h3>
+                    <p>No structure, no speed, no mobile support — search engines notice all three.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------- Niches ---------------- -->
+<section class="section" id="niches">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Who we build for</span>
+            <h2>We know your trade</h2>
+            <p>We build in a handful of niches on purpose — so we already know what your customers look for.</p>
+        </div>
+
+        <!--
+            These are intentionally hard-coded rather than fetched from data/niches.json.
+            Marketing content shouldn't disappear if a fetch fails or JS is blocked.
+            If you add a niche, update BOTH this list and data/niches.json.
+        -->
+        <div class="niches reveal">
+            <a class="card card--link niche" href="request/?niche=autobody">
+                <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l-1.5-5.5a2 2 0 011.9-2.5h11.2a2 2 0 011.9 2.5L18 17"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg></span>
+                <span>
+                    <span class="niche__name">Auto Body</span><br>
+                    <span class="niche__meta">Collision &amp; repair shops</span>
+                </span>
+                <span class="niche__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </a>
+
+            <a class="card card--link niche" href="request/?niche=home-improvement-landscape">
+                <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg></span>
+                <span>
+                    <span class="niche__name">Home &amp; Landscape</span><br>
+                    <span class="niche__meta">Contractors &amp; lawn care</span>
+                </span>
+                <span class="niche__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </a>
+
+            <a class="card card--link niche" href="request/?niche=bakery-restaurant">
+                <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a8 8 0 0116 0"/><path d="M2 12h20"/><path d="M5 12v4a3 3 0 003 3h8a3 3 0 003-3v-4"/></svg></span>
+                <span>
+                    <span class="niche__name">Bakery &amp; Restaurant</span><br>
+                    <span class="niche__meta">Menus, hours &amp; ordering</span>
+                </span>
+                <span class="niche__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </a>
+
+            <a class="card card--link niche" href="request/?niche=barber-salon">
+                <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.1" y2="15.9"/><line x1="14.5" y1="14.5" x2="20" y2="20"/><line x1="8.1" y1="8.1" x2="12" y2="12"/></svg></span>
+                <span>
+                    <span class="niche__name">Barber &amp; Salon</span><br>
+                    <span class="niche__meta">Booking-first design</span>
+                </span>
+                <span class="niche__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </a>
+
+            <a class="card card--link niche" href="request/?niche=smoke-shop">
+                <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg></span>
+                <span>
+                    <span class="niche__name">Smoke Shop</span><br>
+                    <span class="niche__meta">Storefront &amp; inventory</span>
+                </span>
+                <span class="niche__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </a>
+
+            <a class="card card--link niche" href="request/?niche=handyman-repair">
+                <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 01-5.4 5.4L4 17v3h3l5.3-5.3a4 4 0 015.4-5.4l-2.5 2.5-1.4-1.4z"/></svg></span>
+                <span>
+                    <span class="niche__name">Handyman &amp; Repair</span><br>
+                    <span class="niche__meta">Service-area businesses</span>
+                </span>
+                <span class="niche__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </a>
+
+            <a class="card card--link niche" href="request/?niche=misc-niche">
+                <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>
+                <span>
+                    <span class="niche__name">Something else</span><br>
+                    <span class="niche__meta">Tell us your trade</span>
+                </span>
+                <span class="niche__arrow"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------- How it works ---------------- -->
+<section class="section section--subtle" id="how">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">How it works</span>
+            <h2>You see it before you buy it</h2>
+            <p>No deposits, no discovery calls, no six-week timelines. Three steps.</p>
+        </div>
+
+        <div class="steps reveal">
+            <div class="step">
+                <h3>Tell us your business</h3>
+                <p>Name, trade, and your current site if you have one. Takes about thirty seconds — no phone call required.</p>
+            </div>
+            <div class="step">
+                <h3>We build your new homepage</h3>
+                <p>We rebuild it for real: your services, your area, your photos. Not a template preview with fake text.</p>
+            </div>
+            <div class="step">
+                <h3>Keep it or walk away</h3>
+                <p>If you like it, we finish the site and launch it. If you don't, you owe nothing and we part as friends.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------- Included ---------------- -->
+<section class="section">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">What you get</span>
+            <h2>Everything a working site needs</h2>
+            <p>No add-on pricing for things that should have been included.</p>
+        </div>
+
+        <ul class="features reveal">
+            <li><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg><div><b>Mobile-first build</b><span>Designed on a phone screen before a desktop one.</span></div></li>
+            <li><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg><div><b>Tap-to-call &amp; directions</b><span>The two buttons local customers actually press.</span></div></li>
+            <li><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg><div><b>Contact &amp; quote forms</b><span>Leads land in your inbox, not a portal you forget.</span></div></li>
+            <li><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg><div><b>Local SEO basics</b><span>Titles, structure, and schema so you show up nearby.</span></div></li>
+            <li><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg><div><b>Fast hosting &amp; HTTPS</b><span>Secure padlock, quick loads, no surprise bills.</span></div></li>
+            <li><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg><div><b>You own the domain</b><span>It stays in your name. You're never locked in.</span></div></li>
+        </ul>
+    </div>
+</section>
+
+<!-- ---------------- Pricing ---------------- -->
+<!--
+    ⚠️  TODO (Marc): these prices are PLACEHOLDERS. Set your real numbers before
+    you send this link to a prospect. Search for "data-placeholder-price".
+-->
+<section class="section section--subtle" id="pricing">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Pricing</span>
+            <h2>Straightforward pricing</h2>
+            <p>You'll know the number before we start. The mockup is free either way.</p>
+        </div>
+
+        <!--
+            The plans below are the fallback. They render instantly and stay put
+            if the database is unreachable. When live pricing loads, JS replaces
+            this grid. Edit the real numbers in the admin CMS: /admin/pricing.html
+        -->
+        <div class="plans reveal" id="plansGrid">
+            <div class="card plan">
+                <h3>Starter</h3>
+                <p class="plan__desc">A sharp one-page site that makes the phone ring.</p>
+                <div class="plan__price" data-placeholder-price>$X<small>&nbsp;one-time</small></div>
+                <ul>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Single-page site</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Mobile-first &amp; fast</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Contact form</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Hosting &amp; HTTPS</li>
+                </ul>
+                <a href="request/" class="btn btn--ghost btn--block">Start free</a>
+            </div>
+
+            <div class="card plan plan--featured">
+                <h3>Complete</h3>
+                <p class="plan__desc">A full site built to rank locally and convert.</p>
+                <div class="plan__price" data-placeholder-price>$X<small>&nbsp;one-time</small></div>
+                <ul>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Everything in Starter</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Up to 6 pages</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Local SEO setup</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Photo gallery</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Google Business help</li>
+                </ul>
+                <a href="request/" class="btn btn--primary btn--block">Get my free mockup</a>
+            </div>
+
+            <div class="card plan">
+                <h3>Care Plan</h3>
+                <p class="plan__desc">We keep it updated so you never touch code.</p>
+                <div class="plan__price" data-placeholder-price>$X<small>&nbsp;/month</small></div>
+                <ul>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Content &amp; hours updates</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Monitoring &amp; backups</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Seasonal refreshes</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Cancel anytime</li>
+                </ul>
+                <a href="request/" class="btn btn--ghost btn--block">Ask about it</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------- FAQ ---------------- -->
+<section class="section" id="faq">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Questions</span>
+            <h2>The things everyone asks</h2>
+        </div>
+
+        <div class="faq reveal">
+            <details open>
+                <summary>Is the mockup really free?</summary>
+                <p>Yes. We build your new homepage first and show it to you. If you don't want it, you don't pay and we don't chase you. We'd rather show you the work than talk about it.</p>
+            </details>
+            <details>
+                <summary>What do you need from me to start?</summary>
+                <p>Your business name, your trade, and your current website if you have one. That's it. We can work from your existing site, your Google listing, and your social pages.</p>
+            </details>
+            <details>
+                <summary>How long does it take?</summary>
+                <p>The free mockup usually comes back within a few days. Once you approve it, a finished site typically goes live in about a week, depending on how much content we're waiting on.</p>
+            </details>
+            <details>
+                <summary>What if I already have a domain?</summary>
+                <p>We'll use it. It stays registered in your name, and we point it at the new site. If you don't have one yet, we'll help you get it — also in your name.</p>
+            </details>
+            <details>
+                <summary>Can I update the site myself later?</summary>
+                <p>Yes. We'll walk you through the handful of things owners actually change — hours, services, photos, phone number. If you'd rather not, the Care Plan covers it.</p>
+            </details>
+            <details>
+                <summary>What happens to my old site?</summary>
+                <p>Nothing until you say so. Your current site stays exactly as it is while we build. We only switch it over once you've seen the new one and given the go-ahead.</p>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- ---------------- Final CTA ---------------- -->
+<section class="section section--dark final">
+    <div class="container container--narrow">
+        <h2 class="reveal">See your new site before you decide.</h2>
+        <p class="reveal">Takes thirty seconds to ask. There's no call, no deposit, and no obligation — just your business, rebuilt.</p>
+        <div class="reveal" style="margin-top: var(--space-lg);">
+            <a href="request/" class="btn btn--primary btn--lg">Get my free redesign mockup</a>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="container footer__inner">
+        <span>&copy; <span id="year">2026</span> Business Site Studio. All rights reserved.</span>
+        <nav class="footer__links">
+            <a href="#work">The difference</a>
+            <a href="#niches">Niches</a>
+            <a href="#pricing">Pricing</a>
+            <a href="request/">Get a mockup</a>
+        </nav>
+    </div>
+</footer>
+
+<script src="assets/js/env.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/settings-client.js"></script>
+<script>
+    // --- Before/after slider -------------------------------------------------
+    (function () {
+        const slider = document.getElementById('baSlider');
+        if (!slider) return;
+        const range = slider.querySelector('.ba__range');
+        const apply = () => slider.style.setProperty('--pos', range.value + '%');
+        range.addEventListener('input', apply);
+        apply();
+    })();
+
+    // --- Scroll reveal -------------------------------------------------------
+    (function () {
+        const items = document.querySelectorAll('.reveal');
+        if (!items.length) return;
+
+        // No IntersectionObserver (or reduced motion) -> just show everything.
+        const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced || !('IntersectionObserver' in window)) {
+            items.forEach(el => el.classList.add('is-visible'));
+            return;
+        }
+
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    io.unobserve(entry.target);
+                }
             });
-    </script>
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+        items.forEach(el => io.observe(el));
+    })();
+
+    // --- Footer year ---------------------------------------------------------
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // --- Live pricing --------------------------------------------------------
+    // Overwrites the fallback grid only on a successful load, so a failed
+    // request leaves the hard-coded plans on screen rather than an empty gap.
+    (function () {
+        const grid = document.getElementById('plansGrid');
+        if (!grid || typeof getSetting !== 'function') return;
+
+        const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
+            { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+        ));
+
+        const CHECK = '<svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>';
+
+        const planHtml = (p) => `
+            <div class="card plan${p.featured ? ' plan--featured' : ''}">
+                <h3>${esc(p.name)}</h3>
+                <p class="plan__desc">${esc(p.desc)}</p>
+                <div class="plan__price">${esc(p.price)}<small>&nbsp;${esc(p.period)}</small></div>
+                <ul>${(p.features || []).map(f => `<li>${CHECK}${esc(f)}</li>`).join('')}</ul>
+                <a href="request/" class="btn ${p.featured ? 'btn--primary' : 'btn--ghost'} btn--block">${esc(p.cta) || 'Get started'}</a>
+            </div>`;
+
+        getSetting('pricing', null).then(data => {
+            if (!data || !Array.isArray(data.plans) || !data.plans.length) return;
+
+            const wasVisible = grid.classList.contains('is-visible');
+            grid.innerHTML = data.plans.map(planHtml).join('');
+            if (wasVisible) grid.classList.add('is-visible');
+        });
+    })();
+</script>
+
 </body>
 </html>

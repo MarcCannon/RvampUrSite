@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing — Admin</title>
+    <link rel="stylesheet" href="../assets/css/tokens.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script src="../assets/js/env.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/settings-client.js"></script>
+    <script src="../assets/js/admin-auth.js"></script>
+</head>
+<body class="admin">
+
+<aside class="sidebar">
+    <div class="sidebar__brand">
+        <span class="sidebar__mark">BS</span> Admin
+    </div>
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="tickets.html">Tickets</a>
+        <a href="prospects.html">Prospects</a>
+        <a href="pricing.html" aria-current="page">Pricing</a>
+        <a href="playbooks.html">Playbooks</a>
+    </nav>
+    <div class="sidebar__foot">
+        <button id="logoutBtn" type="button">Sign out</button>
+    </div>
+</aside>
+
+<main class="content">
+    <div class="page-head">
+        <div>
+            <h1>Pricing</h1>
+            <p>Edit what visitors see on the landing page. Changes go live the moment you save — no redeploy.</p>
+        </div>
+        <div class="page-head__actions">
+            <span class="status" id="status"></span>
+            <button class="btn btn--primary" id="saveBtn" type="button">Save changes</button>
+        </div>
+    </div>
+
+    <div id="alertSlot"></div>
+
+    <div class="editor">
+        <div>
+            <div id="plans"></div>
+            <button class="btn btn--ghost" id="addPlanBtn" type="button">+ Add a plan</button>
+        </div>
+
+        <div class="editor__preview">
+            <div class="card preview-card">
+                <h3>Live preview</h3>
+                <div id="preview"></div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script>
+(function () {
+    const SETTING_KEY = 'pricing';
+
+    // Used only if the database has no pricing row yet.
+    const DEFAULTS = {
+        plans: [
+            { id: 'starter', name: 'Starter', desc: 'A sharp one-page site that makes the phone ring.',
+              price: '$X', period: 'one-time', featured: false, cta: 'Start free',
+              features: ['Single-page site', 'Mobile-first & fast', 'Contact form', 'Hosting & HTTPS'] }
+        ]
+    };
+
+    let state = { plans: [] };
+    let dirty = false;
+
+    const $plans = document.getElementById('plans');
+    const $preview = document.getElementById('preview');
+    const $status = document.getElementById('status');
+    const $saveBtn = document.getElementById('saveBtn');
+    const $alertSlot = document.getElementById('alertSlot');
+
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+
+    function setStatus(text, kind) {
+        $status.textContent = text;
+        $status.className = 'status' + (kind ? ' status--' + kind : '');
+    }
+
+    function showAlert(message, kind = 'error') {
+        $alertSlot.innerHTML = `<div class="alert alert--${kind}">${esc(message)}</div>`;
+    }
+    function clearAlert() { $alertSlot.innerHTML = ''; }
+
+    function markDirty() {
+        dirty = true;
+        setStatus('Unsaved changes', 'saving');
+    }
+
+    // ---------- Rendering ----------
+
+    function planEditorHtml(plan, i) {
+        const features = (plan.features || []).map((f, fi) => `
+            <div class="feature-row">
+                <input type="text" value="${esc(f)}" data-plan="${i}" data-feature="${fi}" aria-label="Feature ${fi + 1}">
+                <button class="icon-btn" type="button" data-remove-feature="${i}:${fi}" aria-label="Remove feature" title="Remove">&times;</button>
+            </div>
+        `).join('');
+
+        return `
+        <section class="card plan-editor">
+            <div class="plan-editor__head">
+                <h2>${esc(plan.name) || 'Untitled plan'}</h2>
+                <label class="toggle">
+                    <input type="checkbox" data-plan="${i}" data-field="featured" ${plan.featured ? 'checked' : ''}>
+                    Highlight
+                </label>
+                <button class="icon-btn" type="button" data-remove-plan="${i}" aria-label="Delete plan" title="Delete plan">&times;</button>
+            </div>
+
+            <div class="form-group">
+                <label>Plan name</label>
+                <input type="text" value="${esc(plan.name)}" data-plan="${i}" data-field="name">
+            </div>
+
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="text" value="${esc(plan.price)}" data-plan="${i}" data-field="price" placeholder="$1,200">
+                    <p class="hint">Free text — write it exactly as you want it shown.</p>
+                </div>
+                <div class="form-group">
+                    <label>Period</label>
+                    <input type="text" value="${esc(plan.period)}" data-plan="${i}" data-field="period" placeholder="one-time">
+                    <p class="hint">e.g. "one-time" or "/month".</p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Short description</label>
+                <input type="text" value="${esc(plan.desc)}" data-plan="${i}" data-field="desc">
+            </div>
+
+            <div class="form-group">
+                <label>Button text</label>
+                <input type="text" value="${esc(plan.cta)}" data-plan="${i}" data-field="cta" placeholder="Get my free mockup">
+            </div>
+
+            <div class="form-group">
+                <label>What's included</label>
+                ${features}
+                <button class="icon-btn icon-btn--ghost" type="button" data-add-feature="${i}" aria-label="Add feature" title="Add">+</button>
+            </div>
+        </section>`;
+    }
+
+    function render() {
+        $plans.innerHTML = state.plans.map(planEditorHtml).join('');
+        renderPreview();
+    }
+
+    function renderPreview() {
+        if (!state.plans.length) {
+            $preview.innerHTML = '<p class="hint">No plans yet.</p>';
+            return;
+        }
+        $preview.innerHTML = state.plans.map(p => `
+            <div class="preview-plan ${p.featured ? 'preview-plan--featured' : ''}">
+                <div class="preview-plan__name">${esc(p.name)}</div>
+                <div class="preview-plan__price">${esc(p.price)} <small>${esc(p.period)}</small></div>
+                <p class="preview-plan__desc">${esc(p.desc)}</p>
+                <ul>${(p.features || []).map(f => `<li>${esc(f)}</li>`).join('')}</ul>
+            </div>
+        `).join('');
+    }
+
+    // ---------- Editing ----------
+    // Delegated so re-rendering never leaves stale listeners behind.
+
+    $plans.addEventListener('input', (e) => {
+        const el = e.target;
+        const planIdx = el.dataset.plan;
+        if (planIdx === undefined) return;
+
+        const plan = state.plans[+planIdx];
+        if (!plan) return;
+
+        if (el.dataset.feature !== undefined) {
+            plan.features[+el.dataset.feature] = el.value;
+            renderPreview();
+        } else if (el.dataset.field) {
+            plan[el.dataset.field] = el.type === 'checkbox' ? el.checked : el.value;
+
+            // Re-render only the heading, so typing doesn't steal focus.
+            if (el.dataset.field === 'name') {
+                const head = el.closest('.plan-editor').querySelector('.plan-editor__head h2');
+                if (head) head.textContent = el.value || 'Untitled plan';
+            }
+            renderPreview();
+        }
+        markDirty();
+    });
+
+    $plans.addEventListener('change', (e) => {
+        if (e.target.type === 'checkbox') renderPreview();
+    });
+
+    $plans.addEventListener('click', (e) => {
+        const btn = e.target.closest('button');
+        if (!btn) return;
+
+        if (btn.dataset.addFeature !== undefined) {
+            state.plans[+btn.dataset.addFeature].features.push('');
+            render();
+            markDirty();
+            // Focus the row we just added.
+            const rows = $plans.querySelectorAll(`input[data-plan="${btn.dataset.addFeature}"][data-feature]`);
+            rows[rows.length - 1]?.focus();
+
+        } else if (btn.dataset.removeFeature) {
+            const [pi, fi] = btn.dataset.removeFeature.split(':').map(Number);
+            state.plans[pi].features.splice(fi, 1);
+            render();
+            markDirty();
+
+        } else if (btn.dataset.removePlan !== undefined) {
+            const plan = state.plans[+btn.dataset.removePlan];
+            if (confirm(`Delete the "${plan.name || 'Untitled'}" plan? This cannot be undone once you save.`)) {
+                state.plans.splice(+btn.dataset.removePlan, 1);
+                render();
+                markDirty();
+            }
+        }
+    });
+
+    document.getElementById('addPlanBtn').addEventListener('click', () => {
+        state.plans.push({
+            id: 'plan-' + Date.now(),
+            name: 'New plan', desc: '', price: '$0', period: 'one-time',
+            featured: false, cta: 'Get started', features: ['']
+        });
+        render();
+        markDirty();
+    });
+
+    // ---------- Load & save ----------
+
+    document.getElementById('saveBtn').addEventListener('click', async () => {
+        clearAlert();
+        $saveBtn.disabled = true;
+        setStatus('Saving…', 'saving');
+
+        // Drop empty feature rows so blanks never reach the public page.
+        const payload = {
+            plans: state.plans.map(p => ({
+                ...p,
+                features: (p.features || []).filter(f => f.trim() !== '')
+            }))
+        };
+
+        const { ok, error } = await saveSetting(SETTING_KEY, payload);
+
+        $saveBtn.disabled = false;
+
+        if (ok) {
+            dirty = false;
+            setStatus('Saved — live on the site', 'ok');
+            setTimeout(() => { if (!dirty) setStatus(''); }, 4000);
+        } else {
+            setStatus('Not saved', 'error');
+            showAlert(error);
+        }
+    });
+
+    window.addEventListener('beforeunload', (e) => {
+        if (dirty) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    async function init() {
+        setStatus('Loading…', 'saving');
+        const value = await getSetting(SETTING_KEY, null);
+
+        if (value && Array.isArray(value.plans)) {
+            state = value;
+        } else {
+            state = structuredClone(DEFAULTS);
+            showAlert(
+                'No pricing found in the database yet, so this is a starting template. ' +
+                'Run supabase/schema.sql if you have not — then edit and save.',
+                'warn'
+            );
+        }
+
+        // Normalise so the editor never hits an undefined array.
+        state.plans.forEach(p => { if (!Array.isArray(p.features)) p.features = []; });
+
+        render();
+        setStatus('');
+    }
+
+    // admin-auth.js replaces the page body when signed out, so only boot the
+    // editor once we know the user is actually in.
+    document.addEventListener('DOMContentLoaded', () => {
+        if (sbIsSignedIn()) init();
+    });
+})();
+</script>
+
+</body>
+</html>

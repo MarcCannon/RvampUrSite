@@ -2,32 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tickets - Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickets — Admin</title>
     <link rel="stylesheet" href="../assets/css/tokens.css">
-    <script src="../assets/js/admin-auth.js"></script>
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script src="../assets/js/env.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
     <script src="../assets/js/ticket-client.js"></script>
-    <style>
-        body { font-family: var(--font-primary); display: flex; margin: 0; min-height: 100vh; }
-        .sidebar { width: 250px; background: var(--gradient-primary); color: white; padding: 2rem 1rem; }
-        .sidebar a { color: white; text-decoration: none; display: block; margin-bottom: 1rem; font-size: 1.1rem; }
-        .content { flex: 1; padding: 2rem; background: var(--bg-primary); }
-        table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        th, td { padding: 1rem; border: 1px solid #ddd; text-align: left; }
-        th { background: #f4f4f4; }
-    </style>
+    <script src="../assets/js/admin-auth.js"></script>
 </head>
-<body>
-    <div class="sidebar">
-        <h2>Admin</h2>
-        <a href="index.html">Dashboard</a>
-        <a href="tickets.html">Tickets</a>
-        <a href="prospects.html">Prospects</a>
-        <a href="playbooks.html">Playbooks</a>
-        <button id="logoutBtn" style="margin-top: 2rem; padding: 0.5rem; width: 100%;">Logout</button>
+<body class="admin">
+
+<aside class="sidebar">
+    <div class="sidebar__brand">
+        <span class="sidebar__mark">BS</span> Admin
     </div>
-    <div class="content">
-        <h1>Ticket Queue</h1>
-        <table>
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="tickets.html" aria-current="page">Tickets</a>
+        <a href="prospects.html">Prospects</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="playbooks.html">Playbooks</a>
+    </nav>
+    <div class="sidebar__foot">
+        <button id="logoutBtn" type="button">Sign out</button>
+    </div>
+</aside>
+
+<main class="content">
+    <div class="page-head">
+        <div>
+            <h1>Ticket queue</h1>
+            <p>Mockup requests submitted through the public form.</p>
+        </div>
+    </div>
+
+    <!-- NOTE: still the original mock row. Wiring this to the tickets table is
+         a separate job from the pricing CMS. -->
+    <div class="table-wrap">
+        <table class="data">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -39,17 +52,18 @@
                 </tr>
             </thead>
             <tbody id="ticketsBody">
-                <!-- Mock Data for now -->
                 <tr>
                     <td>tk_1a2b</td>
                     <td>Bob's Autobody</td>
                     <td>autobody</td>
                     <td>new</td>
-                    <td>New</td>
-                    <td><button>View</button></td>
+                    <td><span class="pill">New</span></td>
+                    <td><button class="btn btn--ghost" style="padding:0.4rem 0.8rem;font-size:var(--text-sm)">View</button></td>
                 </tr>
             </tbody>
         </table>
     </div>
+</main>
+
 </body>
 </html>
