@@ -1,4 +1,10 @@
 // Shared popup CTA for all demo pages
+
+// This script is loaded from pages at varying depths, so resolve the site root
+// from the script's own URL (assets/js/ -> up two levels). Keeps links working
+// under a project page like /RvampUrSite/ as well as at a domain root.
+const SITE_ROOT = new URL('../../', document.currentScript.src).href;
+
 document.addEventListener("DOMContentLoaded", () => {
     const popupHtml = `
         <div id="demoPurchasePopup" style="
@@ -17,11 +23,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <button id="closePopup" style="float: right; border: none; background: none; cursor: pointer; font-size: 1.2rem;">&times;</button>
             <h3 style="margin-top: 0; color: #333;">Like what you see?</h3>
             <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Get a site like this for your business.</p>
-            <button onclick="window.location.href='/request/?type=claim'" style="
+            <button onclick="window.location.href='${SITE_ROOT}request/?type=claim'" style="
                 display: block; width: 100%; padding: 10px; margin-bottom: 10px;
                 background: #2563eb; color: white; border: none; border-radius: 4px; cursor: pointer;
             ">This is my business</button>
-            <button onclick="window.location.href='/request/?type=inspired-by'" style="
+            <button onclick="window.location.href='${SITE_ROOT}request/?type=inspired-by'" style="
                 display: block; width: 100%; padding: 10px;
                 background: #f1f5f9; color: #333; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer;
             ">I want something like this</button>

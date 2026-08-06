@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Business Site Studio</title>
-    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <link rel="stylesheet" href="assets/css/tokens.css">
     <style>
         body { font-family: var(--font-primary); background-color: var(--bg-primary); color: var(--text-primary); margin: 0; padding: 0; }
         .hero { text-align: center; padding: 4rem 2rem; background: var(--gradient-primary); color: white; }
@@ -21,7 +21,7 @@
     <header class="hero">
         <h1>We Build Sites That Convert.</h1>
         <p>Rebuilding outdated small-business sites into 2026 conversion-standard engines.</p>
-        <a href="/request/" class="cta-button">Get a free redesign mockup</a>
+        <a href="request/" class="cta-button">Get a free redesign mockup</a>
     </header>
 
     <main>
@@ -32,7 +32,7 @@
     </main>
 
     <script>
-        fetch('/data/niches.json')
+        fetch('data/niches.json')
             .then(res => res.json())
             .then(data => {
                 const grid = document.getElementById('niche-grid');
