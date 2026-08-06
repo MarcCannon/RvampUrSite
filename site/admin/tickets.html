@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tickets - Admin Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <script src="/assets/js/admin-auth.js"></script>
+    <script src="/assets/js/ticket-client.js"></script>
+    <style>
+        body { font-family: var(--font-primary); display: flex; margin: 0; min-height: 100vh; }
+        .sidebar { width: 250px; background: var(--gradient-primary); color: white; padding: 2rem 1rem; }
+        .sidebar a { color: white; text-decoration: none; display: block; margin-bottom: 1rem; font-size: 1.1rem; }
+        .content { flex: 1; padding: 2rem; background: var(--bg-primary); }
+        table { width: 100%; border-collapse: collapse; margin-top: 1rem; background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+        th, td { padding: 1rem; border: 1px solid #ddd; text-align: left; }
+        th { background: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin</h2>
+        <a href="index.html">Dashboard</a>
+        <a href="tickets.html">Tickets</a>
+        <a href="prospects.html">Prospects</a>
+        <a href="playbooks.html">Playbooks</a>
+        <button id="logoutBtn" style="margin-top: 2rem; padding: 0.5rem; width: 100%;">Logout</button>
+    </div>
+    <div class="content">
+        <h1>Ticket Queue</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Business</th>
+                    <th>Niche</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="ticketsBody">
+                <!-- Mock Data for now -->
+                <tr>
+                    <td>tk_1a2b</td>
+                    <td>Bob's Autobody</td>
+                    <td>autobody</td>
+                    <td>new</td>
+                    <td>New</td>
+                    <td><button>View</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

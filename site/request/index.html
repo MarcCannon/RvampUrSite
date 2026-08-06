@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Request a Demo - Business Site Studio</title>
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <script src="/assets/js/ticket-client.js"></script>
+    <style>
+        body { font-family: var(--font-primary); background: var(--bg-primary); padding: 2rem; }
+        .form-container { max-width: 500px; margin: 0 auto; background: white; padding: 2rem; border-radius: var(--radius-md); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: var(--radius-sm); }
+        button { background: var(--accent-color); color: white; border: none; padding: 1rem; width: 100%; border-radius: var(--radius-md); cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Request a Redesign Mockup</h2>
+        <form id="requestForm">
+            <div class="form-group">
+                <label>Business Name</label>
+                <input type="text" id="bizName" required>
+            </div>
+            <div class="form-group">
+                <label>Current Website URL (optional)</label>
+                <input type="url" id="bizUrl">
+            </div>
+            <div class="form-group">
+                <label>Niche</label>
+                <select id="bizNiche" required>
+                    <!-- Populated by JS -->
+                </select>
+            </div>
+            <input type="hidden" id="demoType" value="new">
+            <input type="hidden" id="demoReference" value="">
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+
+    <script>
+        // Load niches
+        fetch('/data/niches.json').then(r => r.json()).then(d => {
+            const select = document.getElementById('bizNiche');
+            d.niches.forEach(n => select.innerHTML += `<option value="${n.id}">${n.name}</option>`);
+            
+            // Check URL params for pre-filling
+            const params = new URLSearchParams(window.location.search);
+            if(params.get('type')) document.getElementById('demoType').value = params.get('type');
+            if(params.get('ref')) document.getElementById('demoReference').value = params.get('ref');
+            if(params.get('niche')) document.getElementById('bizNiche').value = params.get('niche');
+        });
+
+        document.getElementById('requestForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                business_name: document.getElementById('bizName').value,
+                url: document.getElementById('bizUrl').value,
+                niche: document.getElementById('bizNiche').value,
+                type: document.getElementById('demoType').value,
+                reference: document.getElementById('demoReference').value,
+                status: 'new'
+            };
+            await createTicket(data);
+            alert('Request submitted successfully!');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>

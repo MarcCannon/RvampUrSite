@@ -1,0 +1,11 @@
+{
+    "niches": [
+        { "id": "autobody", "name": "Auto Body" },
+        { "id": "home-improvement-landscape", "name": "Home Improvement & Landscape" },
+        { "id": "bakery-restaurant", "name": "Bakery & Restaurant" },
+        { "id": "barber-salon", "name": "Barber & Salon" },
+        { "id": "smoke-shop", "name": "Smoke Shop" },
+        { "id": "handyman-repair", "name": "Handyman & Repair" },
+        { "id": "misc-niche", "name": "Misc / Small Niche" }
+    ]
+}

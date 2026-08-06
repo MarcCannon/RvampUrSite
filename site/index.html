@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Site Studio</title>
+    <link rel="stylesheet" href="/assets/css/tokens.css">
+    <style>
+        body { font-family: var(--font-primary); background-color: var(--bg-primary); color: var(--text-primary); margin: 0; padding: 0; }
+        .hero { text-align: center; padding: 4rem 2rem; background: var(--gradient-primary); color: white; }
+        h1 { margin-bottom: 1rem; }
+        .hero p { font-size: 1.2rem; margin-bottom: 2rem; }
+        .cta-button { display: inline-block; padding: 1rem 2rem; background-color: var(--accent-color); color: white; text-decoration: none; border-radius: 8px; font-weight: bold; }
+        .niches { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; padding: 2rem; }
+        .niche-card { background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center; color: var(--text-primary); text-decoration: none; display: block; border: 1px solid #eee; transition: transform 0.2s; }
+        .niche-card:hover { transform: translateY(-5px); border-color: var(--accent-color); }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>We Build Sites That Convert.</h1>
+        <p>Rebuilding outdated small-business sites into 2026 conversion-standard engines.</p>
+        <a href="/request/" class="cta-button">Get a free redesign mockup</a>
+    </header>
+
+    <main>
+        <h2 style="text-align: center; padding-top: 2rem;">Explore Niches</h2>
+        <div class="niches" id="niche-grid">
+            <!-- Populated via JS -->
+        </div>
+    </main>
+
+    <script>
+        fetch('/data/niches.json')
+            .then(res => res.json())
+            .then(data => {
+                const grid = document.getElementById('niche-grid');
+                data.niches.forEach(niche => {
+                    grid.innerHTML += `<a href="#" class="niche-card"><h3>${niche.name}</h3><p>View Demo Gallery</p></a>`;
+                });
+            });
+    </script>
+</body>
+</html>
