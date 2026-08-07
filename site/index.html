@@ -265,44 +265,48 @@
         }
 
         /* Stylised "new site" mockup */
-        .new { height: 100%; background: #0a0a0a; color: #fff; display: flex; flex-direction: column; font-family: 'Inter', sans-serif; }
+        .new { height: 100%; background: #ffffff; color: #0f172a; display: flex; flex-direction: column; font-family: 'Inter', sans-serif; }
         .new__bar {
             display: flex; align-items: center; justify-content: space-between;
-            padding: 0.8rem 1.2rem; background: rgba(10,10,10,0.8); backdrop-filter: blur(8px);
-            border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 10;
+            padding: 0.8rem 1.2rem; background: rgba(255,255,255,0.9); backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(0,0,0,0.05); z-index: 10;
         }
-        .new__logo { font-weight: 700; font-size: clamp(0.7rem, 1.5vw, 1rem); letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem; }
-        .new__logo img { height: 18px; filter: brightness(0) invert(1); }
+        .new__logo { font-weight: 800; font-size: clamp(0.7rem, 1.5vw, 1rem); letter-spacing: -0.02em; display: flex; align-items: center; gap: 0.5rem; color: #0f172a; }
+        .new__dot { width: 18px; height: 18px; border-radius: 4px; background: linear-gradient(135deg, #3b82f6, #8b5cf6); }
         .new__navlinks { display: flex; gap: 0.8rem; }
-        .new__navlinks span { width: 35px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.2); }
-        .new__pill { background: #b91c1c; color: #fff; font-size: clamp(0.5rem, 1.1vw, 0.7rem); padding: 0.4rem 0.8rem; border-radius: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .new__navlinks span { width: 35px; height: 4px; border-radius: 2px; background: #e2e8f0; }
+        .new__pill { background: #0f172a; color: #fff; font-size: clamp(0.5rem, 1.1vw, 0.7rem); padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600; box-shadow: 0 4px 10px rgba(15,23,42,0.2); }
         
         .new__hero {
-            flex: 1; display: grid; grid-template-columns: 1.2fr 0.8fr;
-            background: radial-gradient(circle at top left, rgba(185,28,28,0.15) 0%, transparent 60%);
+            flex: 1; display: grid; grid-template-columns: 1.1fr 0.9fr;
+            background: radial-gradient(circle at top right, rgba(59,130,246,0.05) 0%, transparent 60%);
             align-items: center; position: relative; overflow: hidden;
+            padding: clamp(1rem, 3vw, 2.5rem); gap: 2rem;
         }
-        .new__hero-text { padding: clamp(1rem, 3vw, 2rem); position: relative; z-index: 5; }
-        .new__h { font-size: clamp(1.2rem, 3.2vw, 2.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: -1px; }
-        .new__h span { color: #b91c1c; display: block; }
-        .new__p { font-size: clamp(0.6rem, 1.4vw, 0.9rem); color: #94a3b8; line-height: 1.5; margin-bottom: 1.2rem; max-width: 90%; }
+        .new__hero-text { position: relative; z-index: 5; }
+        .new__h { font-size: clamp(1.2rem, 3.2vw, 2.4rem); font-weight: 800; line-height: 1.05; margin-bottom: 0.8rem; letter-spacing: -0.03em; color: #020617; }
+        .new__p { font-size: clamp(0.6rem, 1.4vw, 0.9rem); color: #475569; line-height: 1.5; margin-bottom: 1.5rem; max-width: 90%; }
         .new__cta {
-            display: inline-block; background: transparent; color: #fff;
-            font-size: clamp(0.55rem, 1.2vw, 0.8rem); font-weight: 600; padding: 0.6rem 1.2rem; border: 1px solid #b91c1c; text-transform: uppercase; letter-spacing: 1px;
+            display: inline-block; background: #3b82f6; color: #fff;
+            font-size: clamp(0.55rem, 1.2vw, 0.8rem); font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 6px; box-shadow: 0 4px 14px rgba(59,130,246,0.3);
         }
         
         .new__art {
-            position: absolute; right: -5%; top: 10%; bottom: -10%; width: 55%;
-            background-image: url('demos/autobody/showroom-reflections/img/hero-rolls.webp');
-            background-size: cover; background-position: center; border-radius: 4px;
-            box-shadow: -10px 10px 30px rgba(0,0,0,0.8);
-            border: 1px solid rgba(255,255,255,0.1);
-            transform: perspective(800px) rotateY(-10deg);
+            width: 100%; aspect-ratio: 4/3; border-radius: 12px;
+            background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+            position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .new__art::after {
+            content: ''; position: absolute; width: 60%; height: 60%;
+            background: #fff; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transform: rotate(-5deg);
         }
         
-        .new__strip { display: flex; gap: 1rem; padding: 0 clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem); background: #050505; z-index: 5;}
-        .new__chip { flex: 1; height: clamp(25px, 6vw, 40px); background: #0c0c0c; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: #64748b; font-size: clamp(0.4rem, 1vw, 0.6rem); text-transform: uppercase; letter-spacing: 1px;}
-        .new__chip svg { width: 12px; height: 12px; fill: #b91c1c; }
+        .new__strip { display: flex; gap: 1rem; padding: 0 clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem); z-index: 5;}
+        .new__chip { flex: 1; height: clamp(30px, 6vw, 45px); background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: #334155; font-size: clamp(0.4rem, 1.1vw, 0.65rem); font-weight: 600;}
+        .new__chip svg { width: 14px; height: 14px; fill: #3b82f6; flex-shrink: 0; }
 
         .ba__note {
             text-align: center;
@@ -547,22 +551,22 @@
                 <div class="ba__pane ba__pane--after">
                     <div class="new">
                         <div class="new__bar">
-                            <div class="new__logo"><img src="demos/autobody/showroom-reflections/img/logo-mark.webp" alt=""> Showroom Reflections</div>
+                            <div class="new__logo"><span class="new__dot"></span> Miller Auto Body</div>
                             <div class="new__navlinks"><span></span><span></span><span></span></div>
-                            <div class="new__pill">Reserve</div>
+                            <div class="new__pill">Call now</div>
                         </div>
                         <div class="new__hero">
                             <div class="new__hero-text">
-                                <div class="new__h">Showroom Shine <span>Delivered.</span></div>
-                                <div class="new__p">White-glove mobile auto detailing and elite paint correction.</div>
-                                <span class="new__cta">Commission a Detail</span>
+                                <div class="new__h">Back on the road in 3 days.</div>
+                                <div class="new__p">Free estimates, insurance handled, lifetime warranty on all collision work.</div>
+                                <span class="new__cta">Get a free estimate &rarr;</span>
                             </div>
                             <div class="new__art"></div>
                         </div>
                         <div class="new__strip">
-                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Ceramic Certified</div>
-                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Paint Correction</div>
-                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Mobile Service</div>
+                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Lifetime Warranty</div>
+                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Insurance Approved</div>
+                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Free Estimates</div>
                         </div>
                     </div>
                 </div>
