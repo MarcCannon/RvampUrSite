@@ -976,12 +976,33 @@
                 <a href="request/" class="btn ${p.featured ? 'btn--primary' : 'btn--ghost'} btn--block">${esc(p.cta) || 'Get started'}</a>
             </div>`;
 
-        getSetting('pricing', null).then(data => {
-            if (!data || !Array.isArray(data.plans) || !data.plans.length) return;
+        const CACHE_KEY = 'bss.pricing.v1';
+
+        // Paint prices only when they actually differ from what is on screen.
+        // Rewriting identical markup is what made the page visibly flip between
+        // the fallback and the live value on every load.
+        function apply(data) {
+            if (!data || !Array.isArray(data.plans) || !data.plans.length) return false;
+
+            const next = data.plans.map(planHtml).join('');
+            if (grid.innerHTML.trim() === next.trim()) return true;
 
             const wasVisible = grid.classList.contains('is-visible');
-            grid.innerHTML = data.plans.map(planHtml).join('');
+            grid.innerHTML = next;
             if (wasVisible) grid.classList.add('is-visible');
+            return true;
+        }
+
+        // Render last known prices synchronously, before the network round trip,
+        // so a returning visitor never sees the fallback swap out from under them.
+        try {
+            const cached = localStorage.getItem(CACHE_KEY);
+            if (cached) apply(JSON.parse(cached));
+        } catch { /* corrupt or unavailable cache is not worth failing over */ }
+
+        getSetting('pricing', null).then(data => {
+            if (!apply(data)) return;
+            try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch {}
         });
     })();
 </script>
