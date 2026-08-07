@@ -320,12 +320,13 @@
         </div>
     </footer>
 
-    <!-- Agent Handoff popup injection -->
-    <script src="../../../assets/js/purchase-popup.js"></script>
-    <script>
-        if (typeof initPurchasePopup === 'function') {
-            initPurchasePopup('Showroom Reflections', 'showroom-reflections');
-        }
-    </script>
+    <!-- Studio conversion loop: popup -> /request/ -> Supabase ticket.
+         data-ref lands in tickets.reference and data-niche preselects the trade,
+         so a lead that comes out of this demo is attributable to it.
+         data-theme keeps the popup dark instead of a white card on black. -->
+    <script src="../../../assets/js/purchase-popup.js"
+            data-ref="showroom-reflections"
+            data-niche="autobody"
+            data-theme="dark"></script>
 </body>
 </html>

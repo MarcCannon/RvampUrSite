@@ -162,7 +162,14 @@
             aspect-ratio: 16 / 10;
             user-select: none;
         }
-        .ba__pane { position: absolute; inset: 0; overflow: hidden; }
+        /* isolation is load-bearing, not decoration. The mockups inside use their
+           own z-index values (sticky navbar, chip strip), and flex items honour
+           z-index even when static. Without a stacking context on each pane those
+           values escape and paint over the *other* pane — the new site's navbar
+           and chips end up sitting on top of the old site, which wrecks the
+           whole before/after illusion. */
+        .ba__pane { position: absolute; inset: 0; overflow: hidden; isolation: isolate; }
+        .ba__pane--after { z-index: 1; }
         /* "Before" sits on top, clipped from the left edge to the handle */
         .ba__pane--before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); z-index: 2; }
 
@@ -203,10 +210,13 @@
             place-items: center;
             color: var(--slate-700);
         }
+        /* Each tag lives inside its own pane, so it is clipped along with that
+           pane — "Before" can never end up floating over the new site. Sat at
+           the bottom to stay clear of both mockups' navbars. */
         .ba__tag {
             position: absolute;
-            top: 14px;
-            z-index: 3;
+            bottom: 14px;
+            z-index: 20;
             padding: 0.3rem 0.7rem;
             border-radius: var(--radius-full);
             font-size: var(--text-xs);
@@ -257,6 +267,10 @@
             padding: 0.25rem 0.8rem;
             color: #000;
         }
+        .old__rule { border-top: 2px groove #9a9a9a; margin: 0.75rem 0 0.5rem; }
+        .old__mail { margin-top: 0.45rem; }
+        .old__mail a { color: #00c; text-decoration: underline; }
+        .old__constr { margin-top: 0.6rem; color: #c00; font-weight: 700; }
         .old__counter {
             margin-top: 0.7rem;
             font-size: 0.7em;
@@ -427,6 +441,25 @@
         .plan li svg { flex-shrink: 0; color: var(--success); margin-top: 3px; }
         .plan .btn { margin-top: auto; }
 
+        .terms {
+            margin-top: var(--space-lg);
+            padding: var(--space-lg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+        }
+        .terms h3 { font-size: var(--text-lg); margin-bottom: var(--space-md); }
+        .terms ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 0.8rem 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        }
+        .terms li { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.6; }
+        .terms b { color: var(--text-primary); font-weight: 600; }
+
         /* ---------- FAQ ---------- */
         .faq { max-width: var(--container-narrow); margin-inline: auto; }
         .faq details {
@@ -569,6 +602,7 @@
                             <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Free Estimates</div>
                         </div>
                     </div>
+                    <span class="ba__tag ba__tag--after">After</span>
                 </div>
 
                 <!-- BEFORE (on top, clipped) -->
@@ -589,14 +623,17 @@
                                 <div>Call for a quote. We have been in business since 1987.
                                     Please call during business hours.</div>
                                 <span class="old__btn">Click Here</span>
+                                <div class="old__rule"></div>
+                                <div><b><u>Our Servises</u></b></div>
+                                <div>Collision Repare - Painting - Dent Removal - Frame Straitening</div>
+                                <div class="old__mail">E-mail: <a href="#">millerautobody@aol.com</a></div>
+                                <div class="old__constr">*** THIS PAGE IS UNDER CONSTRUCTION ***</div>
                                 <div class="old__counter">Visitors: 000417 | Best viewed at 1024x768</div>
                             </div>
                         </div>
                     </div>
+                    <span class="ba__tag ba__tag--before">Before</span>
                 </div>
-
-                <span class="ba__tag ba__tag--before">Before</span>
-                <span class="ba__tag ba__tag--after">After</span>
 
                 <div class="ba__divider">
                     <div class="ba__knob">
@@ -844,10 +881,12 @@
                 <p class="plan__desc">A sharp one-page site that makes the phone ring.</p>
                 <div class="plan__price">$70<small>&nbsp;one-time</small></div>
                 <ul>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Single-page site</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>One page, up to 6 sections</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Mobile-first &amp; fast</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Contact form</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Hosting &amp; HTTPS set up for you</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Contact form that emails you</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Hosting &amp; HTTPS set up (billed at cost)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>2 rounds of revisions</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Live in about a week</li>
                 </ul>
                 <a href="request/" class="btn btn--ghost btn--block">Get a quote</a>
             </div>
@@ -859,9 +898,10 @@
                 <ul>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Everything in Starter</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Up to 6 pages</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Local SEO setup</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Photo gallery</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Google Business help</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Local SEO setup (one-time)</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Photo gallery, up to 20 photos</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Google Business Profile setup help</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>3 rounds of revisions</li>
                 </ul>
                 <a href="request/" class="btn btn--primary btn--block">Get a quote</a>
             </div>
@@ -871,14 +911,33 @@
                 <p class="plan__desc">We keep it running so you never touch code. Domain and hosting are billed at cost on top.</p>
                 <div class="plan__price">$79<small>&nbsp;/month + hosting</small></div>
                 <ul>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Content &amp; hours updates</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>We handle domain &amp; hosting renewals</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Up to 4 content updates a month</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Monitoring &amp; backups</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Seasonal refreshes</li>
-                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Cancel anytime</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>One seasonal refresh a quarter</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>We handle domain &amp; hosting renewals</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Month to month &mdash; cancel anytime</li>
                 </ul>
                 <a href="request/" class="btn btn--ghost btn--block">Ask about it</a>
             </div>
+        </div>
+
+        <!--
+            Scope guardrails. Deliberately static rather than CMS-editable: these
+            are the terms that stop a fixed-price job turning into open-ended
+            unpaid work, so they should not be casually edited alongside prices.
+        -->
+        <div class="terms reveal">
+            <h3>The fine print</h3>
+            <ul>
+                <li><b>What you pay, when.</b> Half up front to start, the rest before the site goes live. The Care Plan is billed monthly in advance.</li>
+                <li><b>Domain &amp; hosting aren't in the price.</b> We set them up and manage them for you, but the provider's fee is passed on at cost &mdash; no markup, no margin.</li>
+                <li><b>Revisions are per plan.</b> Starter includes 2 rounds, Complete 3. Happy to do more, quoted separately.</li>
+                <li><b>You supply the content.</b> Photos, text and logo &mdash; or we'll work from what's already on your site and socials. The clock starts once we have it.</li>
+                <li><b>Anything not on the list is a separate quote.</b> Extra pages, online booking, e-commerce, logo design, copywriting from scratch, photography.</li>
+                <li><b>SEO setup, not a ranking promise.</b> We do the on-page and local setup properly. Nobody can guarantee a Google position, and we won't pretend otherwise.</li>
+                <li><b>The site is yours.</b> Once it's paid in full, the files are yours to keep &mdash; including if you move on.</li>
+                <li><b>Care Plan time doesn't roll over.</b> Unused monthly updates don't stack up, and the month in progress isn't refunded when you cancel.</li>
+            </ul>
         </div>
     </div>
 </section>
