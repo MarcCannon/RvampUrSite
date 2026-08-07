@@ -22,6 +22,16 @@
             "thumb": "demos/autobody/showroom-reflections/img/hero-rolls.webp",
             "purchased": false,
             "live_url": ""
+        },
+        {
+            "slug": "mid-hudson-container",
+            "niche": "home-improvement-landscape",
+            "name": "Mid-Hudson Container",
+            "tagline": "Roll-off dumpster rental, demolition and site work.",
+            "location": "Milton, NY",
+            "thumb": "demos/home-improvement-landscape/mid-hudson-container/img/thumb.webp",
+            "purchased": false,
+            "live_url": ""
         }
     ]
 }

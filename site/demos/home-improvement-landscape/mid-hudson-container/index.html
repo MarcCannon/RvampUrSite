@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mid-Hudson Container | Roll-Off Dumpster Rental in Ulster, Dutchess, Orange, Putnam &amp; Rockland</title>
+<meta name="description" content="Affordable roll-off dumpster rental from Milton, NY. 10, 15, 20 and 30 yard containers with a 7-day rental included. Demolition, land clearing, material delivery and snow removal across five Hudson Valley counties. Free estimates — 845-204-8520.">
+<meta name="theme-color" content="#0A0B09">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mid-Hudson Container | Roll-Off Dumpster Rental, Milton NY">
+<meta property="og:description" content="You book. We hook. Roll-off dumpsters across Ulster, Dutchess, Orange, Putnam and Rockland counties.">
+<meta property="og:image" content="img/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- The hero photo is the LCP element, so ask for it before the CSS finishes parsing. -->
+<link rel="preload" as="image" href="img/hero-bridge.webp" fetchpriority="high">
+
+<style>
+/* ==========================================================================
+   Mid-Hudson Container — a look built from their own equipment.
+
+   Their trucks are white and safety green, their containers are black steel
+   with green RENT ME placards. So: black steel, one loud green, hard edges,
+   condensed highway-sign type. Nothing soft, nothing glassy — this is a trade
+   that sells reliability, not luxury.
+
+   Green (#98DF24) was sampled straight out of their logo file. It is only ever
+   used on dark ground; on light ground it drops to --green-ink so text stays
+   above 4.5:1.
+   ========================================================================== */
+
+:root {
+    --green:      #98DF24;
+    --green-hot:  #ACF23A;
+    --green-deep: #6FA813;
+    --green-ink:  #3F6106;   /* green text on light backgrounds, WCAG AA */
+
+    --black:  #0A0B09;
+    --steel:  #131614;
+    --steel2: #1B1F1C;
+    --line:   rgba(255, 255, 255, 0.10);
+    --line2:  rgba(255, 255, 255, 0.18);
+
+    --paper:  #F2F3EF;
+    --paper2: #E4E7DF;
+    --ink:    #14170F;
+    --ink-mid:#4B5347;
+
+    --dim:    #9AA495;
+    --dim2:   #C6CDC0;
+
+    --display: 'Barlow Condensed', 'Arial Narrow', system-ui, sans-serif;
+    --body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    --wrap: 1180px;
+    --pad: clamp(1.15rem, 4vw, 2.5rem);
+    --sect: clamp(3.75rem, 8vw, 7rem);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+}
+h1 { font-size: clamp(2.9rem, 8.5vw, 6rem); }
+h2 { font-size: clamp(2.1rem, 5vw, 3.5rem); }
+h3 { font-size: clamp(1.3rem, 2.2vw, 1.6rem); }
+p  { margin: 0 0 1rem; }
+
+:focus-visible { outline: 3px solid var(--green); outline-offset: 3px; }
+
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
+.sect { padding-block: var(--sect); }
+.dark { background: var(--black); color: #EFF2EC; }
+.steel { background: var(--steel); color: #EFF2EC; }
+.dark h2, .steel h2, .dark h3, .steel h3 { color: #fff; }
+
+.skip {
+    position: absolute; left: -9999px; top: 0; z-index: 999;
+    background: var(--green); color: #0A0B09; padding: 0.8rem 1.2rem; font-weight: 700;
+}
+.skip:focus { left: 0; }
+
+/* --- Small caps label used to open most sections ------------------------- */
+.kicker {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--green-ink); margin-bottom: 0.7rem;
+}
+.dark .kicker, .steel .kicker { color: var(--green); }
+.kicker::before { content: ''; width: 26px; height: 3px; background: currentColor; }
+
+.lede { font-size: 1.075rem; color: var(--ink-mid); max-width: 60ch; }
+.dark .lede, .steel .lede { color: var(--dim2); }
+
+/* --- Buttons ------------------------------------------------------------- */
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+    font-family: var(--display); font-size: 1.15rem; font-weight: 700;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 0.85rem 1.7rem; border: 2px solid transparent; border-radius: 2px;
+    cursor: pointer; white-space: nowrap;
+    transition: background-color 160ms var(--ease), color 160ms var(--ease),
+                border-color 160ms var(--ease), transform 160ms var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn--go { background: var(--green); color: #0C1400; }
+.btn--go:hover { background: var(--green-hot); }
+.btn--line { border-color: currentColor; color: inherit; }
+.btn--line:hover { background: rgba(255,255,255,0.10); }
+.dark .btn--line:hover, .steel .btn--line:hover { background: rgba(255,255,255,0.10); }
+.btn--dark { background: var(--ink); color: #fff; }
+.btn--dark:hover { background: #000; }
+.btn--sm { font-size: 1rem; padding: 0.6rem 1.15rem; }
+.btn--wide { width: 100%; }
+
+/* --- Hazard stripe, borrowed from the placards on their boxes ------------ */
+.stripe {
+    height: 9px;
+    background: repeating-linear-gradient(
+        -45deg, var(--green) 0 14px, #0A0B09 14px 28px);
+}
+
+/* ==========================================================================
+   Header
+   ========================================================================== */
+.head {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(10, 11, 9, 0.94);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+}
+.head__in {
+    display: flex; align-items: center; gap: 1.25rem;
+    height: 72px; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad);
+}
+.brand { display: flex; align-items: center; gap: 0.7rem; margin-right: auto; }
+.brand img { height: 38px; width: auto; }
+.brand__txt { display: none; font-family: var(--display); text-transform: uppercase;
+              line-height: 1; color: #fff; font-size: 1.05rem; letter-spacing: 0.03em; }
+.brand__txt span { display: block; font-size: 0.66rem; letter-spacing: 0.2em; color: var(--green); }
+
+.nav { display: none; gap: 1.6rem; }
+.nav a {
+    font-family: var(--display); font-size: 1.05rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em; color: #D8DED3;
+    padding-block: 0.35rem; border-bottom: 2px solid transparent;
+    transition: color 160ms var(--ease), border-color 160ms var(--ease);
+}
+.nav a:hover { color: var(--green); border-color: var(--green); }
+
+.head__tel {
+    display: none; align-items: center; gap: 0.5rem;
+    font-family: var(--display); font-size: 1.3rem; font-weight: 700; color: #fff;
+    letter-spacing: 0.02em;
+}
+.head__tel svg { fill: var(--green); }
+.head__tel:hover { color: var(--green); }
+
+@media (min-width: 900px) {
+    .nav { display: flex; }
+    .head__tel { display: inline-flex; }
+    .brand__txt { display: block; }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero { position: relative; background: var(--black); color: #fff; overflow: hidden; }
+.hero__bg { position: absolute; inset: 0; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; }
+.hero__bg::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+        linear-gradient(180deg, rgba(10,11,9,0.86) 0%, rgba(10,11,9,0.62) 42%, rgba(10,11,9,0.95) 100%),
+        linear-gradient(90deg, rgba(10,11,9,0.9) 0%, rgba(10,11,9,0.25) 65%);
+}
+.hero__in {
+    position: relative;
+    max-width: var(--wrap); margin-inline: auto; padding: clamp(3.5rem, 9vw, 6.5rem) var(--pad) clamp(2.5rem, 5vw, 4rem);
+}
+.hero__tag {
+    display: inline-block; font-family: var(--display); font-size: 0.95rem; font-weight: 700;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    background: var(--green); color: #0C1400; padding: 0.3rem 0.85rem; margin-bottom: 1.1rem;
+}
+.hero h1 { max-width: 14ch; text-shadow: 0 2px 30px rgba(0,0,0,0.5); }
+.hero h1 em { font-style: normal; color: var(--green); }
+.hero__sub { font-size: clamp(1.05rem, 1.6vw, 1.3rem); color: #DDE3D6; max-width: 46ch; margin-bottom: 1.9rem; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+/* Fact rail under the hero */
+.facts {
+    position: relative; border-top: 1px solid var(--line2);
+    display: grid; grid-template-columns: repeat(2, 1fr);
+}
+.facts > div { padding: 1.1rem var(--pad); border-bottom: 1px solid var(--line); }
+.facts > div + div { border-left: 1px solid var(--line); }
+.facts dt { font-family: var(--display); font-size: 1.7rem; font-weight: 700; color: var(--green); line-height: 1; }
+.facts dd { margin: 0.25rem 0 0; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--dim); }
+@media (min-width: 780px) {
+    .facts { grid-template-columns: repeat(4, 1fr); max-width: var(--wrap); margin-inline: auto; }
+    .facts > div { border-bottom: none; }
+}
+
+/* ==========================================================================
+   Size picker
+   ========================================================================== */
+.sizes { display: grid; gap: 1.1rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 640px) { .sizes { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1040px) { .sizes { grid-template-columns: repeat(4, 1fr); } }
+
+.size {
+    display: flex; flex-direction: column;
+    background: #fff; border: 2px solid var(--paper2); border-radius: 3px;
+    overflow: hidden; transition: border-color 180ms var(--ease), transform 180ms var(--ease),
+                                  box-shadow 180ms var(--ease);
+}
+.size:hover { transform: translateY(-4px); box-shadow: 0 18px 30px -18px rgba(20,23,15,0.5); }
+.size.is-picked { border-color: var(--green-deep); box-shadow: 0 0 0 4px rgba(152,223,36,0.28); }
+
+.size__pic { position: relative; aspect-ratio: 3 / 2; background: var(--paper2); }
+.size__pic img { width: 100%; height: 100%; object-fit: cover; }
+.size__yd {
+    position: absolute; left: 0; bottom: 0;
+    font-family: var(--display); font-weight: 700; line-height: 0.85;
+    background: var(--black); color: #fff; padding: 0.5rem 0.75rem 0.4rem;
+}
+.size__yd b { display: block; font-size: 2.2rem; color: var(--green); font-weight: 700; }
+.size__yd span { font-size: 0.72rem; letter-spacing: 0.16em; }
+
+.size__body { padding: 1.15rem 1.15rem 1.25rem; display: flex; flex-direction: column; flex: 1; }
+.size__spec { list-style: none; margin: 0 0 0.9rem; padding: 0; font-size: 0.9rem; }
+.size__spec li { display: flex; justify-content: space-between; gap: 1rem; padding: 0.4rem 0;
+                 border-bottom: 1px dashed var(--paper2); }
+.size__spec b { font-weight: 600; }
+.size__spec span { color: var(--ink-mid); }
+
+/* To-scale length bar, drawn from their own published dimensions. */
+.scale { margin-bottom: 0.9rem; }
+.scale__track { height: 8px; background: var(--paper2); border-radius: 2px; overflow: hidden; }
+.scale__fill { height: 100%; background: var(--green-deep); }
+.scale__cap { display: block; margin-top: 0.35rem; font-size: 0.72rem; letter-spacing: 0.08em;
+              text-transform: uppercase; color: var(--ink-mid); }
+
+.size__for { font-size: 0.85rem; color: var(--ink-mid); margin: 0 0 1.1rem; }
+.size__for strong { display: block; color: var(--ink); font-size: 0.72rem; letter-spacing: 0.14em;
+                    text-transform: uppercase; margin-bottom: 0.3rem; }
+.size__body .btn { margin-top: auto; }
+
+.sizes-note {
+    margin-top: 1.5rem; font-size: 0.9rem; color: var(--ink-mid);
+    border-left: 3px solid var(--green-deep); padding-left: 0.9rem;
+}
+
+/* ==========================================================================
+   Three steps
+   ========================================================================== */
+.steps { display: grid; gap: 1.6rem; grid-template-columns: 1fr; margin-top: 2.5rem; counter-reset: s; }
+@media (min-width: 800px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 2.4rem; } }
+.step { position: relative; padding-top: 1.6rem; border-top: 2px solid var(--line2); counter-increment: s; }
+.step::before {
+    content: counter(s, decimal-leading-zero);
+    font-family: var(--display); font-size: 1rem; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--green); position: absolute; top: -1.4rem; left: 0;
+    background: var(--steel); padding-right: 0.6rem;
+}
+.step h3 { margin-bottom: 0.4rem; }
+.step p { color: var(--dim2); margin: 0; font-size: 0.95rem; }
+
+/* ==========================================================================
+   Services
+   ========================================================================== */
+.svcs { display: grid; gap: 1px; background: var(--paper2); border: 1px solid var(--paper2);
+        grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 640px) { .svcs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .svcs { grid-template-columns: repeat(4, 1fr); } }
+.svc { background: var(--paper); padding: 1.5rem 1.35rem; transition: background 180ms var(--ease); }
+.svc:hover { background: #fff; }
+.svc h3 { font-size: 1.15rem; margin-bottom: 0.45rem; }
+.svc p { font-size: 0.88rem; color: var(--ink-mid); margin: 0; }
+.svc__ico { width: 30px; height: 30px; fill: none; stroke: var(--green-ink); stroke-width: 1.7;
+            stroke-linecap: round; stroke-linejoin: round; margin-bottom: 0.8rem; }
+.svc__soon { display: inline-block; margin-top: 0.6rem; font-size: 0.7rem; font-weight: 700;
+             letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid);
+             border: 1px solid var(--paper2); padding: 0.15rem 0.5rem; }
+
+.scrap {
+    margin-top: 1.6rem; display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.5rem;
+    background: var(--green); color: #0C1400; padding: 1.15rem 1.4rem; border-radius: 3px;
+}
+.scrap p { margin: 0; font-weight: 600; }
+.scrap strong { font-family: var(--display); font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.02em; }
+
+/* ==========================================================================
+   Demolition sequence
+   ========================================================================== */
+.seq { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 760px) { .seq { grid-template-columns: repeat(3, 1fr); } }
+.seq figure { margin: 0; }
+.seq img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
+.seq figcaption { margin-top: 0.7rem; font-size: 0.85rem; color: var(--dim2); }
+.seq figcaption b {
+    display: block; font-family: var(--display); font-size: 1.05rem; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--green); margin-bottom: 0.1rem;
+}
+
+/* ==========================================================================
+   Gallery
+   ========================================================================== */
+.grid4 { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 620px) { .grid4 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .grid4 { grid-template-columns: repeat(4, 1fr); } }
+.shot { position: relative; overflow: hidden; border-radius: 3px; background: var(--steel2); }
+.shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+            transition: transform 600ms var(--ease); }
+.shot:hover img { transform: scale(1.05); }
+.shot figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 1.6rem 0.9rem 0.7rem; font-size: 0.8rem; font-weight: 500; color: #fff;
+    background: linear-gradient(180deg, transparent, rgba(10,11,9,0.85));
+}
+.shot { margin: 0; }
+
+/* ==========================================================================
+   Reviews
+   ========================================================================== */
+.revs { display: grid; gap: 1.5rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 800px) { .revs { grid-template-columns: repeat(2, 1fr); } }
+.rev { background: #fff; border: 1px solid var(--paper2); border-top: 4px solid var(--green-deep);
+       padding: 1.6rem 1.5rem; border-radius: 3px; }
+.rev p { font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem; }
+.rev cite { font-style: normal; font-family: var(--display); font-size: 1.15rem;
+            text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* ==========================================================================
+   Service area / details band
+   ========================================================================== */
+.band { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .band { grid-template-columns: 1.1fr 1fr; gap: 4rem; } }
+.counties { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 0.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+.counties li {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-family: var(--display); font-size: 1.25rem; text-transform: uppercase;
+    letter-spacing: 0.04em; color: #fff; padding: 0.55rem 0.8rem;
+    background: var(--steel2); border-left: 3px solid var(--green);
+}
+.info { display: grid; gap: 1.4rem; }
+.info h3 { font-size: 1.1rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.info dl { margin: 0; font-size: 0.95rem; color: var(--dim2); }
+.info dl div { display: flex; justify-content: space-between; gap: 1.5rem; padding: 0.35rem 0;
+               border-bottom: 1px solid var(--line); }
+.info dt { color: var(--dim); }
+.info dd { margin: 0; color: #fff; font-weight: 500; }
+.pay { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.6rem; }
+.pay span { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+            border: 1px solid var(--line2); color: var(--dim2); padding: 0.25rem 0.55rem; }
+
+/* ==========================================================================
+   Quote form
+   ========================================================================== */
+.quote { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 940px) { .quote { grid-template-columns: 0.85fr 1.15fr; gap: 4rem; } }
+
+.form { background: #fff; border: 1px solid var(--paper2); border-radius: 3px; padding: clamp(1.25rem, 3vw, 2rem); }
+.form__row { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .form__row--2 { grid-template-columns: 1fr 1fr; } }
+.field { margin-bottom: 1rem; }
+.field label { display: block; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--ink); margin-bottom: 0.35rem; }
+.field label .opt { color: var(--ink-mid); font-weight: 500; letter-spacing: 0.04em; text-transform: none; }
+.field input, .field select, .field textarea {
+    width: 100%; font: inherit; font-size: 1rem; color: var(--ink);
+    padding: 0.75rem 0.85rem; background: var(--paper);
+    border: 1.5px solid var(--paper2); border-radius: 2px;
+    transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
+}
+.field textarea { resize: vertical; min-height: 88px; }
+.field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--green-deep); box-shadow: 0 0 0 3px rgba(152,223,36,0.25);
+    background: #fff;
+}
+.field.is-bad input, .field.is-bad select { border-color: #B4231E; background: #FDF3F2; }
+.err { display: none; margin-top: 0.35rem; font-size: 0.82rem; color: #B4231E; font-weight: 500; }
+.field.is-bad .err { display: block; }
+
+.form__note { font-size: 0.82rem; color: var(--ink-mid); margin: 0.9rem 0 0; text-align: center; }
+
+.done { display: none; text-align: center; padding: 1.5rem 0.5rem; }
+.done.on { display: block; }
+.done svg { width: 52px; height: 52px; margin: 0 auto 0.9rem; fill: none;
+            stroke: var(--green-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.done h3 { font-size: 1.7rem; }
+.done p { color: var(--ink-mid); max-width: 42ch; margin-inline: auto; }
+.form.is-done .form__live { display: none; }
+
+.why { list-style: none; margin: 1.6rem 0 0; padding: 0; }
+.why li { display: flex; gap: 0.85rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+.why svg { flex: none; width: 22px; height: 22px; margin-top: 2px; fill: none; stroke: var(--green);
+           stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.why b { display: block; font-family: var(--display); font-size: 1.2rem; text-transform: uppercase;
+         letter-spacing: 0.05em; color: #fff; }
+.why span { font-size: 0.9rem; color: var(--dim2); }
+
+/* ==========================================================================
+   Footer + mobile action bar
+   ========================================================================== */
+.foot { background: var(--black); color: var(--dim2); padding-top: clamp(3rem, 6vw, 4.5rem); }
+.foot__top { display: grid; gap: 2rem; grid-template-columns: 1fr; padding-bottom: 2.5rem; }
+@media (min-width: 780px) { .foot__top { grid-template-columns: 1.3fr 1fr 1fr; gap: 3rem; } }
+.foot img { height: 44px; width: auto; margin-bottom: 1rem; }
+.foot h4 { font-family: var(--display); font-size: 1.05rem; text-transform: uppercase;
+           letter-spacing: 0.14em; color: #fff; margin: 0 0 0.9rem; }
+.foot ul { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; }
+.foot li { padding: 0.28rem 0; }
+.foot a:hover { color: var(--green); }
+.foot__legal { border-top: 1px solid var(--line); padding: 1.5rem 0 2rem; font-size: 0.8rem; color: #6E7869; }
+.disclaimer { max-width: 78ch; margin: 0 0 0.8rem; }
+
+.callbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--line2); background: rgba(10,11,9,0.96); backdrop-filter: blur(8px);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+.callbar a {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.95rem 0.5rem; font-family: var(--display); font-size: 1.15rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em; color: #fff;
+}
+.callbar a + a { background: var(--green); color: #0C1400; }
+.callbar svg { fill: currentColor; width: 17px; height: 17px; }
+@media (min-width: 900px) { .callbar { display: none; } }
+@media (max-width: 899px) { body { padding-bottom: 58px; } }
+
+/* --- Reveal on scroll. Scoped to .js so a blocked script can never hide the
+       page — without the class the content is simply always visible. --------- */
+.js .rise { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
+.js .rise.seen { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .js .rise { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className += ' js';</script>
+
+<a class="skip" href="#quote">Skip to the quote form</a>
+
+<header class="head">
+    <div class="head__in">
+        <a class="brand" href="#top" aria-label="Mid-Hudson Container, home">
+            <img src="img/logo.webp" alt="" width="112" height="46">
+            <span class="brand__txt">Mid-Hudson Container<span>Milton, NY</span></span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="#sizes">Sizes</a>
+            <a href="#how">How it works</a>
+            <a href="#services">Services</a>
+            <a href="#work">Our work</a>
+            <a href="#area">Service area</a>
+        </nav>
+        <a class="head__tel" href="tel:+18452048520">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+            845-204-8520
+        </a>
+    </div>
+</header>
+
+<main id="top">
+
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+        <div class="hero__bg">
+            <img src="img/hero-bridge.webp"
+                 alt="A Mid-Hudson Container roll-off dumpster parked on the riverfront below the Mid-Hudson Bridge"
+                 width="1800" height="1047" fetchpriority="high">
+        </div>
+        <div class="hero__in">
+            <span class="hero__tag">Affordable rates &middot; Happy clients &middot; Free quotes</span>
+            <h1>You book.<br><em>We hook.</em></h1>
+            <p class="hero__sub">
+                Roll-off dumpsters, demolition and site work out of Milton, NY — serving Ulster,
+                Dutchess, Orange, Putnam and Rockland counties with quick turnaround times.
+            </p>
+            <div class="hero__cta">
+                <a class="btn btn--go" href="#quote">Get a free quote</a>
+                <a class="btn btn--line" href="tel:+18452048520">Call 845-204-8520</a>
+            </div>
+        </div>
+        <dl class="facts">
+            <div><dt>10&ndash;30</dt><dd>Yard roll-offs</dd></div>
+            <div><dt>7 days</dt><dd>Rental included</dd></div>
+            <div><dt>5</dt><dd>Counties served</dd></div>
+            <div><dt>24 hr</dt><dd>Emergency service</dd></div>
+        </dl>
+    </section>
+
+    <div class="stripe" role="presentation"></div>
+
+    <!-- ================= SIZES ================= -->
+    <section class="sect" id="sizes">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">The line-up</span>
+                <h2>Find the right size<br>for your project</h2>
+                <p class="lede">
+                    Four roll-off sizes, every one with a full week on site and tonnage included in
+                    the price. Not sure which you need? Pick the closest and we'll sort it out on
+                    the phone — nobody gets charged for guessing wrong.
+                </p>
+            </div>
+
+            <div class="sizes">
+
+                <article class="size rise" data-size="10 Yard">
+                    <div class="size__pic">
+                        <img src="img/size-10.webp" alt="A 10 yard Mid-Hudson Container roll-off dumpster set on a residential driveway" width="760" height="507" loading="lazy">
+                        <span class="size__yd"><b>10</b><span>YARD</span></span>
+                    </div>
+                    <div class="size__body">
+                        <ul class="size__spec">
+                            <li><span>Approx. size</span> <b>8 &times; 12 &times; 4</b></li>
+                            <li><span>Weight included</span> <b>1 Ton</b></li>
+                            <li><span>Rental period</span> <b>7 Days</b></li>
+                        </ul>
+                        <div class="scale">
+                            <div class="scale__track"><div class="scale__fill" style="width:60%"></div></div>
+                            <span class="scale__cap">12 ft long</span>
+                        </div>
+                        <p class="size__for">
+                            <strong>Best for</strong>
+                            Home clean out &middot; small renovation &middot; bathroom or kitchen remodel
+                            &middot; spring cleanup &middot; 1-car garage clean-out &middot; decking
+                            &middot; siding &amp; windows
+                        </p>
+                        <button type="button" class="btn btn--dark btn--sm btn--wide" data-pick="10 Yard">Choose 10 yard</button>
+                    </div>
+                </article>
+
+                <article class="size rise" data-size="15 Yard">
+                    <div class="size__pic">
+                        <img src="img/size-15.webp" alt="A 15 yard Mid-Hudson Container roll-off dumpster" width="760" height="507" loading="lazy">
+                        <span class="size__yd"><b>15</b><span>YARD</span></span>
+                    </div>
+                    <div class="size__body">
+                        <ul class="size__spec">
+                            <li><span>Approx. size</span> <b>8 &times; 14 &times; 4.5</b></li>
+                            <li><span>Weight included</span> <b>2 Ton</b></li>
+                            <li><span>Rental period</span> <b>7 Days</b></li>
+                        </ul>
+                        <div class="scale">
+                            <div class="scale__track"><div class="scale__fill" style="width:70%"></div></div>
+                            <span class="scale__cap">14 ft long</span>
+                        </div>
+                        <p class="size__for">
+                            <strong>Best for</strong>
+                            Home clean out &middot; renovation &middot; bathroom or kitchen remodel
+                            &middot; spring cleanup &middot; 2-car garage clean-out &middot; decking
+                            &middot; siding &amp; windows
+                        </p>
+                        <button type="button" class="btn btn--dark btn--sm btn--wide" data-pick="15 Yard">Choose 15 yard</button>
+                    </div>
+                </article>
+
+                <article class="size rise" data-size="20 Yard">
+                    <div class="size__pic">
+                        <img src="img/size-20.webp" alt="A 20 yard Mid-Hudson Container roll-off dumpster" width="760" height="507" loading="lazy">
+                        <span class="size__yd"><b>20</b><span>YARD</span></span>
+                    </div>
+                    <div class="size__body">
+                        <ul class="size__spec">
+                            <li><span>Approx. size</span> <b>8 &times; 16 &times; 5.5</b></li>
+                            <li><span>Weight included</span> <b>3 Ton</b></li>
+                            <li><span>Rental period</span> <b>7 Days</b></li>
+                        </ul>
+                        <div class="scale">
+                            <div class="scale__track"><div class="scale__fill" style="width:80%"></div></div>
+                            <span class="scale__cap">16 ft long</span>
+                        </div>
+                        <p class="size__for">
+                            <strong>Best for</strong>
+                            Home clean out &middot; larger renovation &middot; large kitchen remodel
+                            &middot; spring cleanup &middot; 2-car garage clean-out &middot; decking
+                            &middot; siding &amp; windows
+                        </p>
+                        <button type="button" class="btn btn--dark btn--sm btn--wide" data-pick="20 Yard">Choose 20 yard</button>
+                    </div>
+                </article>
+
+                <article class="size rise" data-size="30 Yard">
+                    <div class="size__pic">
+                        <img src="img/size-30.webp" alt="A 30 yard Mid-Hudson Container roll-off dumpster on grass at the Milton yard" width="760" height="507" loading="lazy">
+                        <span class="size__yd"><b>30</b><span>YARD</span></span>
+                    </div>
+                    <div class="size__body">
+                        <ul class="size__spec">
+                            <li><span>Approx. size</span> <b>8 &times; 20 &times; 5.5</b></li>
+                            <li><span>Weight included</span> <b>4 Ton</b></li>
+                            <li><span>Rental period</span> <b>7 Days</b></li>
+                        </ul>
+                        <div class="scale">
+                            <div class="scale__track"><div class="scale__fill" style="width:100%"></div></div>
+                            <span class="scale__cap">20 ft long</span>
+                        </div>
+                        <p class="size__for">
+                            <strong>Best for</strong>
+                            Home clean out &middot; larger renovation &middot; large kitchen remodel
+                            &middot; spring cleanup &middot; 2-car garage clean-out &middot; decking
+                            &middot; siding &amp; windows
+                        </p>
+                        <button type="button" class="btn btn--dark btn--sm btn--wide" data-pick="30 Yard">Choose 30 yard</button>
+                    </div>
+                </article>
+
+            </div>
+
+            <p class="sizes-note rise">
+                All four boxes are 8 ft wide, so they fit a standard driveway. Every rental includes
+                the tonnage listed and seven days on site. Please note: no refunds are issued for
+                cancellation of a rental after 48 hours of the order being placed.
+            </p>
+        </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="sect steel" id="how">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">How it works</span>
+                <h2>Three steps, one phone call</h2>
+            </div>
+            <div class="steps">
+                <div class="step rise">
+                    <h3>You book</h3>
+                    <p>
+                        Call or send the form. Tell us the size, the town, and roughly when you want
+                        it. Estimates are free and there is no charge to ask.
+                    </p>
+                </div>
+                <div class="step rise">
+                    <h3>We drop</h3>
+                    <p>
+                        We bring the box to your driveway, yard or jobsite and set it where you want
+                        it. Quick turnaround times — and a 24-hour emergency line if it can't wait.
+                    </p>
+                </div>
+                <div class="step rise">
+                    <h3>We hook</h3>
+                    <p>
+                        Fill it at your own pace over the week. When you're done, one call and the
+                        truck comes back for it. That's the whole job.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SERVICES ================= -->
+    <section class="sect" id="services">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">More than dumpsters</span>
+                <h2>Contractor &amp; property services</h2>
+                <p class="lede">
+                    A locally-owned, fully licensed and insured outfit. If it needs to be knocked
+                    down, cleared out, hauled off or plowed, it's one call to the same crew.
+                </p>
+            </div>
+
+            <div class="svcs">
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"/><path d="M14 3l7 4"/></svg>
+                    <h3>Demolition</h3>
+                    <p>Full service, start to finish — houses, barns, garages, sheds, mobile homes, campers and more. Permits through debris disposal. Estimates are free.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 20h18M6 20v-7M6 13l4-4 4 3 5-6"/><path d="M19 6v4h-4"/></svg>
+                    <h3>Land clearing</h3>
+                    <p>The expertise and equipment to create a clean slate for construction, agriculture or recreation — with safety and conservation kept front of mind.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16v13H4z"/><path d="M9 7V4h6v3M9 12h6"/></svg>
+                    <h3>Property clean-out</h3>
+                    <p>For homeowners, property managers and businesses decluttering, downsizing or getting a place ready to sell. We recycle wherever we can.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16V7h11v9M13 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                    <h3>Material delivery</h3>
+                    <p>Aggregates, soil, construction supplies and equipment brought to your site. Punctual and accurate, right when you need them.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 5v8l-8 5-8-5V8z"/><path d="M12 8v8M8 10v4M16 10v4"/></svg>
+                    <h3>Recycled Item 4 (RCA)</h3>
+                    <p>Crushed recycled concrete processed to a 4&Prime; max — a durable, affordable base for driveways, roads and sheds, and great for firming up soft ground. Pickup or delivery.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/><path d="M14 4h6v6"/></svg>
+                    <h3>Scrap metal removal</h3>
+                    <p>Scrap cluttering the property or the worksite? We collect it, haul it and get it to a recycling facility.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M4 7l16 10M20 7L4 17"/><path d="M12 5l-2.5 2M12 5l2.5 2M12 19l-2.5-2M12 19l2.5-2"/></svg>
+                    <h3>Snow plowing &amp; salting</h3>
+                    <p>Residential and commercial. Driveways, parking lots and walkways cleared and salted with modern equipment when the weather turns.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18h16M6 18c0-5 2.5-8 6-8s6 3 6 8"/><path d="M12 10V4M9 6l3-2 3 2"/></svg>
+                    <h3>Yard material delivery</h3>
+                    <p>Mulch, stone and topsoil delivery is on the way.</p>
+                    <span class="svc__soon">Coming soon</span>
+                </div>
+            </div>
+
+            <div class="scrap rise">
+                <strong>$$$ We buy scrap metal</strong>
+                <p>Ask us how &mdash; call 845-204-8520 and we'll tell you what it's worth.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= DEMOLITION SEQUENCE ================= -->
+    <section class="sect dark">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">One job, start to finish</span>
+                <h2>A barn, taken down<br>and hauled away</h2>
+                <p class="lede">
+                    Demolition is a one-stop-shop here: the machine, the container and the crew all
+                    show up together, and nothing is left behind when the trucks pull out.
+                </p>
+            </div>
+            <div class="seq">
+                <figure class="rise">
+                    <img src="img/demo-1-before.webp" alt="An old wooden barn standing in a field with an excavator and a Mid-Hudson Container roll-off staged beside it" width="1000" height="750" loading="lazy">
+                    <figcaption><b>Before</b>Machine and container staged. Nothing starts until the box is already on site.</figcaption>
+                </figure>
+                <figure class="rise">
+                    <img src="img/demo-2-during.webp" alt="The excavator pulling the barn down, with the roof and siding coming apart" width="1000" height="750" loading="lazy">
+                    <figcaption><b>Down</b>The structure comes apart in a controlled line, straight toward the container.</figcaption>
+                </figure>
+                <figure class="rise">
+                    <img src="img/demo-3-after.webp" alt="The barn gone, timber stacked in a pile ready to be loaded into the waiting container" width="1000" height="750" loading="lazy">
+                    <figcaption><b>Cleared</b>Debris stacked, loaded out, and the ground handed back ready for what's next.</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= WORK ================= -->
+    <section class="sect" id="work">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">On the job</span>
+                <h2>Around the Hudson Valley</h2>
+            </div>
+            <div class="grid4">
+                <figure class="shot rise">
+                    <img src="img/truck-hook.webp" alt="A Mid-Hudson Container hooklift truck setting a black roll-off container down at the yard" width="1100" height="619" loading="lazy">
+                    <figcaption>Hooklift set &mdash; Milton yard</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/job-multifamily.webp" alt="A container being placed in the parking area of a brick apartment building" width="1100" height="619" loading="lazy">
+                    <figcaption>Apartment turnover</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/job-newbuild.webp" alt="A Mid-Hudson Container roll-off at a new timber-frame build with a ridge view behind it" width="1100" height="619" loading="lazy">
+                    <figcaption>New build, ridge lot</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/job-commercial.webp" alt="A container positioned beside a commercial building while a ladder rests against the roof line" width="1100" height="619" loading="lazy">
+                    <figcaption>Commercial roof tear-off</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= REVIEWS ================= -->
+    <section class="sect" style="background:var(--paper2)">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">Customer reviews</span>
+                <h2>In their words</h2>
+            </div>
+            <div class="revs">
+                <blockquote class="rev rise">
+                    <p>
+                        &ldquo;Quick, reliable, friendly and affordable service. Joe is a pleasure to
+                        work with. Each time I have used them I have received a clean container the
+                        day after requesting and the same with pickup. Would recommend this company
+                        for any size job. Thanks Joe for all your help!!!&rdquo;
+                    </p>
+                    <cite>&mdash; Denise R</cite>
+                </blockquote>
+                <blockquote class="rev rise">
+                    <p>
+                        &ldquo;Very easy to deal with, delivered when promised and pickup was just as
+                        trouble free. Nice folks to work with Definitely will use them again when I
+                        need to&rdquo;
+                    </p>
+                    <cite>&mdash; Charlie B</cite>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= SERVICE AREA ================= -->
+    <section class="sect dark" id="area">
+        <div class="wrap band">
+            <div class="rise">
+                <span class="kicker">Where we run</span>
+                <h2>Five counties,<br>one yard on Route 9W</h2>
+                <p class="lede">
+                    We're based at 2015 Route 9W in Milton and run the whole mid-Hudson stretch,
+                    from the Ulster line down to Rockland.
+                </p>
+                <ul class="counties">
+                    <li>Ulster</li>
+                    <li>Dutchess</li>
+                    <li>Orange</li>
+                    <li>Putnam</li>
+                    <li>Rockland</li>
+                </ul>
+            </div>
+
+            <div class="info rise">
+                <div>
+                    <h3>Office hours</h3>
+                    <dl>
+                        <div><dt>Monday &ndash; Friday</dt><dd>7:00 am &ndash; 4:00 pm</dd></div>
+                        <div><dt>Saturday</dt><dd>8:00 am &ndash; 12:00 pm</dd></div>
+                        <div><dt>Sunday</dt><dd>Closed</dd></div>
+                        <div><dt>Emergency line</dt><dd>24 hours</dd></div>
+                    </dl>
+                </div>
+                <div>
+                    <h3>Payments accepted</h3>
+                    <div class="pay">
+                        <span>Visa</span><span>MasterCard</span><span>Amex</span>
+                        <span>Discover</span><span>Check</span><span>Cash</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= QUOTE ================= -->
+    <section class="sect steel" id="quote">
+        <div class="wrap quote">
+            <div class="rise">
+                <span class="kicker">Free quote</span>
+                <h2>Book a box</h2>
+                <p class="lede">
+                    Six boxes to fill in, no captcha, no run-around. Or skip it entirely and call
+                    <a href="tel:+18452048520" style="color:var(--green);font-weight:600">845-204-8520</a>.
+                </p>
+                <ul class="why">
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <div><b>Estimates are free</b><span>On dumpsters, demolition and every contractor service.</span></div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                        <div><b>Quick turnaround</b><span>Plus a 24-hour emergency line when the job can't wait.</span></div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v6c0 4.5-3.2 7.4-8 8.5C7.2 20.4 4 17.5 4 13V7z"/><path d="M9.5 12.5l1.8 1.8 3.4-3.6"/></svg>
+                        <div><b>Licensed &amp; insured</b><span>Locally owned and operated out of Milton, NY.</span></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form" id="quoteCard">
+                <form id="quoteForm" class="form__live" novalidate>
+                    <div class="form__row form__row--2">
+                        <div class="field">
+                            <label for="qName">Name</label>
+                            <input id="qName" name="name" type="text" autocomplete="name" required>
+                            <span class="err">Please tell us your name.</span>
+                        </div>
+                        <div class="field">
+                            <label for="qPhone">Phone</label>
+                            <input id="qPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+                            <span class="err">A phone number with at least 10 digits, please.</span>
+                        </div>
+                    </div>
+
+                    <div class="form__row form__row--2">
+                        <div class="field">
+                            <label for="qWhere">Town or ZIP</label>
+                            <input id="qWhere" name="where" type="text" autocomplete="postal-code" placeholder="e.g. Milton 12547" required>
+                            <span class="err">Where is the container going?</span>
+                        </div>
+                        <div class="field">
+                            <label for="qWhen">When do you need it? <span class="opt">(optional)</span></label>
+                            <input id="qWhen" name="when" type="date">
+                        </div>
+                    </div>
+
+                    <div class="form__row form__row--2">
+                        <div class="field">
+                            <label for="qSize">Dumpster size</label>
+                            <select id="qSize" name="size" required>
+                                <option value="">Choose a size&hellip;</option>
+                                <option>10 Yard</option>
+                                <option>15 Yard</option>
+                                <option>20 Yard</option>
+                                <option>30 Yard</option>
+                                <option>Not sure &mdash; recommend one</option>
+                                <option>Not a dumpster &mdash; another service</option>
+                            </select>
+                            <span class="err">Pick a size, or tell us you're not sure.</span>
+                        </div>
+                        <div class="field">
+                            <label for="qJob">What's the job?</label>
+                            <select id="qJob" name="job" required>
+                                <option value="">Choose one&hellip;</option>
+                                <option>Home clean out</option>
+                                <option>Renovation or remodel</option>
+                                <option>Roofing tear-off</option>
+                                <option>Construction debris</option>
+                                <option>Demolition</option>
+                                <option>Land clearing / yard waste</option>
+                                <option>Scrap metal</option>
+                                <option>Something else</option>
+                            </select>
+                            <span class="err">Let us know roughly what you're clearing.</span>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="qNotes">Anything we should know? <span class="opt">(optional)</span></label>
+                        <textarea id="qNotes" name="notes" rows="3" placeholder="Tight driveway, gravel, needs to be behind a gate&hellip;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn--go btn--wide">Get my free quote</button>
+                    <p class="form__note">No obligation. We'll call you back to confirm the price and the drop.</p>
+                </form>
+
+                <div class="done" id="quoteDone" role="status" aria-live="polite">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                    <h3 id="doneHead">Request received</h3>
+                    <p id="doneBody">Thanks &mdash; we'll be in touch to confirm the price and the drop-off.</p>
+                    <p style="font-size:0.85rem">
+                        <em>This is a demonstration page, so nothing was actually sent.</em>
+                        To reach Mid-Hudson Container for real, call
+                        <a href="tel:+18452048520" style="color:var(--green-ink);font-weight:600">845-204-8520</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<div class="stripe" role="presentation"></div>
+
+<footer class="foot">
+    <div class="wrap">
+        <div class="foot__top">
+            <div>
+                <img src="img/logo.webp" alt="Mid-Hudson Container" width="130" height="54" loading="lazy">
+                <p style="max-width:34ch;font-size:0.92rem">
+                    Reliable dumpster rentals, demolition and site work. Locally owned and operated
+                    from Milton, New York.
+                </p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+18452048520">845-204-8520</a></li>
+                    <li><a href="mailto:joe@midhudsoncontainer.com">joe@midhudsoncontainer.com</a></li>
+                    <li>2015 Route 9W<br>Milton, NY 12547</li>
+                    <li style="padding-top:0.6rem"><a href="https://www.facebook.com/midhudsoncontainer/" target="_blank" rel="noopener">Facebook</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#sizes">Dumpster rentals</a></li>
+                    <li><a href="#services">Demolition</a></li>
+                    <li><a href="#services">Land clearing &amp; site work</a></li>
+                    <li><a href="#services">Material delivery &amp; RCA</a></li>
+                    <li><a href="#services">Snow plowing &amp; salting</a></li>
+                    <li><a href="#quote">Get a free quote</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot__legal">
+            <p class="disclaimer">
+                Disclaimer: We do not own the rights to the materials and images on this page. They
+                are used strictly for demonstration purposes to show what our web design product
+                looks like.
+            </p>
+            <p style="margin:0">&copy; 2026 Mid-Hudson Container. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<nav class="callbar" aria-label="Quick actions">
+    <a href="tel:+18452048520">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+        Call
+    </a>
+    <a href="#quote">Free quote</a>
+</nav>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://www.midhudsoncontainer.com/#business",
+    "name": "Mid-Hudson Container",
+    "description": "Roll-off dumpster rental, demolition, land clearing, material delivery and snow removal serving Ulster, Dutchess, Orange, Putnam and Rockland Counties, NY.",
+    "url": "https://www.midhudsoncontainer.com/",
+    "telephone": "+1-845-204-8520",
+    "email": "joe@midhudsoncontainer.com",
+    "image": "img/og.jpg",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "2015 Route 9W",
+        "addressLocality": "Milton",
+        "addressRegion": "NY",
+        "postalCode": "12547",
+        "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "16:00" },
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "12:00" }
+    ],
+    "areaServed": [
+        { "@type": "AdministrativeArea", "name": "Ulster County, NY" },
+        { "@type": "AdministrativeArea", "name": "Dutchess County, NY" },
+        { "@type": "AdministrativeArea", "name": "Orange County, NY" },
+        { "@type": "AdministrativeArea", "name": "Putnam County, NY" },
+        { "@type": "AdministrativeArea", "name": "Rockland County, NY" }
+    ],
+    "paymentAccepted": "Cash, Check, Visa, MasterCard, American Express, Discover",
+    "sameAs": ["https://www.facebook.com/midhudsoncontainer/"],
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Roll-off dumpster rentals",
+        "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "10 Yard Roll-Off Dumpster Rental", "description": "8 x 12 x 4 approximate size. Includes 1 ton weight and a 7 day rental." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "15 Yard Roll-Off Dumpster Rental", "description": "8 x 14 x 4.5 approximate size. Includes 2 ton weight and a 7 day rental." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "20 Yard Roll-Off Dumpster Rental", "description": "8 x 16 x 5.5 approximate size. Includes 3 ton weight and a 7 day rental." } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "30 Yard Roll-Off Dumpster Rental", "description": "8 x 20 x 5.5 approximate size. Includes 4 ton weight and a 7 day rental." } }
+        ]
+    }
+}
+</script>
+
+<script>
+(() => {
+    'use strict';
+
+    /* --- Reveal on scroll ------------------------------------------------ */
+    const rising = document.querySelectorAll('.rise');
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('seen');
+                io.unobserve(e.target);
+            });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        rising.forEach(el => io.observe(el));
+    } else {
+        rising.forEach(el => el.classList.add('seen'));
+    }
+
+    /* --- Size picker -> quote form --------------------------------------- */
+    const sizeSelect = document.getElementById('qSize');
+    const cards = document.querySelectorAll('.size');
+
+    document.querySelectorAll('[data-pick]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const size = btn.dataset.pick;
+
+            cards.forEach(c => c.classList.toggle('is-picked', c.dataset.size === size));
+
+            if (sizeSelect) {
+                sizeSelect.value = size;
+                // Clear a "you forgot this" state left over from an earlier attempt.
+                sizeSelect.closest('.field').classList.remove('is-bad');
+            }
+
+            document.getElementById('quote').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    /* --- Quote form ------------------------------------------------------
+       Validation runs on submit, and thereafter live on each field that has
+       already been flagged — so nobody is scolded for a field they have not
+       finished typing yet.
+       -------------------------------------------------------------------- */
+    const form = document.getElementById('quoteForm');
+    if (!form) return;
+
+    const card = document.getElementById('quoteCard');
+    const done = document.getElementById('quoteDone');
+
+    const rules = {
+        name:  v => v.trim().length > 1,
+        phone: v => (v.match(/\d/g) || []).length >= 10,
+        where: v => v.trim().length > 1,
+        size:  v => v !== '',
+        job:   v => v !== ''
+    };
+
+    function check(el, focusFirstBad) {
+        const rule = rules[el.name];
+        if (!rule) return true;
+        const ok = rule(el.value);
+        el.closest('.field').classList.toggle('is-bad', !ok);
+        el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+        if (!ok && focusFirstBad) el.focus();
+        return ok;
+    }
+
+    Object.keys(rules).forEach(name => {
+        const el = form.elements[name];
+        if (!el) return;
+        const revalidate = () => {
+            if (el.closest('.field').classList.contains('is-bad')) check(el, false);
+        };
+        el.addEventListener('input', revalidate);
+        el.addEventListener('change', revalidate);
+        el.addEventListener('blur', () => { if (el.value !== '') check(el, false); });
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let firstBad = null;
+        Object.keys(rules).forEach(name => {
+            const el = form.elements[name];
+            if (el && !check(el, false) && !firstBad) firstBad = el;
+        });
+
+        if (firstBad) { firstBad.focus(); return; }
+
+        const name = form.elements.name.value.trim().split(/\s+/)[0];
+        const size = form.elements.size.value;
+
+        document.getElementById('doneHead').textContent = `Thanks, ${name}.`;
+        document.getElementById('doneBody').textContent =
+            size && size.endsWith('Yard')
+                ? `Your ${size} request is in. We'd call you back to confirm the price and the drop-off day.`
+                : `Your request is in. We'd call you back to talk through the right size and the price.`;
+
+        card.classList.add('is-done');
+        done.classList.add('on');
+        done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+})();
+</script>
+
+<!-- "This website is live" bar. Renders nothing unless this demo is marked
+     purchased AND has a real URL in /admin/demos.html. -->
+<script src="../../../assets/js/env.js"></script>
+<script src="../../../assets/js/demo-registry.js"></script>
+<script src="../../../assets/js/demo-live-badge.js" data-slug="mid-hudson-container"></script>
+
+<!-- Studio conversion loop: popup -> /request/ -> Supabase ticket.
+     data-ref lands in tickets.reference and data-niche preselects the trade, so a
+     lead out of this demo is attributable to it. data-theme keeps the card dark. -->
+<script src="../../../assets/js/purchase-popup.js"
+        data-ref="mid-hudson-container"
+        data-niche="home-improvement-landscape"
+        data-theme="dark"></script>
+</body>
+</html>
