@@ -34,7 +34,15 @@
     <div class="page-head">
         <div>
             <h1>Pricing</h1>
-            <p>Edit what visitors see on the landing page. Changes go live the moment you save — no redeploy.</p>
+            <p>
+                Edit what visitors see on the landing page. Changes go live the moment you save — no redeploy.
+                <br>
+                <small style="color:var(--text-secondary)">
+                    The plan with the id <code>care</code> is treated as the monthly add-on, not a
+                    tier: it sits under the pricing grid and is offered as a yes/no question when
+                    someone picks the featured build. Every other plan renders as a card.
+                </small>
+            </p>
         </div>
         <div class="page-head__actions">
             <span class="status" id="status"></span>
@@ -63,7 +71,6 @@
 (function () {
     const SETTING_KEY = 'pricing';
 
-    // Used only if the database has no pricing row yet.
     const DEFAULTS = {
         plans: [
             { id: 'starter', name: 'Starter', desc: 'A sharp one-page site that makes the phone ring.',
@@ -100,8 +107,6 @@
         dirty = true;
         setStatus('Unsaved changes', 'saving');
     }
-
-    // ---------- Rendering ----------
 
     function planEditorHtml(plan, i) {
         const features = (plan.features || []).map((f, fi) => `
@@ -178,9 +183,6 @@
         `).join('');
     }
 
-    // ---------- Editing ----------
-    // Delegated so re-rendering never leaves stale listeners behind.
-
     $plans.addEventListener('input', (e) => {
         const el = e.target;
         const planIdx = el.dataset.plan;
@@ -195,7 +197,6 @@
         } else if (el.dataset.field) {
             plan[el.dataset.field] = el.type === 'checkbox' ? el.checked : el.value;
 
-            // Re-render only the heading, so typing doesn't steal focus.
             if (el.dataset.field === 'name') {
                 const head = el.closest('.plan-editor').querySelector('.plan-editor__head h2');
                 if (head) head.textContent = el.value || 'Untitled plan';
@@ -217,7 +218,7 @@
             state.plans[+btn.dataset.addFeature].features.push('');
             render();
             markDirty();
-            // Focus the row we just added.
+
             const rows = $plans.querySelectorAll(`input[data-plan="${btn.dataset.addFeature}"][data-feature]`);
             rows[rows.length - 1]?.focus();
 
@@ -247,14 +248,11 @@
         markDirty();
     });
 
-    // ---------- Load & save ----------
-
     document.getElementById('saveBtn').addEventListener('click', async () => {
         clearAlert();
         $saveBtn.disabled = true;
         setStatus('Saving…', 'saving');
 
-        // Drop empty feature rows so blanks never reach the public page.
         const payload = {
             plans: state.plans.map(p => ({
                 ...p,
@@ -295,15 +293,12 @@
             );
         }
 
-        // Normalise so the editor never hits an undefined array.
         state.plans.forEach(p => { if (!Array.isArray(p.features)) p.features = []; });
 
         render();
         setStatus('');
     }
 
-    // admin-auth.js replaces the page body when signed out, so only boot the
-    // editor once we know the user is actually in.
     document.addEventListener('DOMContentLoaded', () => {
         if (sbIsSignedIn()) init();
     });

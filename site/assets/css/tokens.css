@@ -1,10 +1,5 @@
-/* ==========================================================================
-   Business Site Studio — design tokens + base layer
-   Shared by the marketing site, the request form, and the admin panel.
-   ========================================================================== */
-
 :root {
-    /* --- Neutrals (slate ramp) --- */
+
     --slate-950: #020617;
     --slate-900: #0f172a;
     --slate-800: #1e293b;
@@ -16,7 +11,6 @@
     --slate-100: #f1f5f9;
     --slate-50:  #f8fafc;
 
-    /* --- Semantic colors --- */
     --bg-primary: #ffffff;
     --bg-subtle: var(--slate-50);
     --bg-dark: var(--slate-950);
@@ -39,16 +33,13 @@
     --warning: #d97706;
     --danger: #dc2626;
 
-    /* --- Gradients --- */
     --gradient-primary: linear-gradient(135deg, #0f172a 0%, #334155 100%);
     --gradient-accent: linear-gradient(135deg, #3b82f6 0%, #6366f1 55%, #8b5cf6 100%);
     --gradient-text: linear-gradient(120deg, #60a5fa 0%, #a78bfa 100%);
 
-    /* --- Typography --- */
     --font-primary: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
     --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, monospace;
 
-    /* Fluid type scale — no media queries needed */
     --text-xs:   0.75rem;
     --text-sm:   0.875rem;
     --text-base: 1rem;
@@ -65,7 +56,6 @@
     --tracking-tight: -0.025em;
     --tracking-tighter: -0.04em;
 
-    /* --- Spacing --- */
     --space-xs: 0.25rem;
     --space-sm: 0.5rem;
     --space-md: 1rem;
@@ -74,31 +64,23 @@
     --space-2xl: 6rem;
     --section-y: clamp(4rem, 9vw, 7.5rem);
 
-    /* --- Radii --- */
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 16px;
     --radius-xl: 24px;
     --radius-full: 999px;
 
-    /* --- Elevation --- */
     --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.1);
     --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.06);
     --shadow-lg: 0 12px 20px -6px rgba(15, 23, 42, 0.12), 0 8px 12px -8px rgba(15, 23, 42, 0.08);
     --shadow-xl: 0 24px 48px -12px rgba(15, 23, 42, 0.2);
 
-    /* --- Motion --- */
     --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
     --transition: 200ms var(--ease-out);
 
-    /* --- Layout --- */
     --container: 1160px;
     --container-narrow: 780px;
 }
-
-/* --------------------------------------------------------------------------
-   Base
-   -------------------------------------------------------------------------- */
 
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -142,10 +124,6 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
     border-radius: var(--radius-sm);
 }
 
-/* --------------------------------------------------------------------------
-   Layout helpers
-   -------------------------------------------------------------------------- */
-
 .container {
     width: 100%;
     max-width: var(--container);
@@ -182,10 +160,6 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
     color: var(--accent-color);
     margin-bottom: var(--space-sm);
 }
-
-/* --------------------------------------------------------------------------
-   Components
-   -------------------------------------------------------------------------- */
 
 .btn {
     display: inline-flex;
@@ -266,10 +240,6 @@ img, svg, video { max-width: 100%; height: auto; display: block; }
     color: var(--accent-hover);
 }
 
-/* --------------------------------------------------------------------------
-   Forms
-   -------------------------------------------------------------------------- */
-
 label {
     display: block;
     margin-bottom: 0.4rem;
@@ -295,14 +265,6 @@ input:focus, select:focus, textarea:focus {
     border-color: var(--accent-color);
     box-shadow: 0 0 0 3px var(--accent-soft);
 }
-
-/* --------------------------------------------------------------------------
-   Scroll reveal
-
-   The hidden state is scoped to .js, which is set by an inline script in <head>.
-   If JS is blocked or throws, the class is never added and every .reveal stays
-   fully visible — a marketing page must never render blank.
-   -------------------------------------------------------------------------- */
 
 .js .reveal {
     opacity: 0;

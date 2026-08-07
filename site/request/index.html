@@ -58,6 +58,21 @@
 
         textarea { min-height: 110px; resize: vertical; font-family: inherit; }
 
+        .addon-check {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.7rem;
+            padding: 0.9rem 1rem;
+            border: 1px solid var(--border-strong);
+            border-radius: var(--radius-md);
+            background: var(--accent-soft);
+            cursor: pointer;
+            font-weight: 400;
+        }
+        .addon-check:hover { border-color: var(--accent-color); }
+        .addon-check input { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--accent-color); }
+        .addon-check b { display: block; font-size: var(--text-sm); margin-bottom: 0.15rem; }
+
         .field-error { color: var(--danger); font-size: var(--text-xs); margin: 0.3rem 0 0; }
         input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--danger); }
 
@@ -76,7 +91,6 @@
         .trust span { display: flex; align-items: center; gap: 0.4rem; }
         .trust svg { color: var(--success); flex-shrink: 0; }
 
-        /* Success state */
         .done { text-align: center; padding: var(--space-lg) var(--space-md); }
         .done__icon {
             width: 62px; height: 62px; margin: 0 auto var(--space-md);
@@ -85,7 +99,7 @@
         }
         .done h2 { font-size: var(--text-2xl); }
         .done p { color: var(--text-secondary); max-width: 42ch; margin-inline: auto; }
-    </style>
+</style>
 </head>
 <body>
 
@@ -163,6 +177,16 @@
                 <p class="hint">Already filled in if you came from the pricing page. Change it freely — nothing is locked in until you approve a quote.</p>
             </div>
 
+            <div class="form-group" id="careGroup" hidden>
+                <label class="addon-check">
+                    <input type="checkbox" id="careAddon" name="careAddon">
+                    <span>
+                        <b>Add the Care Plan <span id="carePrice"></span></b>
+                        <span class="hint" style="margin:0">We keep it running so you never touch code — updates, monitoring and backups. Month to month, cancel anytime.</span>
+                    </span>
+                </label>
+            </div>
+
             <div class="form-group">
                 <label for="bizUrl">Current website <span class="optional">(optional)</span></label>
                 <input type="text" id="bizUrl" name="bizUrl" inputmode="url" placeholder="yourbusiness.com">
@@ -200,8 +224,6 @@
     const submitBtn = document.getElementById('submitBtn');
     const formError = document.getElementById('formError');
 
-    // ---- Niches -------------------------------------------------------------
-    // Falls back to a hard-coded list so the form still works if the fetch dies.
     const FALLBACK_NICHES = [
         { id: 'autobody', name: 'Auto Body' },
         { id: 'home-improvement-landscape', name: 'Home Improvement & Landscape' },
@@ -230,36 +252,45 @@
         .then(d => fillNiches(d.niches))
         .catch(() => fillNiches(FALLBACK_NICHES));
 
-    // ---- Plans --------------------------------------------------------------
-    // Options come from the live pricing row so this select never drifts from
-    // whatever is in the CMS. Same fallback pattern as the niches above: if the
-    // request dies, the three standing plans are still offered.
+    const CARE_ID = 'care';
+
     const FALLBACK_PLANS = [
-        { id: 'starter',  name: 'Starter' },
-        { id: 'complete', name: 'Complete' },
-        { id: 'care',     name: 'Care Plan' }
+        { id: 'starter',  name: 'Starter',   price: '$70',  period: 'one-time' },
+        { id: 'complete', name: 'Complete',  price: '$149', period: 'one-time' },
+        { id: 'care',     name: 'Care Plan', price: '$79',  period: '/month + hosting' }
     ];
 
     const planSelect = document.getElementById('planChoice');
+    const careGroup = document.getElementById('careGroup');
+    const careCheck = document.getElementById('careAddon');
+    const carePrice = document.getElementById('carePrice');
 
     function fillPlans(list) {
-        list.forEach(p => {
-            if (!p || !p.id) return;
+        const tiers = list.filter(p => p && p.id && p.id !== CARE_ID);
+        const care = list.find(p => p && p.id === CARE_ID);
+
+        tiers.forEach(p => {
             const opt = document.createElement('option');
             opt.value = p.id;
-            // Show the price when we have it, so the option matches the card
-            // they just clicked rather than making them second-guess it.
+
             opt.textContent = p.price
                 ? `${p.name} — ${p.price} ${p.period || ''}`.trim()
                 : p.name;
             planSelect.appendChild(opt);
         });
 
-        const wanted = params.get('plan');
-        if (!wanted) return;
+        if (care) {
+            carePrice.textContent = care.price
+                ? `— ${care.price} ${care.period || ''}`.trim()
+                : '';
+            careGroup.hidden = false;
 
-        // A plan renamed or removed in the CMS should still be recorded rather
-        // than silently falling back to "not sure".
+            careCheck.checked = params.get('care') === 'yes' || params.get('plan') === CARE_ID;
+        }
+
+        const wanted = params.get('plan');
+        if (!wanted || wanted === CARE_ID) return;
+
         if (!Array.from(planSelect.options).some(o => o.value === wanted)) {
             const opt = document.createElement('option');
             opt.value = wanted;
@@ -270,7 +301,7 @@
     }
 
     if (typeof getSetting === 'function') {
-        // getSetting resolves to the fallback on any failure, never rejects.
+
         getSetting('pricing', null).then(d => {
             const plans = (d && Array.isArray(d.plans) && d.plans.length) ? d.plans : FALLBACK_PLANS;
             fillPlans(plans);
@@ -281,8 +312,6 @@
 
     if (params.get('type')) document.getElementById('demoType').value = params.get('type');
     if (params.get('ref')) document.getElementById('demoReference').value = params.get('ref');
-
-    // ---- Validation ---------------------------------------------------------
 
     const RULES = {
         contactName: v => v.trim().length >= 2 || 'Please enter your name.',
@@ -317,14 +346,11 @@
         return firstBad;
     }
 
-    // Clear a field's error as soon as it becomes valid.
     Object.keys(RULES).forEach(id => {
         document.getElementById(id).addEventListener('input', () => {
             if (RULES[id](document.getElementById(id).value) === true) setFieldError(id, null);
         });
     });
-
-    // ---- Submit -------------------------------------------------------------
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -349,7 +375,8 @@
             url:           url,
             niche:         document.getElementById('bizNiche').value,
             project_type:  document.getElementById('projectType').value,
-            plan:          document.getElementById('planChoice').value,
+
+            plan:          planSelect.value + (careCheck.checked ? '+care' : ''),
             notes:         document.getElementById('notes').value.trim(),
             type:          document.getElementById('demoType').value,
             reference:     document.getElementById('demoReference').value,
@@ -377,7 +404,6 @@
             return;
         }
 
-        // Never pretend it worked — a lost lead is worse than an error message.
         submitBtn.disabled = false;
         submitBtn.textContent = 'Get my quote';
         formError.textContent = "Something went wrong sending your request. Please try again — or call us directly and we'll take the details over the phone.";

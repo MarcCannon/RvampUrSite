@@ -126,8 +126,6 @@
         .demo__tag { font-size: var(--text-sm); color: var(--text-secondary); margin: 0 0 var(--space-md); }
         .demo__cta { margin-top: auto; }
 
-        /* The verified sticker. Sits on the shot so it reads as a stamp on the
-           work itself, not just another label in the copy. */
         .sticker {
             position: absolute;
             top: 0.85rem;
@@ -189,7 +187,7 @@
             color: var(--text-secondary);
         }
         .foot a { color: var(--text-secondary); }
-    </style>
+</style>
 </head>
 <body>
 
@@ -298,7 +296,6 @@
             return;
         }
 
-        // Live builds first — they are the strongest proof we have.
         list.sort((a, b) => Number(demoIsLive(b)) - Number(demoIsLive(a)));
 
         $grid.innerHTML = list.map(card).join('') + CTA_CARD;

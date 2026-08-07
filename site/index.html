@@ -15,12 +15,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="assets/css/tokens.css">
 
-    <!-- Enables the scroll-reveal hidden state. If this never runs, content
-         stays visible instead of the page rendering blank. -->
     <script>document.documentElement.classList.add('js');</script>
 
     <style>
-        /* ---------- Nav ---------- */
         .nav {
             position: sticky;
             top: 0;
@@ -60,7 +57,6 @@
         .nav__links a:hover { color: #fff; }
         @media (min-width: 900px) { .nav__links { display: flex; } }
 
-        /* ---------- Hero ---------- */
         .hero {
             position: relative;
             background: var(--bg-dark);
@@ -69,7 +65,7 @@
             overflow: hidden;
             isolation: isolate;
         }
-        /* Layered radial glows — cheap depth, no images */
+
         .hero::before {
             content: "";
             position: absolute;
@@ -81,7 +77,7 @@
             filter: blur(10px);
             z-index: -2;
         }
-        /* Faint grid, faded out toward the bottom */
+
         .hero::after {
             content: "";
             position: absolute;
@@ -149,7 +145,6 @@
         .hero__points li { display: flex; align-items: center; gap: 0.45rem; }
         .hero__points svg { color: #4ade80; flex-shrink: 0; }
 
-        /* ---------- Before / After ---------- */
         .ba-wrap { max-width: 940px; margin-inline: auto; }
         .ba {
             --pos: 50%;
@@ -162,15 +157,10 @@
             aspect-ratio: 16 / 10;
             user-select: none;
         }
-        /* isolation is load-bearing, not decoration. The mockups inside use their
-           own z-index values (sticky navbar, chip strip), and flex items honour
-           z-index even when static. Without a stacking context on each pane those
-           values escape and paint over the *other* pane — the new site's navbar
-           and chips end up sitting on top of the old site, which wrecks the
-           whole before/after illusion. */
+
         .ba__pane { position: absolute; inset: 0; overflow: hidden; isolation: isolate; }
         .ba__pane--after { z-index: 1; }
-        /* "Before" sits on top, clipped from the left edge to the handle */
+
         .ba__pane--before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); z-index: 2; }
 
         .ba__range {
@@ -210,9 +200,7 @@
             place-items: center;
             color: var(--slate-700);
         }
-        /* Each tag lives inside its own pane, so it is clipped along with that
-           pane — "Before" can never end up floating over the new site. Sat at
-           the bottom to stay clear of both mockups' navbars. */
+
         .ba__tag {
             position: absolute;
             bottom: 14px;
@@ -228,7 +216,6 @@
         .ba__tag--before { left: 14px; background: rgba(15,23,42,0.8); color: #fff; }
         .ba__tag--after  { right: 14px; background: var(--success); color: #fff; }
 
-        /* Stylised "old site" mockup */
         .old {
             height: 100%;
             background: #d8d8d0;
@@ -278,7 +265,6 @@
             font-family: var(--font-mono);
         }
 
-        /* Stylised "new site" mockup */
         .new { height: 100%; background: #ffffff; color: #0f172a; display: flex; flex-direction: column; font-family: 'Inter', sans-serif; }
         .new__bar {
             display: flex; align-items: center; justify-content: space-between;
@@ -290,7 +276,7 @@
         .new__navlinks { display: flex; gap: 0.8rem; }
         .new__navlinks span { width: 35px; height: 4px; border-radius: 2px; background: #e2e8f0; }
         .new__pill { background: #0f172a; color: #fff; font-size: clamp(0.5rem, 1.1vw, 0.7rem); padding: 0.4rem 1rem; border-radius: 20px; font-weight: 600; box-shadow: 0 4px 10px rgba(15,23,42,0.2); }
-        
+
         .new__hero {
             flex: 1; display: grid; grid-template-columns: 1.1fr 0.9fr;
             background: radial-gradient(circle at top right, rgba(59,130,246,0.05) 0%, transparent 60%);
@@ -304,7 +290,7 @@
             display: inline-block; background: #3b82f6; color: #fff;
             font-size: clamp(0.55rem, 1.2vw, 0.8rem); font-weight: 600; padding: 0.7rem 1.4rem; border-radius: 6px; box-shadow: 0 4px 14px rgba(59,130,246,0.3);
         }
-        
+
         .new__art {
             width: 100%; aspect-ratio: 4/3; border-radius: 12px;
             background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
@@ -317,7 +303,7 @@
             background: #fff; border-radius: 8px; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             transform: rotate(-5deg);
         }
-        
+
         .new__strip { display: flex; gap: 1rem; padding: 0 clamp(1rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem); z-index: 5;}
         .new__chip { flex: 1; height: clamp(30px, 6vw, 45px); background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: #334155; font-size: clamp(0.4rem, 1.1vw, 0.65rem); font-weight: 600;}
         .new__chip svg { width: 14px; height: 14px; fill: #3b82f6; flex-shrink: 0; }
@@ -329,7 +315,6 @@
             margin-top: var(--space-md);
         }
 
-        /* ---------- Symptoms ---------- */
         .symptoms { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
         .symptom { display: flex; gap: 0.85rem; align-items: flex-start; }
         .symptom__icon {
@@ -344,7 +329,6 @@
         .symptom h3 { font-size: var(--text-base); margin-bottom: 0.15rem; }
         .symptom p { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
 
-        /* ---------- Demos ---------- */
         .demos { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
         .demo-card {
             background: var(--bg-primary); border: 1px solid var(--border);
@@ -357,7 +341,6 @@
         .demo-card__content h3 { font-size: var(--text-lg); margin-bottom: 0.25rem; color: var(--text-primary); }
         .demo-card__content p { color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: 1.25rem; }
 
-        /* ---------- Niches ---------- */
         .niches { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
         .niche {
             display: flex;
@@ -383,7 +366,6 @@
         .niche__arrow { margin-left: auto; color: var(--slate-300); transition: transform var(--transition), color var(--transition); }
         .niche:hover .niche__arrow { color: var(--accent-color); transform: translateX(3px); }
 
-        /* ---------- Steps ---------- */
         .steps { display: grid; gap: clamp(1.25rem, 3vw, 2rem); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); counter-reset: step; }
         .step { position: relative; padding-top: 3.4rem; }
         .step::before {
@@ -404,14 +386,12 @@
         .step h3 { margin-bottom: 0.35rem; }
         .step p { color: var(--text-secondary); margin: 0; }
 
-        /* ---------- Included ---------- */
         .features { display: grid; gap: 0.9rem 2rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); list-style: none; margin: 0; padding: 0; }
         .features li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: var(--text-base); }
         .features svg { flex-shrink: 0; color: var(--success); margin-top: 4px; }
         .features b { display: block; font-weight: 600; }
         .features span { font-size: var(--text-sm); color: var(--text-secondary); }
 
-        /* ---------- Pricing ---------- */
         .plans { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); align-items: start; }
         .plan { display: flex; flex-direction: column; height: 100%; }
         .plan--featured {
@@ -441,6 +421,57 @@
         .plan li svg { flex-shrink: 0; color: var(--success); margin-top: 3px; }
         .plan .btn { margin-top: auto; }
 
+        .plans { max-width: 760px; margin-inline: auto; }
+
+        .addon {
+            margin-top: var(--space-lg);
+            display: grid;
+            gap: var(--space-md) var(--space-lg);
+            grid-template-columns: 1fr;
+            align-items: start;
+            padding: var(--space-lg);
+            border: 1px dashed var(--border-strong);
+            border-radius: var(--radius-lg);
+            background: var(--surface);
+        }
+        @media (min-width: 780px) { .addon { grid-template-columns: 1.2fr 1fr; } }
+        .addon__tag {
+            display: inline-block;
+            font-size: var(--text-xs);
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.4rem;
+        }
+        .addon h3 { font-size: var(--text-xl); margin-bottom: 0.3rem; }
+        .addon__desc { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
+        .addon__price { font-size: var(--text-2xl); font-weight: 800; letter-spacing: var(--tracking-tighter); margin: 0 0 0.75rem; }
+        .addon__price small { font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary); letter-spacing: 0; }
+        .addon ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+        .addon li { display: flex; gap: 0.55rem; align-items: flex-start; font-size: var(--text-sm); }
+        .addon li svg { flex-shrink: 0; color: var(--success); margin-top: 3px; }
+
+        .care-modal {
+            width: min(460px, calc(100vw - 2rem));
+            padding: 0;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-xl);
+            color: var(--text-primary);
+        }
+        .care-modal::backdrop { background: rgba(2, 6, 23, 0.55); backdrop-filter: blur(2px); }
+        .care-modal__body { padding: var(--space-lg); }
+        .care-modal h3 { font-size: var(--text-xl); margin-bottom: 0.4rem; }
+        .care-modal__lede { font-size: var(--text-sm); color: var(--text-secondary); }
+        .care-modal__price { font-size: var(--text-2xl); font-weight: 800; letter-spacing: var(--tracking-tighter); margin: var(--space-md) 0 0.15rem; }
+        .care-modal__price small { font-size: var(--text-sm); font-weight: 500; color: var(--text-secondary); letter-spacing: 0; }
+        .care-modal ul { list-style: none; margin: var(--space-md) 0; padding: 0; display: grid; gap: 0.5rem; }
+        .care-modal li { display: flex; gap: 0.55rem; align-items: flex-start; font-size: var(--text-sm); }
+        .care-modal li svg { flex-shrink: 0; color: var(--success); margin-top: 3px; }
+        .care-modal__actions { display: grid; gap: 0.6rem; margin-top: var(--space-lg); }
+        .care-modal__note { font-size: var(--text-xs); color: var(--text-secondary); text-align: center; margin: 0.8rem 0 0; }
+
         .terms {
             margin-top: var(--space-lg);
             padding: var(--space-lg);
@@ -460,7 +491,6 @@
         .terms li { font-size: var(--text-sm); color: var(--text-secondary); line-height: 1.6; }
         .terms b { color: var(--text-primary); font-weight: 600; }
 
-        /* ---------- FAQ ---------- */
         .faq { max-width: var(--container-narrow); margin-inline: auto; }
         .faq details {
             border-bottom: 1px solid var(--border);
@@ -488,7 +518,6 @@
         .faq details[open] summary::after { transform: rotate(45deg); }
         .faq details p { margin: 0.75rem 0 0; color: var(--text-secondary); max-width: 68ch; }
 
-        /* ---------- Final CTA ---------- */
         .final { text-align: center; position: relative; overflow: hidden; isolation: isolate; }
         .final::before {
             content: "";
@@ -500,7 +529,6 @@
         .final h2 { font-size: var(--text-4xl); }
         .final p { max-width: 52ch; margin-inline: auto; font-size: var(--text-lg); }
 
-        /* ---------- Footer ---------- */
         .footer {
             background: var(--bg-dark);
             color: var(--text-inverse-muted);
@@ -512,7 +540,7 @@
         .footer a { color: var(--text-inverse-muted); }
         .footer a:hover { color: #fff; }
         .footer__links { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-    </style>
+</style>
 </head>
 <body>
 
@@ -569,7 +597,6 @@
     </div>
 </header>
 
-<!-- ---------------- Before / After ---------------- -->
 <section class="section" id="work">
     <div class="container">
         <div class="section-head reveal">
@@ -580,7 +607,7 @@
 
         <div class="ba-wrap reveal">
             <div class="ba" id="baSlider">
-                <!-- AFTER (underneath) -->
+
                 <div class="ba__pane ba__pane--after">
                     <div class="new">
                         <div class="new__bar">
@@ -605,7 +632,6 @@
                     <span class="ba__tag ba__tag--after">After</span>
                 </div>
 
-                <!-- BEFORE (on top, clipped) -->
                 <div class="ba__pane ba__pane--before">
                     <div class="old">
                         <div class="old__bar">*** WELCOME TO MILLER AUTO BODY ***</div>
@@ -649,7 +675,6 @@
     </div>
 </section>
 
-<!-- ---------------- Demos ---------------- -->
 <section class="section section--subtle" id="demos">
     <div class="container">
         <div class="section-head reveal">
@@ -670,8 +695,7 @@
                     <span class="btn btn--ghost btn--block">View Demo &rarr;</span>
                 </div>
             </a>
-            
-            <!-- Future demos can be added here -->
+
             <div class="demo-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: transparent; border: 2px dashed var(--border-strong); padding: 3rem 1.5rem; text-align: center;">
                 <h3 style="color: var(--text-secondary);">Your Business Here</h3>
                 <p style="color: var(--text-inverse-muted);">Request a mockup to see your trade in action.</p>
@@ -681,7 +705,6 @@
     </div>
 </section>
 
-<!-- ---------------- Symptoms ---------------- -->
 <section class="section">
     <div class="container">
         <div class="section-head reveal">
@@ -737,7 +760,6 @@
     </div>
 </section>
 
-<!-- ---------------- Niches ---------------- -->
 <section class="section" id="niches">
     <div class="container">
         <div class="section-head reveal">
@@ -746,11 +768,6 @@
             <p>We build in a handful of niches on purpose — so we already know what your customers look for.</p>
         </div>
 
-        <!--
-            These are intentionally hard-coded rather than fetched from data/niches.json.
-            Marketing content shouldn't disappear if a fetch fails or JS is blocked.
-            If you add a niche, update BOTH this list and data/niches.json.
-        -->
         <div class="niches reveal">
             <a class="card card--link niche" href="request/?niche=autobody">
                 <span class="niche__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M6 17l-1.5-5.5a2 2 0 011.9-2.5h11.2a2 2 0 011.9 2.5L18 17"/><circle cx="7.5" cy="17.5" r="1.5"/><circle cx="16.5" cy="17.5" r="1.5"/></svg></span>
@@ -818,7 +835,6 @@
     </div>
 </section>
 
-<!-- ---------------- How it works ---------------- -->
 <section class="section section--subtle" id="how">
     <div class="container">
         <div class="section-head reveal">
@@ -844,7 +860,6 @@
     </div>
 </section>
 
-<!-- ---------------- Included ---------------- -->
 <section class="section">
     <div class="container">
         <div class="section-head reveal">
@@ -864,7 +879,6 @@
     </div>
 </section>
 
-<!-- ---------------- Pricing ---------------- -->
 <section class="section section--subtle" id="pricing">
     <div class="container">
         <div class="section-head reveal">
@@ -873,11 +887,6 @@
             <p>One number, agreed before we start. No hourly billing and no surprises at the end.</p>
         </div>
 
-        <!--
-            The plans below are the fallback. They render instantly and stay put
-            if the database is unreachable. When live pricing loads, JS replaces
-            this grid. Edit the real numbers in the admin CMS: /admin/pricing.html
-        -->
         <div class="plans reveal" id="plansGrid">
             <div class="card plan">
                 <h3>Starter</h3>
@@ -891,7 +900,7 @@
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>2 rounds of revisions</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Live in about a week</li>
                 </ul>
-                <a href="request/?plan=starter" class="btn btn--ghost btn--block">Get a quote</a>
+                <a href="request/?plan=starter" class="btn btn--ghost btn--block" data-plan="starter">Get a quote</a>
             </div>
 
             <div class="card plan plan--featured">
@@ -906,13 +915,18 @@
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Google Business Profile setup help</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>3 rounds of revisions</li>
                 </ul>
-                <a href="request/?plan=complete" class="btn btn--primary btn--block">Get a quote</a>
+                <a href="request/?plan=complete" class="btn btn--primary btn--block" data-plan="complete">Get a quote</a>
             </div>
+        </div>
 
-            <div class="card plan">
+        <div class="addon reveal" id="careAddon">
+            <div>
+                <span class="addon__tag">Optional add-on</span>
                 <h3>Care Plan</h3>
-                <p class="plan__desc">We keep it running so you never touch code. Domain and hosting are billed at cost on top.</p>
-                <div class="plan__price">$79<small>&nbsp;/month + hosting</small></div>
+                <p class="addon__desc">We keep it running so you never touch code. Domain and hosting are billed at cost on top.</p>
+            </div>
+            <div>
+                <div class="addon__price">$79<small>&nbsp;/month + hosting</small></div>
                 <ul>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Up to 4 content updates a month</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Monitoring &amp; backups</li>
@@ -920,15 +934,32 @@
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>We handle domain &amp; hosting renewals</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Month to month &mdash; cancel anytime</li>
                 </ul>
-                <a href="request/?plan=care" class="btn btn--ghost btn--block">Ask about it</a>
             </div>
         </div>
 
-        <!--
-            Scope guardrails. Deliberately static rather than CMS-editable: these
-            are the terms that stop a fixed-price job turning into open-ended
-            unpaid work, so they should not be casually edited alongside prices.
-        -->
+        <dialog class="care-modal" id="careModal" aria-labelledby="careModalTitle">
+            <div class="care-modal__body">
+                <h3 id="careModalTitle">Want us to keep it running too?</h3>
+                <p class="care-modal__lede" id="careModalDesc">
+                    Most owners would rather never touch the site again. The Care Plan
+                    is how that works &mdash; you send us the change, we make it.
+                </p>
+
+                <div class="care-modal__price" id="careModalPrice">$79<small>&nbsp;/month + hosting</small></div>
+                <ul id="careModalFeatures">
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Up to 4 content updates a month</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Monitoring &amp; backups</li>
+                    <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Month to month &mdash; cancel anytime</li>
+                </ul>
+
+                <div class="care-modal__actions">
+                    <a class="btn btn--primary btn--block" id="careYes" href="request/?plan=complete&amp;care=yes">Yes &mdash; add the Care Plan</a>
+                    <a class="btn btn--ghost btn--block" id="careNo" href="request/?plan=complete">No thanks, just the build</a>
+                </div>
+                <p class="care-modal__note">Either way you get a quote first. Nothing is locked in.</p>
+            </div>
+        </dialog>
+
         <div class="terms reveal">
             <h3>The fine print</h3>
             <ul>
@@ -945,7 +976,6 @@
     </div>
 </section>
 
-<!-- ---------------- FAQ ---------------- -->
 <section class="section" id="faq">
     <div class="container">
         <div class="section-head reveal">
@@ -986,7 +1016,6 @@
     </div>
 </section>
 
-<!-- ---------------- Final CTA ---------------- -->
 <section class="section section--dark final">
     <div class="container container--narrow">
         <h2 class="reveal">Stop losing work to a better-looking competitor.</h2>
@@ -1013,7 +1042,6 @@
 <script src="assets/js/supabase-client.js"></script>
 <script src="assets/js/settings-client.js"></script>
 <script>
-    // --- Before/after slider -------------------------------------------------
     (function () {
         const slider = document.getElementById('baSlider');
         if (!slider) return;
@@ -1023,12 +1051,10 @@
         apply();
     })();
 
-    // --- Scroll reveal -------------------------------------------------------
     (function () {
         const items = document.querySelectorAll('.reveal');
         if (!items.length) return;
 
-        // No IntersectionObserver (or reduced motion) -> just show everything.
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (reduced || !('IntersectionObserver' in window)) {
             items.forEach(el => el.classList.add('is-visible'));
@@ -1047,15 +1073,16 @@
         items.forEach(el => io.observe(el));
     })();
 
-    // --- Footer year ---------------------------------------------------------
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // --- Live pricing --------------------------------------------------------
-    // Overwrites the fallback grid only on a successful load, so a failed
-    // request leaves the hard-coded plans on screen rather than an empty gap.
     (function () {
         const grid = document.getElementById('plansGrid');
         if (!grid || typeof getSetting !== 'function') return;
+
+        const CARE_ID = 'care';
+
+        const addon = document.getElementById('careAddon');
+        const modal = document.getElementById('careModal');
 
         const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
             { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
@@ -1063,42 +1090,104 @@
 
         const CHECK = '<svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>';
 
+        const featureList = (p) => (p.features || []).map(f => `<li>${CHECK}${esc(f)}</li>`).join('');
+        const priceHtml = (p) => `${esc(p.price)}<small>&nbsp;${esc(p.period)}</small>`;
+
         const planHtml = (p) => `
             <div class="card plan${p.featured ? ' plan--featured' : ''}">
                 <h3>${esc(p.name)}</h3>
                 <p class="plan__desc">${esc(p.desc)}</p>
-                <div class="plan__price">${esc(p.price)}<small>&nbsp;${esc(p.period)}</small></div>
-                <ul>${(p.features || []).map(f => `<li>${CHECK}${esc(f)}</li>`).join('')}</ul>
-                <a href="request/?plan=${encodeURIComponent(p.id || '')}" class="btn ${p.featured ? 'btn--primary' : 'btn--ghost'} btn--block">${esc(p.cta) || 'Get started'}</a>
+                <div class="plan__price">${priceHtml(p)}</div>
+                <ul>${featureList(p)}</ul>
+                <a href="request/?plan=${encodeURIComponent(p.id || '')}" class="btn ${p.featured ? 'btn--primary' : 'btn--ghost'} btn--block" data-plan="${esc(p.id || '')}">${esc(p.cta) || 'Get started'}</a>
+            </div>`;
+
+        const addonHtml = (p) => `
+            <div>
+                <span class="addon__tag">Optional add-on</span>
+                <h3>${esc(p.name)}</h3>
+                <p class="addon__desc">${esc(p.desc)}</p>
+            </div>
+            <div>
+                <div class="addon__price">${priceHtml(p)}</div>
+                <ul>${featureList(p)}</ul>
             </div>`;
 
         const CACHE_KEY = 'bss.pricing.v1';
 
-        // Paint prices only when they actually differ from what is on screen.
-        // Rewriting identical markup is what made the page visibly flip between
-        // the fallback and the live value on every load.
+        let promptPlanId = 'complete';
+
         function apply(data) {
             if (!data || !Array.isArray(data.plans) || !data.plans.length) return false;
 
-            const next = data.plans.map(planHtml).join('');
-            if (grid.innerHTML.trim() === next.trim()) return true;
+            const tiers = data.plans.filter(p => p && p.id !== CARE_ID);
+            const care = data.plans.find(p => p && p.id === CARE_ID);
 
-            const wasVisible = grid.classList.contains('is-visible');
-            grid.innerHTML = next;
-            if (wasVisible) grid.classList.add('is-visible');
+            if (!tiers.length) return false;
+
+            const featured = tiers.find(p => p.featured) || tiers[tiers.length - 1];
+            promptPlanId = featured.id || promptPlanId;
+
+            const next = tiers.map(planHtml).join('');
+            if (grid.innerHTML.trim() !== next.trim()) {
+                const wasVisible = grid.classList.contains('is-visible');
+                grid.innerHTML = next;
+                if (wasVisible) grid.classList.add('is-visible');
+            }
+
+            if (addon) {
+                if (care) {
+                    const nextAddon = addonHtml(care);
+                    if (addon.innerHTML.trim() !== nextAddon.trim()) addon.innerHTML = nextAddon;
+                    addon.hidden = false;
+                } else {
+                    addon.hidden = true;
+                }
+            }
+
+            if (modal && care) {
+                modal.querySelector('#careModalPrice').innerHTML = priceHtml(care);
+                modal.querySelector('#careModalFeatures').innerHTML =
+                    (care.features || []).slice(0, 3).map(f => `<li>${CHECK}${esc(f)}</li>`).join('');
+            }
+            if (modal) modal.dataset.available = care ? 'yes' : 'no';
+
             return true;
         }
 
-        // Render last known prices synchronously, before the network round trip,
-        // so a returning visitor never sees the fallback swap out from under them.
         try {
             const cached = localStorage.getItem(CACHE_KEY);
             if (cached) apply(JSON.parse(cached));
-        } catch { /* corrupt or unavailable cache is not worth failing over */ }
+        } catch {  }
 
         getSetting('pricing', null).then(data => {
             if (!apply(data)) return;
             try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch {}
+        });
+
+        if (!modal || typeof modal.showModal !== 'function') return;
+
+        grid.addEventListener('click', (e) => {
+            const link = e.target.closest('a[data-plan]');
+            if (!link || link.dataset.plan !== promptPlanId) return;
+            if (modal.dataset.available === 'no') return;
+            if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+
+            e.preventDefault();
+
+            const base = `request/?plan=${encodeURIComponent(promptPlanId)}`;
+            modal.querySelector('#careYes').href = `${base}&care=yes`;
+            modal.querySelector('#careNo').href = base;
+
+            modal.showModal();
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target !== modal) return;
+            const box = modal.getBoundingClientRect();
+            const outside = e.clientX < box.left || e.clientX > box.right ||
+                            e.clientY < box.top  || e.clientY > box.bottom;
+            if (outside) modal.close();
         });
     })();
 </script>

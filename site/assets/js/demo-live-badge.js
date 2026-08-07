@@ -1,27 +1,10 @@
-// ============================================================================
-// "This website is live" bar for demos the client actually bought.
-//
-// Drop it on a demo, after env.js and demo-registry.js:
-//   <script src="../../../assets/js/env.js"></script>
-//   <script src="../../../assets/js/demo-registry.js"></script>
-//   <script src="../../../assets/js/demo-live-badge.js" data-slug="showroom-reflections"></script>
-//
-// It shows nothing at all unless the registry marks this demo purchased AND
-// carries a live_url — so an unsold demo pays no visual cost, and a sold one
-// with no URL yet does not render a bar that goes nowhere. Toggle both at
-// /admin/demos.html.
-// ============================================================================
-
 (() => {
     'use strict';
 
     const script = document.currentScript;
-    // assets/js/ -> up two levels is the site root. Works under a project page
-    // like /RvampUrSite/ as well as at a domain root.
+
     const SITE_ROOT = new URL('../../', script.src).href;
 
-    // Prefer an explicit slug; fall back to the folder name, since demos always
-    // live at demos/{niche}/{slug}/.
     const slug = script.dataset.slug || (() => {
         const parts = window.location.pathname.split('/').filter(p => p && !p.endsWith('.html'));
         return parts[parts.length - 1] || '';
@@ -73,19 +56,12 @@
         ));
     }
 
-    // Only allow URLs that actually navigate somewhere safe — never javascript:.
     function escapeAttr(url) {
         const raw = String(url ?? '').trim();
         const safe = /^https?:\/\//i.test(raw) ? raw : 'https://' + raw.replace(/^\/+/, '');
         return escapeHtml(safe);
     }
 
-    /**
-     * Make room for the bar. A fixed bar is out of flow, so the page needs
-     * padding — and anything the demo itself pins to the very top (a fixed or
-     * sticky navbar, which most of these have) has to come down by the same
-     * amount or the bar simply covers it.
-     */
     function makeRoom(bar) {
         const basePad = parseFloat(getComputedStyle(document.body).paddingTop) || 0;
         const pinned = [];
@@ -106,7 +82,7 @@
         }
 
         apply();
-        // The bar wraps to two lines on narrow screens, so its height changes.
+
         window.addEventListener('resize', apply);
         if ('ResizeObserver' in window) new ResizeObserver(apply).observe(bar);
     }

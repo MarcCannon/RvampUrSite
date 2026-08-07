@@ -1,13 +1,3 @@
-// ============================================================================
-// Admin auth gate — Supabase Auth (email + password).
-// Requires supabase-client.js to be loaded first.
-//
-// This gate controls what the BROWSER shows. It is not what keeps your data
-// safe: a determined visitor can always bypass client-side JS. Security comes
-// from Row Level Security on the database, which refuses reads and writes that
-// do not carry a valid signed-in token. See supabase/schema.sql.
-// ============================================================================
-
 (function () {
     const LOGIN_MARKUP = `
         <div class="login-shell">
@@ -120,8 +110,6 @@
         });
     }
 
-    // Hide the page until we know whether to show it, so admin content never
-    // flashes on screen before the gate runs.
     const hide = document.createElement('style');
     hide.id = 'adminAuthHide';
     hide.textContent = 'body { visibility: hidden; }';

@@ -12,12 +12,10 @@
     <script src="../assets/js/admin-auth.js"></script>
 
     <style>
-        /* Source of the lead: which demo button they came through. */
         .pill--claim  { background: #ecfdf5; color: #047857; }
         .pill--demo   { background: #eff6ff; color: #1d4ed8; }
         .pill--direct { background: var(--slate-100); color: var(--slate-700); }
 
-        /* Lifecycle status. */
         .pill--new       { background: #fef3c7; color: #92400e; }
         .pill--contacted { background: #eff6ff; color: #1d4ed8; }
         .pill--won       { background: #ecfdf5; color: #047857; }
@@ -85,7 +83,7 @@
         .status-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
 
         .empty { padding: var(--space-lg); text-align: center; color: var(--text-secondary); }
-    </style>
+</style>
 </head>
 <body class="admin">
 
@@ -152,8 +150,6 @@
 (function () {
     'use strict';
 
-    // The coded values the public forms write. Kept in one place so the table
-    // never shows raw slugs like "inspired-by" to a human.
     const SOURCE_LABELS = {
         'claim':       { text: 'This is my business', cls: 'pill--claim' },
         'inspired-by': { text: 'Wants one like it',   cls: 'pill--demo' },
@@ -166,6 +162,17 @@
         care:     'Care Plan',
         unsure:   'Not sure yet'
     };
+
+    function planLabel(raw) {
+        const value = String(raw || '');
+        if (!value) return '';
+
+        const care = value.endsWith('+care');
+        const base = care ? value.slice(0, -5) : value;
+        const name = PLAN_LABELS[base] || base;
+
+        return care ? `${name} + Care Plan` : name;
+    }
 
     const PROJECT_LABELS = {
         rebuild: 'Rebuild existing site',
@@ -216,10 +223,8 @@
 
     function planCell(t) {
         if (!t.plan) return '<span class="sub">—</span>';
-        return `<span class="pill pill--plan">${esc(PLAN_LABELS[t.plan] || t.plan)}</span>`;
+        return `<span class="pill pill--plan">${esc(planLabel(t.plan))}</span>`;
     }
-
-    // ---- Rendering ---------------------------------------------------------
 
     function rowHtml(t) {
         const status = STATUSES.includes(t.status) ? t.status : 'new';
@@ -258,7 +263,7 @@
                         <div><dt>Phone</dt><dd><a href="tel:${esc(t.phone)}">${esc(t.phone) || '—'}</a></dd></div>
                         <div><dt>Current site</dt><dd>${t.url ? `<a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.url)}</a>` : '—'}</dd></div>
                         <div><dt>Wants</dt><dd>${esc(PROJECT_LABELS[t.project_type] || t.project_type || '—')}</dd></div>
-                        <div><dt>Plan</dt><dd>${esc(PLAN_LABELS[t.plan] || t.plan || '—')}</dd></div>
+                        <div><dt>Plan</dt><dd>${esc(planLabel(t.plan) || '—')}</dd></div>
                         <div><dt>From demo</dt><dd>${esc(t.reference) || '—'}</dd></div>
                         <div><dt>Ticket id</dt><dd class="sub">${esc(t.id)}</dd></div>
                     </div>
@@ -291,8 +296,6 @@
             rowHtml(t) + (openId === t.id ? detailHtml(t) : '')
         ).join('');
     }
-
-    // ---- Data --------------------------------------------------------------
 
     async function load() {
         setStatus('Loading…', 'saving');
@@ -347,8 +350,6 @@
         }
     }
 
-    // ---- Events ------------------------------------------------------------
-
     $filters.addEventListener('click', (e) => {
         const btn = e.target.closest('button[data-filter]');
         if (!btn) return;
@@ -368,7 +369,7 @@
 
         const row = e.target.closest('tr[data-id]');
         if (!row) return;
-        // Let links inside a row behave like links.
+
         if (e.target.closest('a')) return;
 
         openId = (openId === row.dataset.id) ? null : row.dataset.id;

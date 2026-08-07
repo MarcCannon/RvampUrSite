@@ -1,27 +1,13 @@
-# ============================================================================
 # Private business content — never publish
-# ============================================================================
 _soul/
 prospects/
 reference-library/
 scripts/
 docs/
 
-# ============================================================================
 # Secrets
-#
-# Nothing in this repo should ever contain a Supabase service_role key, a
-# database connection string, or a personal access token. Those bypass Row
-# Level Security entirely. The anon key in site/assets/js/supabase-client.js is
-# a different thing: it is public by design and safe to commit.
-# ============================================================================
-# Live Supabase credentials. Generated at deploy time from GitHub secrets.
-# The committed template is env.example.js.
 site/assets/js/env.js
-
-# Database schema and policies — kept local, not published.
 supabase/
-
 .env
 .env.*
 !.env.example
@@ -34,9 +20,7 @@ service-account*.json
 supabase/.temp/
 supabase/.env
 
-# ============================================================================
 # Tooling noise
-# ============================================================================
 node_modules/
 .DS_Store
 Thumbs.db

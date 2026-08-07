@@ -1,17 +1,4 @@
 {
-    "_comment": [
-        "Fallback demo registry. The live one lives in the site_settings table under",
-        "the key 'demos' and is edited at /admin/demos.html — that is what lets you",
-        "flip 'purchased' without a deploy. This file is only used when that row is",
-        "missing or unreachable, so keep it roughly in step but do not rely on it.",
-        "",
-        "Paths are relative to the site root. The demo's own URL is derived as",
-        "demos/{niche}/{slug}/, so it is not stored twice.",
-        "",
-        "purchased  true once they have paid. Shows the verified badge in the library",
-        "           and, if live_url is set, the 'this website is live' bar on the demo.",
-        "live_url   the client's real website. Only used when purchased is true."
-    ],
     "demos": [
         {
             "slug": "showroom-reflections",

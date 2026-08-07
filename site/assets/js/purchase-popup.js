@@ -1,32 +1,11 @@
-// ============================================================================
-// Shared popup CTA for all demo pages.
-//
-// Drop it on a demo with:
-//   <script src="../../../assets/js/purchase-popup.js"
-//           data-ref="business-slug"   <- tags the lead with which demo it came from
-//           data-niche="autobody"      <- preselects the trade in the request form
-//           data-theme="dark"></script><- optional; omit for the default light card
-//
-// data-ref lands in tickets.reference and data-niche in tickets.niche, so a lead
-// is attributable to the demo that produced it. See site/request/index.html.
-// ============================================================================
-
-// currentScript is only readable while the script is executing, so the element
-// and everything derived from it has to be captured now, not inside the
-// DOMContentLoaded callback.
 const POPUP_SCRIPT = document.currentScript;
 
-// Loaded from pages at varying depths, so resolve the site root from the
-// script's own URL (assets/js/ -> up two levels). Keeps links working under a
-// project page like /RvampUrSite/ as well as at a domain root.
 const SITE_ROOT = new URL('../../', POPUP_SCRIPT.src).href;
 
 const POPUP_REF   = POPUP_SCRIPT.dataset.ref   || '';
 const POPUP_NICHE = POPUP_SCRIPT.dataset.niche || '';
 const POPUP_DARK  = POPUP_SCRIPT.dataset.theme === 'dark';
 
-// Once dismissed, stay dismissed for the rest of the visit. Re-popping on every
-// scroll-triggered reload is the fastest way to make a demo feel cheap.
 const POPUP_DISMISS_KEY = 'demoPopupDismissed';
 
 function popupRequestUrl(type) {
@@ -39,7 +18,7 @@ function popupRequestUrl(type) {
 document.addEventListener('DOMContentLoaded', () => {
     try {
         if (sessionStorage.getItem(POPUP_DISMISS_KEY)) return;
-    } catch { /* private mode / storage disabled — just show it */ }
+    } catch {  }
 
     const theme = POPUP_DARK
         ? {
@@ -93,7 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
         </aside>
     `;
 
-    // Delayed so it lands after the visitor has actually looked at the page.
     setTimeout(() => {
         document.body.insertAdjacentHTML('beforeend', popupHtml);
 
@@ -101,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function dismiss() {
             popup.remove();
-            try { sessionStorage.setItem(POPUP_DISMISS_KEY, '1'); } catch { /* not critical */ }
+            try { sessionStorage.setItem(POPUP_DISMISS_KEY, '1'); } catch {  }
         }
 
         popup.querySelector('#closePopup').addEventListener('click', dismiss);

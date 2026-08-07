@@ -5,35 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Showroom Reflections | Luxury Mobile Auto Detailing</title>
     <meta name="description" content="White-glove mobile auto detailing, paint correction, and IGL Ceramic Coating in Fishkill and the Hudson Valley.">
-    
 
     <link rel="icon" type="image/png" href="img/favicon.png">
-
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
 
     <link rel="stylesheet" href="../../../assets/css/tokens.css">
 
     <style>
-        /* Base & Resets - Ultra Luxury Vibe */
         :root {
-            --brand-primary: #b91c1c; /* Deep, rich red */
-            --brand-dark: #0a0a0a; /* True black/dark grey */
-            --brand-chrome: #e5e7eb; /* Soft silver/chrome */
-            --gold-accent: #d4af37; /* Subtle metallic gold for luxury touch */
+            --brand-primary: #b91c1c;
+            --brand-dark: #0a0a0a;
+            --brand-chrome: #e5e7eb;
+            --gold-accent: #d4af37;
         }
-        
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: var(--brand-dark); color: #f8fafc; line-height: 1.7; font-weight: 300; }
         a { text-decoration: none; color: inherit; }
-        
-        /* Typography */
+
         h1, h2, h3, h4 { font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 1px; }
-        
-        /* Navbar */
+
         .navbar {
             position: fixed; top: 0; width: 100%; z-index: 100;
             background: rgba(10, 10, 10, 0.9);
@@ -59,7 +53,6 @@
             box-shadow: 0 0 20px rgba(185, 28, 28, 0.5);
         }
 
-        /* Hero */
         .hero {
             display: flex; align-items: center; min-height: 100vh;
             padding: 0 6%; gap: 5rem;
@@ -81,8 +74,7 @@
             border: 1px solid rgba(255,255,255,0.08);
             filter: contrast(1.05) saturate(1.1);
         }
-        
-        /* Trust Ribbon */
+
         .trust-ribbon {
             background: #050505; padding: 3rem 6%;
             display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;
@@ -92,11 +84,10 @@
         .trust-item { display: flex; align-items: center; gap: 1rem; color: var(--brand-chrome); font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 1px;}
         .trust-item svg { fill: var(--brand-primary); width: 20px; height: 20px; }
 
-        /* Services */
         .section-header { text-align: center; margin-bottom: 5rem; }
         .section-header h2 { font-size: 3.2rem; margin-bottom: 1rem; color: #fff; }
         .section-header p { color: var(--brand-primary); font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; }
-        
+
         .services { padding: 10rem 6%; background: var(--brand-dark); }
         .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
         .service-card {
@@ -116,7 +107,6 @@
         .service-card a { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--brand-chrome); border-bottom: 1px solid var(--brand-primary); padding-bottom: 4px; transition: color 0.3s; }
         .service-card a:hover { color: #fff; }
 
-        /* Gallery */
         .gallery-section { padding: 10rem 6%; background: #050505; }
         .gallery-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem;
@@ -131,7 +121,6 @@
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: grayscale(20%); }
         .gallery-item:hover img { transform: scale(1.08); filter: grayscale(0%); }
 
-        /* Reviews */
         .reviews { padding: 10rem 6%; background: var(--brand-dark); }
         .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
         .review-card {
@@ -142,7 +131,6 @@
         .review-text { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #cbd5e1; margin-bottom: 2rem; line-height: 1.8; }
         .reviewer { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #64748b; }
 
-        /* Form */
         .quote-section { padding: 10rem 6%; background: #050505; text-align: center; }
         .form-container { max-width: 600px; margin: 0 auto; }
         .form-container input, .form-container textarea {
@@ -159,14 +147,12 @@
         }
         .form-container button:hover { background: #991b1b; }
 
-        /* Footer */
         footer { padding: 6rem 6% 3rem; background: #020202; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         .footer-info { margin-bottom: 4rem; color: #64748b; font-weight: 300; }
         .footer-info p { margin-bottom: 0.8rem; font-size: 0.9rem; letter-spacing: 1px; }
         .footer-info strong { color: #fff; font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 2px; font-weight: 600; display: block; margin-bottom: 1rem;}
         .disclaimer { font-size: 0.75rem; color: #475569; max-width: 800px; margin: 0 auto; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.02); }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero { flex-direction: column; text-align: center; padding-top: 8rem; gap: 3rem;}
             .hero-text h1 { font-size: 3rem; }
@@ -175,10 +161,9 @@
             .nav-links { display: none; }
             .trust-ribbon { flex-direction: column; text-align: center; }
         }
-    </style>
+</style>
 </head>
 <body>
-
 
     <header class="navbar">
         <div class="logo">
@@ -192,7 +177,6 @@
         <a href="#quote" class="cta-button">Reserve a Detail</a>
     </header>
 
-
     <main>
         <section class="hero">
             <div class="hero-text">
@@ -204,7 +188,6 @@
                 <img src="img/hero-rolls.webp" alt="Detailed Rolls Royce">
             </div>
         </section>
-
 
         <section class="trust-ribbon">
             <div class="trust-item">
@@ -220,7 +203,6 @@
                 Bespoke Mobile Service
             </div>
         </section>
-
 
         <section id="services" class="services">
             <div class="section-header">
@@ -246,7 +228,6 @@
             </div>
         </section>
 
-
         <section id="gallery" class="gallery-section">
             <div class="section-header">
                 <p>The Portfolio</p>
@@ -261,7 +242,6 @@
                 <div class="gallery-item"><img src="img/work-focusrs.webp" alt="Ford Focus RS"></div>
             </div>
         </section>
-
 
         <section id="reviews" class="reviews">
             <div class="section-header">
@@ -287,7 +267,6 @@
             </div>
         </section>
 
-
         <section id="quote" class="quote-section">
             <div class="section-header">
                 <p>Inquiries</p>
@@ -305,7 +284,6 @@
         </section>
     </main>
 
-
     <footer>
         <div class="footer-info">
             <img src="img/logo-mark.webp" alt="SR Mark" style="height: 60px; margin-bottom: 2rem; opacity: 0.3;">
@@ -313,23 +291,16 @@
             <p>Matt Gentile | (845) 380-2426</p>
             <p>Exclusive Mobile Detailing across Fishkill & the Hudson Valley</p>
         </div>
-        
 
         <div class="disclaimer">
             <p>Disclaimer: We do not own the rights to the materials and images on this page. They are used strictly for demonstration purposes to show what our web design product looks like.</p>
         </div>
     </footer>
 
-    <!-- "This website is live" bar. Renders nothing unless this demo is marked
-         purchased AND has a real URL in /admin/demos.html. -->
     <script src="../../../assets/js/env.js"></script>
     <script src="../../../assets/js/demo-registry.js"></script>
     <script src="../../../assets/js/demo-live-badge.js" data-slug="showroom-reflections"></script>
 
-    <!-- Studio conversion loop: popup -> /request/ -> Supabase ticket.
-         data-ref lands in tickets.reference and data-niche preselects the trade,
-         so a lead that comes out of this demo is attributable to it.
-         data-theme keeps the popup dark instead of a white card on black. -->
     <script src="../../../assets/js/purchase-popup.js"
             data-ref="showroom-reflections"
             data-niche="autobody"

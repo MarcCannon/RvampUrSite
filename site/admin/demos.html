@@ -72,7 +72,7 @@
             color: var(--warning);
             margin-top: 0.35rem;
         }
-    </style>
+</style>
 </head>
 <body class="admin">
 
@@ -116,9 +116,9 @@
     'use strict';
 
     const SETTING_KEY = 'demos';
+    const REGISTRY_FILE = '../data/demos.json';
 
-    // Mirrors site/data/demos.json, which is the public fallback.
-    const DEFAULTS = {
+    const HARD_FALLBACK = {
         demos: [
             {
                 slug: 'showroom-reflections',
@@ -135,6 +135,8 @@
 
     let state = { demos: [] };
     let dirty = false;
+
+    let unlisted = [];
 
     const $demos = document.getElementById('demos');
     const $status = document.getElementById('status');
@@ -155,7 +157,6 @@
     function clearAlert() { $alertSlot.innerHTML = ''; }
     function markDirty() { dirty = true; setStatus('Unsaved changes'); }
 
-    // A demo only advertises itself as live when both halves are present.
     const isLive = (d) => Boolean(d.purchased && (d.live_url || '').trim());
 
     function editorHtml(d, i) {
@@ -167,7 +168,12 @@
                 <div class="demo-editor__head">
                     <div>
                         <h3>${esc(d.name) || 'Untitled demo'}</h3>
-                        <div class="sub">demos/${esc(d.niche)}/${esc(d.slug)}/</div>
+                        <div class="sub">
+                            demos/${esc(d.niche)}/${esc(d.slug)}/
+                            ${d.slug && d.niche
+                                ? `&middot; <a href="../demos/${esc(d.niche)}/${esc(d.slug)}/" target="_blank" rel="noopener">Open</a>`
+                                : ''}
+                        </div>
                     </div>
                     <div style="display:flex;align-items:center;gap:0.6rem">
                         ${live
@@ -237,8 +243,6 @@
             : '<div class="alert alert--warn">No demos yet. Add one below.</div>';
     }
 
-    // ---------- Editing ----------
-
     $demos.addEventListener('input', (e) => {
         const el = e.target;
         if (el.dataset.i === undefined) return;
@@ -249,13 +253,11 @@
         d[el.dataset.field] = (el.type === 'checkbox') ? el.checked : el.value;
         markDirty();
 
-        // Re-render only for the toggle, which changes the badge and the warning.
-        // Doing it on every keystroke would steal focus mid-typing.
         if (el.type === 'checkbox') render();
     });
 
     $demos.addEventListener('change', (e) => {
-        // Blur on the URL field can flip the "needs a URL" warning.
+
         if (e.target.dataset.field === 'live_url') render();
     });
 
@@ -280,13 +282,9 @@
         markDirty();
     });
 
-    // ---------- Load & save ----------
-
     $saveBtn.addEventListener('click', async () => {
         clearAlert();
 
-        // A demo with no slug or niche has no URL to point at, so it would render
-        // a broken card. Refuse rather than shipping one.
         const broken = state.demos.filter(d => !(d.slug || '').trim() || !(d.niche || '').trim());
         if (broken.length) {
             showAlert('Every demo needs both a niche folder and a slug folder — that is how its URL is built. Fill those in or remove the entry.');
@@ -318,6 +316,8 @@
             const liveCount = payload.demos.filter(isLive).length;
             setStatus(`Saved — ${liveCount} marked live`, 'ok');
             setTimeout(() => { if (!dirty) setStatus(''); }, 4000);
+
+            renderUnlisted();
         } else {
             setStatus('Not saved', 'error');
             showAlert(error);
@@ -328,14 +328,67 @@
         if (dirty) { e.preventDefault(); e.returnValue = ''; }
     });
 
+    async function fetchCommittedDemos() {
+        try {
+
+            const res = await fetch(`${REGISTRY_FILE}?t=${Date.now()}`, { cache: 'no-store' });
+            if (!res.ok) return null;
+            const data = await res.json();
+            return Array.isArray(data.demos) ? data.demos : null;
+        } catch {
+            return null;
+        }
+    }
+
+    const demoKey = (d) => `${(d.niche || '').trim()}/${(d.slug || '').trim()}`;
+
+    function renderUnlisted() {
+        if (!unlisted.length) { clearAlert(); return; }
+
+        const names = unlisted.map(d => esc(d.name || demoKey(d))).join(', ');
+        $alertSlot.innerHTML = `
+            <div class="alert alert--warn">
+                <strong>${unlisted.length} demo${unlisted.length === 1 ? '' : 's'} in the repo
+                ${unlisted.length === 1 ? 'is' : 'are'} missing from this list:</strong> ${names}.
+                <br>
+                The library at /demos/ reads this saved list, not the files &mdash; so
+                ${unlisted.length === 1 ? 'it will not appear' : 'they will not appear'}
+                until you add ${unlisted.length === 1 ? 'it' : 'them'} here and save.
+                <div style="margin-top:0.7rem">
+                    <button class="btn btn--primary" id="mergeBtn" type="button">
+                        Add ${unlisted.length === 1 ? 'it' : 'them'} to the list
+                    </button>
+                </div>
+            </div>`;
+
+        document.getElementById('mergeBtn').addEventListener('click', () => {
+
+            unlisted.forEach(d => state.demos.push({ ...d, purchased: Boolean(d.purchased) }));
+            unlisted = [];
+            clearAlert();
+            render();
+            markDirty();
+            setStatus('Added — hit Save to publish', 'saving');
+        });
+    }
+
     async function init() {
         setStatus('Loading…', 'saving');
-        const value = await getSetting(SETTING_KEY, null);
+
+        const [value, committed] = await Promise.all([
+            getSetting(SETTING_KEY, null),
+            fetchCommittedDemos()
+        ]);
 
         if (value && Array.isArray(value.demos)) {
             state = value;
+
+            if (committed) {
+                const known = new Set(state.demos.map(demoKey));
+                unlisted = committed.filter(d => d.slug && d.niche && !known.has(demoKey(d)));
+            }
         } else {
-            state = structuredClone(DEFAULTS);
+            state = { demos: committed ? structuredClone(committed) : structuredClone(HARD_FALLBACK.demos) };
             showAlert(
                 'No demo registry saved yet, so this is a starting template built from ' +
                 'site/data/demos.json. Edit it and hit Save to create the row.',
@@ -346,10 +399,10 @@
         state.demos.forEach(d => { d.purchased = Boolean(d.purchased); });
 
         render();
+        if (unlisted.length) renderUnlisted();
         setStatus('');
     }
 
-    // admin-auth.js replaces the body when signed out, so only boot once in.
     document.addEventListener('DOMContentLoaded', () => {
         if (sbIsSignedIn()) init();
     });

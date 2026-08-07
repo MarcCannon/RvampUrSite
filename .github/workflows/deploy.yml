@@ -11,9 +11,6 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one deployment at a time, but never kill one that is already running.
-# With cancel-in-progress: true, two pushes landing close together can abort a
-# deploy mid-flight and leave an older commit as the active deployment.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -28,10 +25,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # env.js is gitignored, so it does not exist in the checkout. Build it
-      # from repository secrets. Note this file IS served to visitors — the anon
-      # key is public by necessity. This keeps it out of git, not out of the
-      # browser. Repository -> Settings -> Secrets and variables -> Actions.
       - name: Generate env.js
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
@@ -42,7 +35,6 @@ jobs:
             exit 1
           fi
           cat > site/assets/js/env.js <<EOF
-          // Generated at deploy time. Do not edit.
           window.ENV = {
               SUPABASE_URL: '${SUPABASE_URL}',
               SUPABASE_ANON_KEY: '${SUPABASE_ANON_KEY}'
