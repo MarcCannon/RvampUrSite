@@ -265,53 +265,44 @@
         }
 
         /* Stylised "new site" mockup */
-        .new { height: 100%; background: #fff; display: flex; flex-direction: column; }
+        .new { height: 100%; background: #0a0a0a; color: #fff; display: flex; flex-direction: column; font-family: 'Inter', sans-serif; }
         .new__bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0.7rem 1.1rem;
-            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.8rem 1.2rem; background: rgba(10,10,10,0.8); backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 10;
         }
-        .new__logo { display: flex; align-items: center; gap: 0.45rem; font-weight: 700; font-size: clamp(0.7rem, 1.5vw, 0.95rem); }
-        .new__dot { width: 18px; height: 18px; border-radius: 5px; background: var(--gradient-accent); }
-        .new__navlinks { display: flex; gap: 0.7rem; }
-        .new__navlinks span { width: 30px; height: 6px; border-radius: 3px; background: var(--slate-200); }
-        .new__pill { background: var(--slate-900); color: #fff; font-size: clamp(0.5rem, 1.1vw, 0.7rem); padding: 0.3rem 0.7rem; border-radius: var(--radius-full); font-weight: 600; }
+        .new__logo { font-weight: 700; font-size: clamp(0.7rem, 1.5vw, 1rem); letter-spacing: 0.05em; display: flex; align-items: center; gap: 0.5rem; }
+        .new__logo img { height: 18px; filter: brightness(0) invert(1); }
+        .new__navlinks { display: flex; gap: 0.8rem; }
+        .new__navlinks span { width: 35px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.2); }
+        .new__pill { background: #b91c1c; color: #fff; font-size: clamp(0.5rem, 1.1vw, 0.7rem); padding: 0.4rem 0.8rem; border-radius: 2px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
         .new__hero {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 1rem;
-            padding: clamp(0.8rem, 2.5vw, 1.8rem);
-            align-items: center;
+            flex: 1; display: grid; grid-template-columns: 1.2fr 0.8fr;
+            background: radial-gradient(circle at top left, rgba(185,28,28,0.15) 0%, transparent 60%);
+            align-items: center; position: relative; overflow: hidden;
         }
-        .new__h {
-            font-size: clamp(0.95rem, 2.7vw, 1.7rem);
-            font-weight: 800;
-            letter-spacing: var(--tracking-tight);
-            line-height: 1.12;
-            margin-bottom: 0.5rem;
-        }
-        .new__p { font-size: clamp(0.55rem, 1.3vw, 0.8rem); color: var(--text-secondary); line-height: 1.5; margin-bottom: 0.7rem; }
+        .new__hero-text { padding: clamp(1rem, 3vw, 2rem); position: relative; z-index: 5; }
+        .new__h { font-size: clamp(1.2rem, 3.2vw, 2.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: -1px; }
+        .new__h span { color: #b91c1c; display: block; }
+        .new__p { font-size: clamp(0.6rem, 1.4vw, 0.9rem); color: #94a3b8; line-height: 1.5; margin-bottom: 1.2rem; max-width: 90%; }
         .new__cta {
-            display: inline-block;
-            background: var(--accent-color);
-            color: #fff;
-            font-size: clamp(0.55rem, 1.2vw, 0.78rem);
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-md);
-            box-shadow: 0 6px 14px -4px var(--accent-glow);
+            display: inline-block; background: transparent; color: #fff;
+            font-size: clamp(0.55rem, 1.2vw, 0.8rem); font-weight: 600; padding: 0.6rem 1.2rem; border: 1px solid #b91c1c; text-transform: uppercase; letter-spacing: 1px;
         }
+        
         .new__art {
-            aspect-ratio: 1;
-            border-radius: var(--radius-md);
-            background: var(--gradient-accent);
-            box-shadow: var(--shadow-lg);
+            position: absolute; right: -5%; top: 10%; bottom: -10%; width: 55%;
+            background-image: url('demos/autobody/showroom-reflections/img/hero-rolls.webp');
+            background-size: cover; background-position: center; border-radius: 4px;
+            box-shadow: -10px 10px 30px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
+            transform: perspective(800px) rotateY(-10deg);
         }
-        .new__strip { display: flex; gap: 0.5rem; padding: 0 clamp(0.8rem, 2.5vw, 1.8rem) clamp(0.8rem, 2.5vw, 1.8rem); }
-        .new__chip { flex: 1; height: clamp(22px, 5vw, 34px); border-radius: var(--radius-sm); background: var(--slate-100); }
+        
+        .new__strip { display: flex; gap: 1rem; padding: 0 clamp(1rem, 3vw, 2rem) clamp(1rem, 3vw, 2rem); background: #050505; z-index: 5;}
+        .new__chip { flex: 1; height: clamp(25px, 6vw, 40px); background: #0c0c0c; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: #64748b; font-size: clamp(0.4rem, 1vw, 0.6rem); text-transform: uppercase; letter-spacing: 1px;}
+        .new__chip svg { width: 12px; height: 12px; fill: #b91c1c; }
 
         .ba__note {
             text-align: center;
@@ -556,22 +547,22 @@
                 <div class="ba__pane ba__pane--after">
                     <div class="new">
                         <div class="new__bar">
-                            <div class="new__logo"><span class="new__dot"></span> Miller Auto Body</div>
+                            <div class="new__logo"><img src="demos/autobody/showroom-reflections/img/logo-mark.webp" alt=""> Showroom Reflections</div>
                             <div class="new__navlinks"><span></span><span></span><span></span></div>
-                            <div class="new__pill">Call now</div>
+                            <div class="new__pill">Reserve</div>
                         </div>
                         <div class="new__hero">
-                            <div>
-                                <div class="new__h">Back on the road in 3 days.</div>
-                                <div class="new__p">Free estimates, insurance handled, lifetime warranty on all collision work.</div>
-                                <span class="new__cta">Get a free estimate →</span>
+                            <div class="new__hero-text">
+                                <div class="new__h">Showroom Shine <span>Delivered.</span></div>
+                                <div class="new__p">White-glove mobile auto detailing and elite paint correction.</div>
+                                <span class="new__cta">Commission a Detail</span>
                             </div>
                             <div class="new__art"></div>
                         </div>
                         <div class="new__strip">
-                            <div class="new__chip"></div>
-                            <div class="new__chip"></div>
-                            <div class="new__chip"></div>
+                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Ceramic Certified</div>
+                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Paint Correction</div>
+                            <div class="new__chip"><svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg> Mobile Service</div>
                         </div>
                     </div>
                 </div>
