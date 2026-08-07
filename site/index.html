@@ -46,14 +46,10 @@
             letter-spacing: var(--tracking-tight);
         }
         .nav__mark {
-            display: grid;
-            place-items: center;
-            width: 32px; height: 32px;
-            border-radius: 9px;
-            background: var(--gradient-accent);
-            color: #fff;
-            font-size: 0.9rem;
-            font-weight: 800;
+            height: 34px;
+            width: auto;
+            border-radius: 6px;
+            object-fit: contain;
         }
         .nav__links { display: none; gap: 1.75rem; }
         .nav__links a {
@@ -495,7 +491,7 @@
 <nav class="nav">
     <div class="container nav__inner">
         <a class="nav__brand" href="./">
-            <span class="nav__mark">BS</span>
+            <img class="nav__mark" src="assets/img/logo.svg" alt="Business Site Studio Logo">
             Business Site Studio
         </a>
         <div class="nav__links">
