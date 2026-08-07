@@ -2,84 +2,331 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Request a Demo - Business Site Studio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a quote — Business Site Studio</title>
+    <meta name="description" content="Tell us about your business and we'll come back with a firm price within a day.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="../assets/css/tokens.css">
+
     <script src="../assets/js/env.js"></script>
     <script src="../assets/js/supabase-client.js"></script>
     <script src="../assets/js/ticket-client.js"></script>
+
     <style>
-        body { font-family: var(--font-primary); background: var(--bg-primary); padding: 2rem; }
-        .form-container { max-width: 500px; margin: 0 auto; background: white; padding: 2rem; border-radius: var(--radius-md); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .form-group { margin-bottom: 1rem; }
-        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
-        input, select, textarea { width: 100%; padding: 0.5rem; border: 1px solid #ccc; border-radius: var(--radius-sm); }
-        button { background: var(--accent-color); color: white; border: none; padding: 1rem; width: 100%; border-radius: var(--radius-md); cursor: pointer; }
+        body { background: var(--bg-subtle); }
+
+        .topbar {
+            background: var(--bg-dark);
+            padding: var(--space-md) 0;
+        }
+        .topbar__inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-md); }
+        .topbar__brand { display: flex; align-items: center; gap: 0.6rem; color: #fff; font-weight: 700; }
+        .topbar__mark {
+            width: 30px; height: 30px;
+            border-radius: 8px;
+            background: var(--gradient-accent);
+            display: grid; place-items: center;
+            font-size: var(--text-xs); font-weight: 800; color: #fff;
+        }
+        .topbar a.back { color: var(--text-inverse-muted); font-size: var(--text-sm); }
+        .topbar a.back:hover { color: #fff; }
+
+        .wrap { max-width: 640px; margin-inline: auto; padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 4vw, 2rem); }
+
+        .intro { text-align: center; margin-bottom: var(--space-lg); }
+        .intro h1 { font-size: var(--text-3xl); margin-bottom: 0.4rem; }
+        .intro p { color: var(--text-secondary); margin: 0; }
+
+        .form-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: clamp(1.25rem, 4vw, 2rem);
+            box-shadow: var(--shadow-md);
+        }
+
+        .form-group { margin-bottom: var(--space-md); }
+        .row { display: grid; gap: var(--space-md); grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+        .req { color: var(--danger); }
+        .optional { font-weight: 400; color: var(--text-secondary); font-size: var(--text-xs); }
+        .hint { font-size: var(--text-xs); color: var(--text-secondary); margin: 0.3rem 0 0; }
+
+        textarea { min-height: 110px; resize: vertical; font-family: inherit; }
+
+        .field-error { color: var(--danger); font-size: var(--text-xs); margin: 0.3rem 0 0; }
+        input[aria-invalid="true"], select[aria-invalid="true"] { border-color: var(--danger); }
+
+        .form-error {
+            background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca;
+            border-radius: var(--radius-md); padding: 0.85rem 1rem;
+            font-size: var(--text-sm); margin-bottom: var(--space-md);
+        }
+
+        .trust {
+            display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem;
+            justify-content: center;
+            margin-top: var(--space-md);
+            font-size: var(--text-sm); color: var(--text-secondary);
+        }
+        .trust span { display: flex; align-items: center; gap: 0.4rem; }
+        .trust svg { color: var(--success); flex-shrink: 0; }
+
+        /* Success state */
+        .done { text-align: center; padding: var(--space-lg) var(--space-md); }
+        .done__icon {
+            width: 62px; height: 62px; margin: 0 auto var(--space-md);
+            border-radius: 50%; background: var(--success-soft); color: var(--success);
+            display: grid; place-items: center;
+        }
+        .done h2 { font-size: var(--text-2xl); }
+        .done p { color: var(--text-secondary); max-width: 42ch; margin-inline: auto; }
     </style>
 </head>
 <body>
-    <div class="form-container">
-        <h2>Request a Redesign Mockup</h2>
-        <form id="requestForm">
-            <div class="form-group">
-                <label>Business Name</label>
-                <input type="text" id="bizName" required>
+
+<header class="topbar">
+    <div class="container topbar__inner">
+        <a class="topbar__brand" href="../">
+            <span class="topbar__mark">BS</span> Business Site Studio
+        </a>
+        <a class="back" href="../">&larr; Back to site</a>
+    </div>
+</header>
+
+<div class="wrap">
+    <div class="intro">
+        <h1>Get a quote</h1>
+        <p>Tell us about your business. You'll have a firm price within a day.</p>
+    </div>
+
+    <div class="form-card" id="card">
+        <form id="requestForm" novalidate>
+            <div id="formError" class="form-error" role="alert" hidden></div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="contactName">Your name <span class="req">*</span></label>
+                    <input type="text" id="contactName" name="contactName" autocomplete="name" required>
+                    <p class="field-error" data-error-for="contactName" hidden></p>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone number <span class="req">*</span></label>
+                    <input type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" required>
+                    <p class="field-error" data-error-for="phone" hidden></p>
+                </div>
             </div>
+
             <div class="form-group">
-                <label>Current Website URL (optional)</label>
-                <input type="url" id="bizUrl">
+                <label for="email">Email <span class="req">*</span></label>
+                <input type="email" id="email" name="email" autocomplete="email" required>
+                <p class="hint">This is where we send your quote.</p>
+                <p class="field-error" data-error-for="email" hidden></p>
             </div>
+
             <div class="form-group">
-                <label>Niche</label>
-                <select id="bizNiche" required>
-                    <!-- Populated by JS -->
-                </select>
+                <label for="bizName">Business name <span class="req">*</span></label>
+                <input type="text" id="bizName" name="bizName" autocomplete="organization" required>
+                <p class="field-error" data-error-for="bizName" hidden></p>
             </div>
+
+            <div class="row">
+                <div class="form-group">
+                    <label for="bizNiche">What's your trade? <span class="req">*</span></label>
+                    <select id="bizNiche" name="bizNiche" required>
+                        <option value="">Choose one…</option>
+                    </select>
+                    <p class="field-error" data-error-for="bizNiche" hidden></p>
+                </div>
+                <div class="form-group">
+                    <label for="projectType">What do you need? <span class="req">*</span></label>
+                    <select id="projectType" name="projectType" required>
+                        <option value="">Choose one…</option>
+                        <option value="rebuild">Rebuild my existing site</option>
+                        <option value="new">Build me a first website</option>
+                        <option value="refresh">Freshen up what I have</option>
+                        <option value="unsure">Not sure yet</option>
+                    </select>
+                    <p class="field-error" data-error-for="projectType" hidden></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="bizUrl">Current website <span class="optional">(optional)</span></label>
+                <input type="text" id="bizUrl" name="bizUrl" inputmode="url" placeholder="yourbusiness.com">
+                <p class="hint">If you have one. It helps us quote accurately.</p>
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Anything else we should know? <span class="optional">(optional)</span></label>
+                <textarea id="notes" name="notes" placeholder="Services you want featured, a competitor's site you like, a deadline…"></textarea>
+            </div>
+
             <input type="hidden" id="demoType" value="new">
             <input type="hidden" id="demoReference" value="">
-            <button type="submit">Submit Request</button>
+
+            <button type="submit" class="btn btn--primary btn--block btn--lg" id="submitBtn">Get my quote</button>
         </form>
     </div>
 
-    <script>
-        // Load niches
-        fetch('../data/niches.json').then(r => r.json()).then(d => {
-            const select = document.getElementById('bizNiche');
-            d.niches.forEach(n => select.innerHTML += `<option value="${n.id}">${n.name}</option>`);
-            
-            // Check URL params for pre-filling
-            const params = new URLSearchParams(window.location.search);
-            if(params.get('type')) document.getElementById('demoType').value = params.get('type');
-            if(params.get('ref')) document.getElementById('demoReference').value = params.get('ref');
-            if(params.get('niche')) document.getElementById('bizNiche').value = params.get('niche');
+    <div class="trust">
+        <span>
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+            Firm price, not an estimate
+        </span>
+        <span>
+            <svg width="15" height="15" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+            We never sell your details
+        </span>
+    </div>
+</div>
+
+<script>
+(function () {
+    const form = document.getElementById('requestForm');
+    const card = document.getElementById('card');
+    const submitBtn = document.getElementById('submitBtn');
+    const formError = document.getElementById('formError');
+
+    // ---- Niches -------------------------------------------------------------
+    // Falls back to a hard-coded list so the form still works if the fetch dies.
+    const FALLBACK_NICHES = [
+        { id: 'autobody', name: 'Auto Body' },
+        { id: 'home-improvement-landscape', name: 'Home Improvement & Landscape' },
+        { id: 'bakery-restaurant', name: 'Bakery & Restaurant' },
+        { id: 'barber-salon', name: 'Barber & Salon' },
+        { id: 'smoke-shop', name: 'Smoke Shop' },
+        { id: 'handyman-repair', name: 'Handyman & Repair' },
+        { id: 'misc-niche', name: 'Something else' }
+    ];
+
+    const select = document.getElementById('bizNiche');
+    const params = new URLSearchParams(window.location.search);
+
+    function fillNiches(list) {
+        list.forEach(n => {
+            const opt = document.createElement('option');
+            opt.value = n.id;
+            opt.textContent = n.name;
+            select.appendChild(opt);
         });
+        if (params.get('niche')) select.value = params.get('niche');
+    }
 
-        document.getElementById('requestForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = {
-                business_name: document.getElementById('bizName').value,
-                url: document.getElementById('bizUrl').value,
-                niche: document.getElementById('bizNiche').value,
-                type: document.getElementById('demoType').value,
-                reference: document.getElementById('demoReference').value,
-                status: 'new'
-            };
-            const btn = e.target.querySelector('button[type="submit"]');
-            btn.disabled = true;
-            btn.textContent = 'Sending…';
+    fetch('../data/niches.json')
+        .then(r => r.ok ? r.json() : Promise.reject())
+        .then(d => fillNiches(d.niches))
+        .catch(() => fillNiches(FALLBACK_NICHES));
 
-            const result = await createTicket(data);
+    if (params.get('type')) document.getElementById('demoType').value = params.get('type');
+    if (params.get('ref')) document.getElementById('demoReference').value = params.get('ref');
 
-            btn.disabled = false;
-            btn.textContent = 'Submit Request';
+    // ---- Validation ---------------------------------------------------------
 
-            if (result && result.success) {
-                alert('Request submitted successfully!');
-                e.target.reset();
-            } else {
-                // Never claim success on a failed insert — that silently loses a lead.
-                alert('Something went wrong sending your request. Please try again, or email us directly.');
-            }
+    const RULES = {
+        contactName: v => v.trim().length >= 2 || 'Please enter your name.',
+        phone: v => (v.replace(/\D/g, '').length >= 10) || 'Please enter a valid phone number.',
+        email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()) || 'Please enter a valid email address.',
+        bizName: v => v.trim().length >= 2 || 'Please enter your business name.',
+        bizNiche: v => v !== '' || 'Please choose your trade.',
+        projectType: v => v !== '' || 'Please tell us what you need.'
+    };
+
+    function setFieldError(id, message) {
+        const field = document.getElementById(id);
+        const slot = document.querySelector(`[data-error-for="${id}"]`);
+        if (message) {
+            field.setAttribute('aria-invalid', 'true');
+            slot.textContent = message;
+            slot.hidden = false;
+        } else {
+            field.removeAttribute('aria-invalid');
+            slot.hidden = true;
+        }
+    }
+
+    function validate() {
+        let firstBad = null;
+        for (const [id, rule] of Object.entries(RULES)) {
+            const result = rule(document.getElementById(id).value);
+            const message = result === true ? null : result;
+            setFieldError(id, message);
+            if (message && !firstBad) firstBad = id;
+        }
+        return firstBad;
+    }
+
+    // Clear a field's error as soon as it becomes valid.
+    Object.keys(RULES).forEach(id => {
+        document.getElementById(id).addEventListener('input', () => {
+            if (RULES[id](document.getElementById(id).value) === true) setFieldError(id, null);
         });
-    </script>
+    });
+
+    // ---- Submit -------------------------------------------------------------
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        formError.hidden = true;
+
+        const firstBad = validate();
+        if (firstBad) {
+            const el = document.getElementById(firstBad);
+            el.focus();
+            el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            return;
+        }
+
+        let url = document.getElementById('bizUrl').value.trim();
+        if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+
+        const payload = {
+            contact_name:  document.getElementById('contactName').value.trim(),
+            phone:         document.getElementById('phone').value.trim(),
+            email:         document.getElementById('email').value.trim(),
+            business_name: document.getElementById('bizName').value.trim(),
+            url:           url,
+            niche:         document.getElementById('bizNiche').value,
+            project_type:  document.getElementById('projectType').value,
+            notes:         document.getElementById('notes').value.trim(),
+            type:          document.getElementById('demoType').value,
+            reference:     document.getElementById('demoReference').value,
+            status:        'new'
+        };
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+
+        const result = await createTicket(payload);
+
+        if (result && result.success) {
+            card.innerHTML = `
+                <div class="done">
+                    <div class="done__icon">
+                        <svg width="30" height="30" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>
+                    </div>
+                    <h2>Got it — thanks.</h2>
+                    <p>We'll look at your business and send a firm price to
+                       <strong>${payload.email.replace(/[<>&"]/g, '')}</strong> within a day.
+                       If it's easier to talk, we'll call the number you gave us.</p>
+                    <a href="../" class="btn btn--ghost" style="margin-top:1rem">Back to site</a>
+                </div>`;
+            card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            return;
+        }
+
+        // Never pretend it worked — a lost lead is worse than an error message.
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Get my quote';
+        formError.textContent = "Something went wrong sending your request. Please try again — or call us directly and we'll take the details over the phone.";
+        formError.hidden = false;
+        formError.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+})();
+</script>
+
 </body>
 </html>
