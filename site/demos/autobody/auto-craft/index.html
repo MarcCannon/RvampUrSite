@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto Craft Auto Body &amp; Towing | Collision Repair &amp; 24 Hour Towing in Hyde Park, NY</title>
+<meta name="description" content="Collision repairs, painting and 24 hour towing in Hyde Park, NY. Free insurance estimates — we deal with all insurance companies and can help you with your claim. Two flatbeds ready around the clock. Call 845-229-9834.">
+<meta name="theme-color" content="#0B0D0B">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Auto Craft Auto Body &amp; Towing | Hyde Park, NY">
+<meta property="og:description" content="Collision repairs, painting, insurance estimates and 24 hour flatbed towing on Route 9G in Hyde Park.">
+<meta property="og:image" content="img/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,600;0,800;1,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" href="img/hero-tow.webp" fetchpriority="high">
+
+<style>
+:root {
+    --lime:      #67C82F;
+    --lime-hot:  #7FE044;
+    --lime-deep: #3F8A16;
+    --lime-ink:  #2A5E0C;
+
+    --black: #0B0D0B;
+    --coal:  #141814;
+    --coal2: #1C221C;
+    --line:  rgba(255, 255, 255, 0.10);
+    --line2: rgba(255, 255, 255, 0.20);
+
+    --paper:  #F4F5F1;
+    --paper2: #E3E7DE;
+    --ink:    #12160F;
+    --ink-mid:#4A5245;
+
+    --dim:  #98A292;
+    --dim2: #C7CEC0;
+
+    --red: #C2261F;
+
+    --display: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    --wrap: 1180px;
+    --pad: clamp(1.15rem, 4vw, 2.5rem);
+    --sect: clamp(3.75rem, 8vw, 7rem);
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 84px; }
+
+body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink);
+    background: var(--paper);
+    -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 {
+    font-family: var(--display);
+    font-weight: 800;
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+}
+h1 { font-size: clamp(2.5rem, 7vw, 4.9rem); font-style: italic; }
+h2 { font-size: clamp(1.9rem, 4.4vw, 3.1rem); }
+h3 { font-size: clamp(1.15rem, 2vw, 1.4rem); letter-spacing: -0.01em; }
+p  { margin: 0 0 1rem; }
+
+:focus-visible { outline: 3px solid var(--lime); outline-offset: 3px; }
+
+.wrap { width: 100%; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad); }
+.sect { padding-block: var(--sect); }
+.dark { background: var(--black); color: #EEF2EA; }
+.coal { background: var(--coal); color: #EEF2EA; }
+.dark h2, .coal h2, .dark h3, .coal h3 { color: #fff; }
+
+.skip {
+    position: absolute; left: -9999px; top: 0; z-index: 999;
+    background: var(--lime); color: #08130A; padding: 0.8rem 1.2rem; font-weight: 700;
+}
+.skip:focus { left: 0; }
+
+.kicker {
+    display: inline-flex; align-items: center; gap: 0.55rem;
+    font-size: 0.74rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--lime-ink); margin-bottom: 0.7rem;
+}
+.dark .kicker, .coal .kicker { color: var(--lime); }
+.kicker::before { content: ''; width: 24px; height: 3px; background: currentColor; }
+
+.lede { font-size: 1.075rem; color: var(--ink-mid); max-width: 60ch; }
+.dark .lede, .coal .lede { color: var(--dim2); }
+
+.btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
+    font-family: var(--display); font-size: 1rem; font-weight: 800;
+    letter-spacing: 0.02em; text-transform: uppercase;
+    padding: 0.9rem 1.6rem; border: 2px solid transparent; border-radius: 3px;
+    cursor: pointer; white-space: nowrap;
+    transition: background-color 160ms var(--ease), color 160ms var(--ease),
+                border-color 160ms var(--ease), transform 160ms var(--ease);
+}
+.btn:active { transform: translateY(1px); }
+.btn--go { background: var(--lime); color: #08130A; }
+.btn--go:hover { background: var(--lime-hot); }
+.btn--line { border-color: currentColor; color: inherit; }
+.btn--line:hover { background: rgba(255,255,255,0.10); }
+.btn--dark { background: var(--ink); color: #fff; }
+.btn--dark:hover { background: #000; }
+.btn--wide { width: 100%; }
+.btn svg { width: 17px; height: 17px; fill: currentColor; flex: none; }
+
+/* The chequered flag off their own logo, used as the section rule. */
+.check {
+    height: 14px;
+    background-image:
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%),
+        linear-gradient(45deg, var(--black) 25%, transparent 25%, transparent 75%, var(--black) 75%);
+    background-size: 14px 14px;
+    background-position: 0 0, 7px 7px;
+    background-color: #fff;
+}
+.check--lime { background-color: var(--lime); }
+
+.head {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(11, 13, 11, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+}
+.head__in {
+    display: flex; align-items: center; gap: 1.25rem;
+    height: 72px; max-width: var(--wrap); margin-inline: auto; padding-inline: var(--pad);
+}
+.brand { display: flex; align-items: center; gap: 0.7rem; margin-right: auto; }
+.brand img { height: 40px; width: auto; border-radius: 2px; }
+.brand__txt { display: none; font-family: var(--display); font-weight: 800; font-style: italic;
+              text-transform: uppercase; line-height: 1; color: #fff; font-size: 1rem;
+              letter-spacing: -0.01em; }
+.brand__txt span { display: block; font-style: normal; font-weight: 600; font-size: 0.62rem;
+                   letter-spacing: 0.18em; color: var(--lime); margin-top: 0.25rem; }
+
+.nav { display: none; gap: 1.5rem; }
+.nav a {
+    font-family: var(--display); font-size: 0.85rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.08em; color: #D5DCCF;
+    padding-block: 0.35rem; border-bottom: 2px solid transparent;
+    transition: color 160ms var(--ease), border-color 160ms var(--ease);
+}
+.nav a:hover { color: var(--lime); border-color: var(--lime); }
+
+.head__tel {
+    display: none; align-items: center; gap: 0.5rem;
+    font-family: var(--display); font-size: 1.15rem; font-weight: 800; color: #fff;
+}
+.head__tel svg { fill: var(--lime); flex: none; }
+.head__tel:hover { color: var(--lime); }
+
+@media (min-width: 960px) {
+    .nav { display: flex; }
+    .head__tel { display: inline-flex; }
+    .brand__txt { display: block; }
+}
+
+.hero { position: relative; background: var(--black); color: #fff; overflow: hidden; }
+.hero__bg { position: absolute; inset: 0; }
+.hero__bg img { width: 100%; height: 100%; object-fit: cover; object-position: 42% 50%; }
+.hero__bg::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+        linear-gradient(180deg, rgba(11,13,11,0.80) 0%, rgba(11,13,11,0.55) 40%, rgba(11,13,11,0.96) 100%),
+        linear-gradient(90deg, rgba(11,13,11,0.92) 0%, rgba(11,13,11,0.30) 68%);
+}
+.hero__in {
+    position: relative;
+    max-width: var(--wrap); margin-inline: auto;
+    padding: clamp(3.25rem, 8vw, 6rem) var(--pad) clamp(2.5rem, 5vw, 3.75rem);
+}
+.hero__tag {
+    display: inline-block; font-family: var(--display); font-size: 0.78rem; font-weight: 800;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    background: var(--lime); color: #08130A; padding: 0.35rem 0.8rem; margin-bottom: 1.1rem;
+    border-radius: 2px;
+}
+.hero h1 { max-width: 15ch; text-shadow: 0 2px 30px rgba(0,0,0,0.55); }
+.hero h1 em { font-style: italic; color: var(--lime); }
+.hero__sub { font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: #DCE3D4; max-width: 48ch; margin-bottom: 1.8rem; }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+.facts {
+    position: relative; border-top: 1px solid var(--line2);
+    display: grid; grid-template-columns: repeat(2, 1fr);
+}
+.facts > div { padding: 1.05rem var(--pad); border-bottom: 1px solid var(--line); }
+.facts > div + div { border-left: 1px solid var(--line); }
+.facts dt { font-family: var(--display); font-size: 1.55rem; font-weight: 800; color: var(--lime); line-height: 1; }
+.facts dd { margin: 0.3rem 0 0; font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--dim); }
+@media (min-width: 780px) {
+    .facts { grid-template-columns: repeat(4, 1fr); max-width: var(--wrap); margin-inline: auto; }
+    .facts > div { border-bottom: none; }
+}
+
+/* Two doors: tow now vs. body work. */
+.fork { display: grid; gap: 1.25rem; grid-template-columns: 1fr; }
+@media (min-width: 860px) { .fork { grid-template-columns: 1fr 1fr; gap: 1.5rem; } }
+.door {
+    display: flex; flex-direction: column; padding: clamp(1.5rem, 3vw, 2.25rem);
+    border-radius: 4px; border: 2px solid var(--paper2); background: #fff;
+}
+.door--now { background: var(--black); border-color: var(--black); color: #fff; }
+.door__ico { width: 38px; height: 38px; fill: none; stroke: var(--lime-deep); stroke-width: 1.8;
+             stroke-linecap: round; stroke-linejoin: round; margin-bottom: 0.9rem; }
+.door--now .door__ico { stroke: var(--lime); }
+.door h3 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); }
+.door--now h3 { color: #fff; }
+.door p { font-size: 0.95rem; color: var(--ink-mid); }
+.door--now p { color: var(--dim2); }
+.door .btn { margin-top: auto; }
+.door__note { font-size: 0.82rem; margin: 0.8rem 0 0; }
+.door--now .door__note { color: var(--dim); }
+
+.svcs { display: grid; gap: 1px; background: var(--paper2); border: 1px solid var(--paper2);
+        grid-template-columns: 1fr; margin-top: 2.5rem; border-radius: 3px; overflow: hidden; }
+@media (min-width: 620px) { .svcs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .svcs { grid-template-columns: repeat(4, 1fr); } }
+.svc { background: var(--paper); padding: 1.5rem 1.35rem; transition: background 180ms var(--ease); }
+.svc:hover { background: #fff; }
+/* These cards are light but sit inside a dark section, so they have to opt out
+   of the .dark/.coal heading colour. */
+.svc h3 { font-size: 1.05rem; margin-bottom: 0.45rem; color: var(--ink); }
+.svc p { font-size: 0.87rem; color: var(--ink-mid); margin: 0; }
+.svc__ico { width: 28px; height: 28px; fill: none; stroke: var(--lime-deep); stroke-width: 1.8;
+            stroke-linecap: round; stroke-linejoin: round; margin-bottom: 0.8rem; }
+
+.claim { display: grid; gap: 2.25rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 900px) { .claim { grid-template-columns: 1.05fr 1fr; gap: 3.5rem; } }
+.claim__quote {
+    font-family: var(--display); font-weight: 600; font-style: italic;
+    font-size: clamp(1.25rem, 2.4vw, 1.75rem); line-height: 1.3; color: #fff;
+    border-left: 4px solid var(--lime); padding-left: 1.1rem; margin: 0 0 1rem;
+}
+.claim__src { font-size: 0.82rem; color: var(--dim); margin: 0; }
+.claim img { border-radius: 4px; }
+
+.seq { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 760px) { .seq { grid-template-columns: repeat(3, 1fr); } }
+.seq figure { margin: 0; }
+.seq img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
+/* Defaults are for a light section; the dark variants override below. */
+.seq figcaption { margin-top: 0.7rem; font-size: 0.86rem; color: var(--ink-mid); }
+.seq figcaption b {
+    display: block; font-family: var(--display); font-size: 0.95rem; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--lime-ink); margin-bottom: 0.15rem;
+}
+.dark .seq figcaption, .coal .seq figcaption { color: var(--dim2); }
+.dark .seq figcaption b, .coal .seq figcaption b { color: var(--lime); }
+
+.ev { display: grid; gap: 2rem; grid-template-columns: 1fr; align-items: center; }
+@media (min-width: 880px) { .ev { grid-template-columns: 1fr 1fr; gap: 3.5rem; } }
+.ev img { border-radius: 4px; }
+.ev__list { list-style: none; margin: 1.4rem 0 0; padding: 0; }
+.ev__list li { display: flex; gap: 0.75rem; padding: 0.55rem 0; font-size: 0.95rem; color: var(--dim2); }
+.ev__list svg { flex: none; width: 20px; height: 20px; margin-top: 3px; fill: none;
+                stroke: var(--lime); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+.grid3 { display: grid; gap: 1rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 620px) { .grid3 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 980px) { .grid3 { grid-template-columns: repeat(3, 1fr); } }
+.shot { position: relative; overflow: hidden; border-radius: 3px; background: var(--coal2); margin: 0; }
+.shot img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+            transition: transform 600ms var(--ease); }
+.shot:hover img { transform: scale(1.05); }
+.shot figcaption {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    padding: 1.7rem 0.9rem 0.75rem; font-size: 0.82rem; font-weight: 500; color: #fff;
+    background: linear-gradient(180deg, transparent, rgba(11,13,11,0.88));
+}
+
+.revs { display: grid; gap: 1.25rem; grid-template-columns: 1fr; margin-top: 2.5rem; }
+@media (min-width: 760px) { .revs { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1060px) { .revs { grid-template-columns: repeat(3, 1fr); } }
+.rev { background: #fff; border: 1px solid var(--paper2); border-top: 4px solid var(--lime-deep);
+       padding: 1.5rem 1.4rem; border-radius: 3px; margin: 0; display: flex; flex-direction: column; }
+.rev p { font-size: 0.98rem; line-height: 1.6; margin-bottom: 1rem; }
+.rev footer { margin-top: auto; }
+.rev cite { font-style: normal; font-family: var(--display); font-weight: 800; font-size: 1rem;
+            text-transform: uppercase; letter-spacing: 0.02em; display: block; }
+.rev time { font-size: 0.78rem; color: var(--ink-mid); }
+.stars { display: flex; gap: 2px; margin-bottom: 0.7rem; }
+.stars svg { width: 16px; height: 16px; fill: var(--lime-deep); }
+.revs-note { margin-top: 1.5rem; font-size: 0.88rem; color: var(--ink-mid); }
+.revs-note a { color: var(--lime-ink); font-weight: 600; text-decoration: underline; }
+
+.band { display: grid; gap: 2.5rem; grid-template-columns: 1fr; }
+@media (min-width: 900px) { .band { grid-template-columns: 1.05fr 1fr; gap: 3.5rem; } }
+.info { display: grid; gap: 1.4rem; }
+.info h3 { font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.info dl { margin: 0; font-size: 0.95rem; color: var(--dim2); }
+.info dl div { display: flex; justify-content: space-between; gap: 1.5rem; padding: 0.35rem 0;
+               border-bottom: 1px solid var(--line); }
+.info dt { color: var(--dim); }
+.info dd { margin: 0; color: #fff; font-weight: 500; }
+.info dd.hot { color: var(--lime); font-weight: 700; }
+.addr { font-style: normal; font-size: 1.05rem; color: #fff; line-height: 1.5; }
+.addr a { color: var(--lime); font-weight: 600; }
+
+.quote { display: grid; gap: 2.5rem; grid-template-columns: 1fr; align-items: start; }
+@media (min-width: 940px) { .quote { grid-template-columns: 0.85fr 1.15fr; gap: 3.5rem; } }
+
+.form { background: #fff; border: 1px solid var(--paper2); border-radius: 4px; padding: clamp(1.25rem, 3vw, 2rem); }
+.form__row { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .form__row--2 { grid-template-columns: 1fr 1fr; } }
+.field { margin-bottom: 1rem; }
+.field label { display: block; font-size: 0.76rem; font-weight: 700; letter-spacing: 0.1em;
+               text-transform: uppercase; color: var(--ink); margin-bottom: 0.35rem; }
+.field label .opt { color: var(--ink-mid); font-weight: 500; letter-spacing: 0.03em; text-transform: none; }
+.field input, .field select, .field textarea {
+    width: 100%; font: inherit; font-size: 1rem; color: var(--ink);
+    padding: 0.75rem 0.85rem; background: var(--paper);
+    border: 1.5px solid var(--paper2); border-radius: 3px;
+    transition: border-color 150ms var(--ease), box-shadow 150ms var(--ease);
+}
+.field textarea { resize: vertical; min-height: 88px; }
+.field input:focus, .field select:focus, .field textarea:focus {
+    outline: none; border-color: var(--lime-deep); box-shadow: 0 0 0 3px rgba(103,200,47,0.25);
+    background: #fff;
+}
+.field.is-bad input, .field.is-bad select { border-color: var(--red); background: #FDF3F2; }
+.err { display: none; margin-top: 0.35rem; font-size: 0.82rem; color: var(--red); font-weight: 500; }
+.field.is-bad .err { display: block; }
+.form__note { font-size: 0.8rem; color: var(--ink-mid); margin: 0.9rem 0 0; text-align: center; }
+
+.done { display: none; text-align: center; padding: 1.5rem 0.5rem; }
+.done.on { display: block; }
+.done svg { width: 52px; height: 52px; margin: 0 auto 0.9rem; fill: none;
+            stroke: var(--lime-deep); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.done h3 { font-size: 1.6rem; color: var(--ink); }
+.done p { color: var(--ink-mid); max-width: 44ch; margin-inline: auto; }
+.form.is-done .form__live { display: none; }
+
+.why { list-style: none; margin: 1.5rem 0 0; padding: 0; }
+.why li { display: flex; gap: 0.85rem; padding: 0.9rem 0; border-bottom: 1px solid var(--line); }
+.why svg { flex: none; width: 22px; height: 22px; margin-top: 2px; fill: none; stroke: var(--lime);
+           stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.why b { display: block; font-family: var(--display); font-size: 1.05rem; text-transform: uppercase;
+         letter-spacing: 0.01em; color: #fff; }
+.why span { font-size: 0.9rem; color: var(--dim2); }
+
+.foot { background: var(--black); color: var(--dim2); padding-top: clamp(3rem, 6vw, 4.5rem); }
+.foot__top { display: grid; gap: 2rem; grid-template-columns: 1fr; padding-bottom: 2.5rem; }
+@media (min-width: 780px) { .foot__top { grid-template-columns: 1.3fr 1fr 1fr; gap: 3rem; } }
+.foot img { height: 48px; width: auto; margin-bottom: 1rem; border-radius: 2px; }
+.foot h4 { font-family: var(--display); font-size: 0.9rem; font-weight: 800; text-transform: uppercase;
+           letter-spacing: 0.14em; color: #fff; margin: 0 0 0.9rem; }
+.foot ul { list-style: none; margin: 0; padding: 0; font-size: 0.92rem; }
+.foot li { padding: 0.28rem 0; }
+.foot a:hover { color: var(--lime); }
+.foot__legal { border-top: 1px solid var(--line); padding: 1.5rem 0 2rem; font-size: 0.79rem; color: #6C7668; }
+.disclaimer { max-width: 78ch; margin: 0 0 0.8rem; }
+
+.callbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 55;
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--line2); background: rgba(11,13,11,0.96); backdrop-filter: blur(8px);
+    padding-bottom: env(safe-area-inset-bottom);
+}
+.callbar a {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    padding: 0.95rem 0.5rem; font-family: var(--display); font-size: 1rem; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.03em; color: #fff;
+}
+.callbar a + a { background: var(--lime); color: #08130A; }
+.callbar svg { fill: currentColor; width: 17px; height: 17px; }
+@media (min-width: 960px) { .callbar { display: none; } }
+@media (max-width: 959px) { body { padding-bottom: 58px; } }
+
+.js .rise { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
+.js .rise.seen { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    .js .rise { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.className += ' js';</script>
+
+<a class="skip" href="#estimate">Skip to the estimate form</a>
+
+<header class="head">
+    <div class="head__in">
+        <a class="brand" href="#top" aria-label="Auto Craft Auto Body and Towing, home">
+            <img src="img/logo.webp" alt="" width="73" height="40">
+            <span class="brand__txt">Auto Craft<span>Hyde Park, NY</span></span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="#services">Services</a>
+            <a href="#insurance">Insurance</a>
+            <a href="#work">Our work</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#visit">Visit</a>
+        </nav>
+        <a class="head__tel" href="tel:+18452299834">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+            845-229-9834
+        </a>
+    </div>
+</header>
+
+<main id="top">
+
+    <section class="hero">
+        <div class="hero__bg">
+            <img src="img/hero-tow.webp"
+                 alt="An Auto Craft lime green flatbed tow truck with a damaged car loaded on the deck"
+                 width="1800" height="1013" fetchpriority="high">
+        </div>
+        <div class="hero__in">
+            <span class="hero__tag">Collision repairs &middot; Towing &middot; Insurance estimates</span>
+            <h1>Bad day?<br><em>We've got it<br>from here.</em></h1>
+            <p class="hero__sub">
+                Collision repair, painting and 24 hour flatbed towing on Route 9G in Hyde Park.
+                We deal with all insurance companies and can help you with your claim.
+            </p>
+            <div class="hero__cta">
+                <a class="btn btn--go" href="tel:+18452299834">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+                    Call 845-229-9834
+                </a>
+                <a class="btn btn--line" href="#estimate">Get a free estimate</a>
+            </div>
+        </div>
+        <dl class="facts">
+            <div><dt>24 hr</dt><dd>Towing &amp; flatbed</dd></div>
+            <div><dt>All</dt><dd>Insurance companies</dd></div>
+            <div><dt>5.0</dt><dd>On Yelp, 5 reviews</dd></div>
+            <div><dt>2006</dt><dd>Hyde Park, incorporated</dd></div>
+        </dl>
+    </section>
+
+    <div class="check" role="presentation"></div>
+
+    <section class="sect">
+        <div class="wrap">
+            <div class="rise" style="text-align:center;max-width:52ch;margin-inline:auto">
+                <span class="kicker" style="justify-content:center">Start here</span>
+                <h2>What do you need?</h2>
+                <p class="lede" style="margin-inline:auto">
+                    Two very different bad days, two very different answers. Pick the one
+                    that sounds like yours.
+                </p>
+            </div>
+
+            <div class="fork rise" style="margin-top:2.5rem">
+                <div class="door door--now">
+                    <svg class="door__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16V8h11v8M13 11h4l4 4v1h-8"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg>
+                    <h3>I need a tow, now</h3>
+                    <p>
+                        Two flatbeds, ready 24 hours. Broken down, in a ditch, or sitting on
+                        the shoulder of 9G — call and we'll come get it. We move classic cars
+                        and equipment too.
+                    </p>
+                    <a class="btn btn--go btn--wide" href="tel:+18452299834">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+                        Call 845-229-9834
+                    </a>
+                    <p class="door__note">Towing answers around the clock, seven days.</p>
+                </div>
+
+                <div class="door">
+                    <svg class="door__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l1.8-5.2A2 2 0 0 1 6.7 6.4h10.6a2 2 0 0 1 1.9 1.4L21 13v5.5a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1V17H6.5v1.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3.5 13h17M7 15.2h.01M17 15.2h.01"/></svg>
+                    <h3>I need body work</h3>
+                    <p>
+                        Send us the damage and we'll come back with a free estimate. If you're
+                        going through insurance, we'll deal with them directly — that part is
+                        not your job.
+                    </p>
+                    <a class="btn btn--dark btn--wide" href="#estimate">Get a free estimate</a>
+                    <p class="door__note" style="color:var(--ink-mid)">Shop hours Mon&ndash;Fri, 8am&ndash;5pm.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect coal" id="services">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">What we do</span>
+                <h2>Body shop and tow yard,<br>same phone number</h2>
+                <p class="lede">
+                    Collision repairs, painting, 24 hour towing and flatbed service, and
+                    insurance estimates &mdash; out of one yard on Route 9G.
+                </p>
+            </div>
+
+            <div class="svcs">
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13l1.8-5.2A2 2 0 0 1 6.7 6.4h10.6a2 2 0 0 1 1.9 1.4L21 13v5.5a1 1 0 0 1-1 1h-1.5a1 1 0 0 1-1-1V17H6.5v1.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1z"/><path d="M3.5 13h17"/></svg>
+                    <h3>Collision repair</h3>
+                    <p>The core of the shop. Everything from a crumpled bumper to a car that came in on our own flatbed.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h9v6H5zM8 9v3.5a2 2 0 0 0 2 2h1a2 2 0 0 1 2 2V21"/><path d="M16 6h3v4h-3"/></svg>
+                    <h3>Painting &amp; refinishing</h3>
+                    <p>In-house paint booth. Panel blends through to a full repaint, colour matched to the car.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15c2-4 5.5-6 8-6s6 2 8 6"/><path d="M4 15h16M7 15v3M17 15v3"/></svg>
+                    <h3>Bumper repair</h3>
+                    <p>The most common damage there is, and rarely worth replacing the whole part.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9.5c2.4 0 3.8 4 6.4 4s4-4 6.4-4 3.4 1.4 5.2 2.4"/><path d="M12 21v-5.5M9.4 18l2.6-2.6 2.6 2.6"/></svg>
+                    <h3>Dent removal</h3>
+                    <p>Door dings, parking-lot dents and hail damage taken back out of the panel.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18v10H3z"/><path d="M3 12h18M8 7v10M16 7v10"/></svg>
+                    <h3>Auto frame testing</h3>
+                    <p>Frame rack and measuring, so a car that took a real hit goes back to square before anything is painted.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8.5A4.5 4.5 0 1 0 12.5 4 5.5 5.5 0 0 0 3 8.5"/><path d="M3 8.5h14M7 13l-1 3M12 13l-1 3M17 13l-1 3"/></svg>
+                    <h3>Hail damage</h3>
+                    <p>Storm season work &mdash; hail, falling limbs and everything the Hudson Valley drops on a parked car.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 16V8h11v8M13 11h4l4 4v1h-8"/><circle cx="6.5" cy="18" r="2"/><circle cx="17.5" cy="18" r="2"/></svg>
+                    <h3>24 hour towing</h3>
+                    <p>Two flatbeds ready around the clock. Cars, classics and equipment.</p>
+                </div>
+                <div class="svc rise">
+                    <svg class="svc__ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22l8.5-11.5H12z"/></svg>
+                    <h3>EV &amp; Tesla repair</h3>
+                    <p>Yes, we can repair your Tesla &mdash; and there is a charger on site to keep it topped up while it's here.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect dark" id="insurance">
+        <div class="wrap claim">
+            <div class="rise">
+                <span class="kicker">Insurance claims</span>
+                <h2>You crashed the car.<br>Don't fight the paperwork too.</h2>
+                <blockquote class="claim__quote">
+                    &ldquo;We deal with all insurance companies and can help you with your claim.&rdquo;
+                </blockquote>
+                <p class="claim__src">&mdash; Auto Craft, on their Facebook page</p>
+                <p class="lede" style="margin-top:1.25rem">
+                    Free insurance estimates. Bring the car in, or have us tow it in, and
+                    we'll write it up and talk to your adjuster. Nobody at this shop is going
+                    to hand you a claim number and wish you luck.
+                </p>
+                <div style="margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:0.8rem">
+                    <a class="btn btn--go" href="#estimate">Start a free estimate</a>
+                    <a class="btn btn--line" href="tel:+18452299834">Call the shop</a>
+                </div>
+            </div>
+            <div class="rise">
+                <img src="img/work-storm.webp"
+                     alt="A silver car crushed beneath a fallen tree after a Hudson Valley storm"
+                     width="1100" height="825" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <section class="sect">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">In the shop</span>
+                <h2>A 1977 BMW 2002,<br>in for a full repaint</h2>
+                <p class="lede">
+                    This is what a real refinish looks like before it looks like anything.
+                    Stripped to bare panels, straightened on the rack, masked by hand, then
+                    into the booth &mdash; the part of the job nobody photographs.
+                </p>
+            </div>
+            <div class="seq">
+                <figure class="rise">
+                    <img src="img/repaint-1-strip.webp" alt="A 1977 BMW 2002 stripped of trim and glass, sitting on the frame rack in the Auto Craft shop" width="1200" height="900" loading="lazy">
+                    <figcaption><b>Stripped</b>Trim, glass and lights out, up on the rack. Nothing gets covered up.</figcaption>
+                </figure>
+                <figure class="rise">
+                    <img src="img/repaint-2-prep.webp" alt="The same BMW 2002 masked off with paper and tape, prepped for spraying" width="1200" height="900" loading="lazy">
+                    <figcaption><b>Masked</b>Bodywork done, panels prepped, every edge taped by hand.</figcaption>
+                </figure>
+                <figure class="rise">
+                    <img src="img/repaint-3-booth.webp" alt="The masked BMW 2002 inside the Auto Craft paint booth ready to be sprayed" width="1200" height="900" loading="lazy">
+                    <figcaption><b>In the booth</b>Into the booth for colour. Same process on a 2002 or a 2026 crossover.</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect coal">
+        <div class="wrap ev">
+            <div class="rise">
+                <img src="img/tesla.webp"
+                     alt="A black Tesla plugged in and charging inside the Auto Craft shop"
+                     width="1100" height="825" loading="lazy">
+            </div>
+            <div class="rise">
+                <span class="kicker">Electric vehicles</span>
+                <h2>Yes, we can<br>repair your Tesla</h2>
+                <p class="lede">
+                    Plenty of body shops will still shrug at an EV. We put a charger in the
+                    shop so your car isn't sitting on 12% while it waits for a panel.
+                </p>
+                <ul class="ev__list">
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <span>Tesla charger on site, for cars in for repair</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <span>Collision and panel work on electric vehicles</span>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <span>Flatbed towing &mdash; the only correct way to move an EV</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect" id="work">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">On the job</span>
+                <h2>Around Hyde Park<br>and the Hudson Valley</h2>
+                <p class="lede">
+                    Twenty years of Route 9G, Dutchess County weather, and whatever the deer
+                    decide to do next.
+                </p>
+            </div>
+            <div class="grid3">
+                <figure class="shot rise">
+                    <img src="img/work-night.webp" alt="An Auto Craft flatbed loading a burned-out vehicle at night alongside firefighters" width="1100" height="825" loading="lazy">
+                    <figcaption>Night call-out, alongside the fire department</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/work-damage.webp" alt="A white Mercedes coupe with heavy front-end collision damage, hood open" width="1100" height="825" loading="lazy">
+                    <figcaption>Front-end collision, in for repair</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/work-classic.webp" alt="A classic convertible loaded on the lime green Auto Craft flatbed" width="1100" height="825" loading="lazy">
+                    <figcaption>Classic car transport &mdash; give us a call</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/work-cia.webp" alt="An Auto Craft flatbed carrying a Culinary Institute of America shuttle bus" width="1100" height="825" loading="lazy">
+                    <figcaption>Local fleet work, Hyde Park</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/fiat.webp" alt="A lime green classic Fiat 500 wearing the Auto Craft checkered flag logo on the door" width="1100" height="825" loading="lazy">
+                    <figcaption>The shop Fiat, in Auto Craft green</figcaption>
+                </figure>
+                <figure class="shot rise">
+                    <img src="img/shop.webp" alt="Classic cars parked outside the Auto Craft shop building on Route 9G" width="1400" height="788" loading="lazy">
+                    <figcaption>The yard on Route 9G</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect" style="background:var(--paper2)" id="reviews">
+        <div class="wrap">
+            <div class="rise">
+                <span class="kicker">Reviews</span>
+                <h2>5.0 on Yelp</h2>
+                <p class="lede">
+                    Every review Auto Craft has on Yelp, reproduced word for word. There are
+                    only five &mdash; and all five are five stars.
+                </p>
+            </div>
+            <div class="revs">
+                <blockquote class="rev rise">
+                    <div class="stars" role="img" aria-label="5 out of 5 stars">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                    </div>
+                    <p>
+                        &ldquo;Family owned joint than puts that same love and diligence into your
+                        vehicle. Quote was honest, work was efficient, and experience was easy.
+                        Hard not to leave a review. My brand new Toyota came back looking as good
+                        as they day I brought it home. Highly recommend. Good people doing good
+                        work. Easy to root for.&rdquo;
+                    </p>
+                    <footer><cite>Billy J.</cite><time datetime="2022-09-23">Sep 23, 2022 &middot; via Yelp</time></footer>
+                </blockquote>
+
+                <blockquote class="rev rise">
+                    <div class="stars" role="img" aria-label="5 out of 5 stars">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                    </div>
+                    <p>
+                        &ldquo;Very efficient and well run organization. I had received four quotes
+                        and theirs being in the middle. I decided to use them because of the feeling
+                        that I got there. I am so glad I did because my car was done when it was
+                        promised, looks amazing, looks just like the day that I bought it, and
+                        everything was perfect. I would highly recommend auto craft.&rdquo;
+                    </p>
+                    <footer><cite>Sandy F.</cite><time datetime="2022-12-15">Dec 15, 2022 &middot; via Yelp</time></footer>
+                </blockquote>
+
+                <blockquote class="rev rise">
+                    <div class="stars" role="img" aria-label="5 out of 5 stars">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                    </div>
+                    <p>
+                        &ldquo;Rocky and his team do outstanding work every time, and I've hit 6-7
+                        deer in the last 10 years. They work with the insurance companies. You will
+                        NOT be disappointed.&rdquo;
+                    </p>
+                    <footer><cite>Paul F.</cite><time datetime="2016-10-02">Oct 2, 2016 &middot; via Yelp</time></footer>
+                </blockquote>
+
+                <blockquote class="rev rise">
+                    <div class="stars" role="img" aria-label="5 out of 5 stars">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                    </div>
+                    <p>
+                        &ldquo;Consistently reliable for auto body work. Have used their service
+                        several times over the past decade along with family members and have not
+                        been disappointed with responsiveness or results.&rdquo;
+                    </p>
+                    <footer><cite>michael f.</cite><time datetime="2021-04-12">Apr 12, 2021 &middot; via Yelp</time></footer>
+                </blockquote>
+
+                <blockquote class="rev rise">
+                    <div class="stars" role="img" aria-label="5 out of 5 stars">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5 4.8 1.2 6.9L12 17.8 5.8 21.1 7 14.2 2 9.4l7-.9z"/></svg>
+                    </div>
+                    <p>
+                        &ldquo;Auto Craft is great I would reomend them very highly. Friendly,
+                        effective , reliable and affordable.&rdquo;
+                    </p>
+                    <footer><cite>Ellen W.</cite><time datetime="2019-03-20">Mar 20, 2019 &middot; via Yelp</time></footer>
+                </blockquote>
+            </div>
+
+            <p class="revs-note rise">
+                All five reviews are public on
+                <a href="https://www.yelp.com/biz/auto-craft-hyde-park" target="_blank" rel="noopener">Auto Craft's Yelp listing</a>.
+                Reproduced verbatim, including the original spelling.
+            </p>
+        </div>
+    </section>
+
+    <section class="sect dark" id="visit">
+        <div class="wrap band">
+            <div class="rise">
+                <span class="kicker">Find us</span>
+                <h2>1200 Route 9G,<br>Hyde Park</h2>
+                <p class="lede">
+                    On 9G between Hyde Park and Rhinebeck, five minutes from the Culinary
+                    Institute. Serving Hyde Park, Poughkeepsie, Rhinebeck, Staatsburg and
+                    the rest of Dutchess County.
+                </p>
+                <address class="addr" style="margin-top:1.5rem">
+                    1200 Route 9G<br>
+                    Hyde Park, NY 12538<br>
+                    <a href="tel:+18452299834">845-229-9834</a><br>
+                    <a href="mailto:rrun@optonline.net">rrun@optonline.net</a>
+                </address>
+                <div style="margin-top:1.5rem">
+                    <a class="btn btn--line" href="https://maps.google.com/?q=1200+Route+9G,+Hyde+Park,+NY+12538" target="_blank" rel="noopener">Get directions</a>
+                </div>
+            </div>
+
+            <div class="info rise">
+                <div>
+                    <h3>Shop hours</h3>
+                    <dl>
+                        <div><dt>Monday &ndash; Friday</dt><dd>8:00 am &ndash; 5:00 pm</dd></div>
+                        <div><dt>Saturday</dt><dd>Closed</dd></div>
+                        <div><dt>Sunday</dt><dd>Closed</dd></div>
+                        <div><dt>Towing</dt><dd class="hot">24 hours</dd></div>
+                    </dl>
+                </div>
+                <div>
+                    <h3>Good to know</h3>
+                    <dl>
+                        <div><dt>Insurance estimates</dt><dd>Free</dd></div>
+                        <div><dt>Insurance companies</dt><dd>All</dd></div>
+                        <div><dt>Credit cards</dt><dd>Accepted</dd></div>
+                        <div><dt>US DOT</dt><dd>1477282</dd></div>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect coal" id="estimate">
+        <div class="wrap quote">
+            <div class="rise">
+                <span class="kicker">Free estimate</span>
+                <h2>Tell us what happened</h2>
+                <p class="lede">
+                    Six boxes, no captcha, no account. Or skip it and call
+                    <a href="tel:+18452299834" style="color:var(--lime);font-weight:600">845-229-9834</a>.
+                </p>
+                <ul class="why">
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                        <div><b>Estimates are free</b><span>Including insurance estimates. No charge to find out.</span></div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 4v6c0 4.5-3.2 7.4-8 8.5C7.2 20.4 4 17.5 4 13V7z"/><path d="M9.5 12.5l1.8 1.8 3.4-3.6"/></svg>
+                        <div><b>We handle the insurer</b><span>All insurance companies. We'll help you with the claim.</span></div>
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                        <div><b>Towing runs 24 hours</b><span>Two flatbeds. If it can't be driven in, we'll come get it.</span></div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="form" id="estimateCard">
+                <form id="estimateForm" class="form__live" novalidate>
+                    <div class="form__row form__row--2">
+                        <div class="field">
+                            <label for="eName">Name</label>
+                            <input id="eName" name="name" type="text" autocomplete="name" required>
+                            <span class="err">Please tell us your name.</span>
+                        </div>
+                        <div class="field">
+                            <label for="ePhone">Phone</label>
+                            <input id="ePhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required>
+                            <span class="err">A phone number with at least 10 digits, please.</span>
+                        </div>
+                    </div>
+
+                    <div class="form__row form__row--2">
+                        <div class="field">
+                            <label for="eVehicle">Vehicle</label>
+                            <input id="eVehicle" name="vehicle" type="text" placeholder="e.g. 2019 Subaru Forester" required>
+                            <span class="err">Year, make and model if you have them.</span>
+                        </div>
+                        <div class="field">
+                            <label for="eType">What happened?</label>
+                            <select id="eType" name="type" required>
+                                <option value="">Choose one&hellip;</option>
+                                <option>Collision &mdash; another vehicle</option>
+                                <option>Deer or animal strike</option>
+                                <option>Storm, tree or hail damage</option>
+                                <option>Bumper damage</option>
+                                <option>Dents or scratches</option>
+                                <option>Full repaint or refinish</option>
+                                <option>I need a tow</option>
+                                <option>Something else</option>
+                            </select>
+                            <span class="err">Let us know roughly what we're looking at.</span>
+                        </div>
+                    </div>
+
+                    <div class="form__row form__row--2">
+                        <div class="field">
+                            <label for="eClaim">Going through insurance?</label>
+                            <select id="eClaim" name="claim" required>
+                                <option value="">Choose one&hellip;</option>
+                                <option>Yes &mdash; claim already filed</option>
+                                <option>Yes &mdash; but not filed yet</option>
+                                <option>No &mdash; paying out of pocket</option>
+                                <option>Not sure yet</option>
+                            </select>
+                            <span class="err">Pick one, or tell us you're not sure.</span>
+                        </div>
+                        <div class="field">
+                            <label for="eDrivable">Is it drivable? <span class="opt">(optional)</span></label>
+                            <select id="eDrivable" name="drivable">
+                                <option value="">Choose one&hellip;</option>
+                                <option>Yes, I can drive it in</option>
+                                <option>No &mdash; I'll need a tow</option>
+                                <option>Not sure</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="eNotes">Anything else? <span class="opt">(optional)</span></label>
+                        <textarea id="eNotes" name="notes" rows="3" placeholder="Where the damage is, when it happened, whether it's still on the road&hellip;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn--go btn--wide">Get my free estimate</button>
+                    <p class="form__note">No obligation. If it can't be driven, call us instead &mdash; towing runs 24 hours.</p>
+                </form>
+
+                <div class="done" id="estimateDone" role="status" aria-live="polite">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
+                    <h3 id="doneHead">Request received</h3>
+                    <p id="doneBody">Thanks &mdash; we'll be in touch about your estimate.</p>
+                    <p style="font-size:0.85rem">
+                        <em>This is a demonstration page, so nothing was actually sent.</em>
+                        To reach Auto Craft for real, call
+                        <a href="tel:+18452299834" style="color:var(--lime-ink);font-weight:600">845-229-9834</a>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<div class="check check--lime" role="presentation"></div>
+
+<footer class="foot">
+    <div class="wrap">
+        <div class="foot__top">
+            <div>
+                <img src="img/logo.webp" alt="Auto Craft Auto Body &amp; Towing" width="87" height="48" loading="lazy">
+                <p style="max-width:34ch;font-size:0.92rem">
+                    Collision repairs, painting, insurance estimates and 24 hour towing.
+                    Hyde Park, New York, since 2006.
+                </p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+18452299834">845-229-9834</a></li>
+                    <li><a href="mailto:rrun@optonline.net">rrun@optonline.net</a></li>
+                    <li>1200 Route 9G<br>Hyde Park, NY 12538</li>
+                    <li style="padding-top:0.6rem"><a href="https://www.facebook.com/profile.php?id=100063859222279" target="_blank" rel="noopener">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/autocrafttowing/" target="_blank" rel="noopener">Instagram</a></li>
+                    <li><a href="https://www.yelp.com/biz/auto-craft-hyde-park" target="_blank" rel="noopener">Yelp</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#services">Collision repair</a></li>
+                    <li><a href="#services">Painting &amp; refinishing</a></li>
+                    <li><a href="#services">Dent &amp; bumper repair</a></li>
+                    <li><a href="#services">Auto frame testing</a></li>
+                    <li><a href="#services">24 hour towing &amp; flatbed</a></li>
+                    <li><a href="#insurance">Insurance estimates</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot__legal">
+            <p class="disclaimer">
+                Disclaimer: We do not own the rights to the materials and images on this page. They
+                are used strictly for demonstration purposes to show what our web design product
+                looks like.
+            </p>
+            <p style="margin:0">&copy; 2026 Auto Craft Autobody &amp; Towing, Ltd. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<nav class="callbar" aria-label="Quick actions">
+    <a href="tel:+18452299834">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+        Call &middot; 24 hr
+    </a>
+    <a href="#estimate">Free estimate</a>
+</nav>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AutoBodyShop",
+    "@id": "https://autocraftautobody.com/#business",
+    "name": "Auto Craft Auto Body & Towing",
+    "legalName": "Auto Craft Autobody & Towing, Ltd.",
+    "description": "Auto body collision repairs, painting, 24 hour towing and flatbed service, and insurance estimates in Hyde Park, New York.",
+    "telephone": "+1-845-229-9834",
+    "email": "rrun@optonline.net",
+    "image": "img/og.jpg",
+    "priceRange": "$$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Credit Card",
+    "founder": { "@type": "Person", "name": "Rocco Runza" },
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "1200 Route 9G",
+        "addressLocality": "Hyde Park",
+        "addressRegion": "NY",
+        "postalCode": "12538",
+        "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 41.7946, "longitude": -73.9135 },
+    "openingHoursSpecification": [
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" }
+    ],
+    "areaServed": [
+        { "@type": "City", "name": "Hyde Park, NY" },
+        { "@type": "City", "name": "Poughkeepsie, NY" },
+        { "@type": "City", "name": "Rhinebeck, NY" },
+        { "@type": "City", "name": "Staatsburg, NY" },
+        { "@type": "AdministrativeArea", "name": "Dutchess County, NY" }
+    ],
+    "sameAs": [
+        "https://www.facebook.com/profile.php?id=100063859222279",
+        "https://www.instagram.com/autocrafttowing/",
+        "https://www.yelp.com/biz/auto-craft-hyde-park"
+    ],
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Auto body and towing services",
+        "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Collision repair" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Auto painting and refinishing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bumper repair" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Dent removal" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Auto frame testing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Auto hail damage repair" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "24 hour towing and flatbed service" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Insurance estimates" } }
+        ]
+    }
+}
+</script>
+
+<script>
+(() => {
+    'use strict';
+
+    const rising = document.querySelectorAll('.rise');
+    if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('seen');
+                io.unobserve(e.target);
+            });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+        rising.forEach(el => io.observe(el));
+    } else {
+        rising.forEach(el => el.classList.add('seen'));
+    }
+
+    const form = document.getElementById('estimateForm');
+    if (!form) return;
+
+    const card = document.getElementById('estimateCard');
+    const done = document.getElementById('estimateDone');
+
+    const rules = {
+        name:    v => v.trim().length > 1,
+        phone:   v => (v.match(/\d/g) || []).length >= 10,
+        vehicle: v => v.trim().length > 1,
+        type:    v => v !== '',
+        claim:   v => v !== ''
+    };
+
+    function check(el) {
+        const rule = rules[el.name];
+        if (!rule) return true;
+        const ok = rule(el.value);
+        el.closest('.field').classList.toggle('is-bad', !ok);
+        el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+        return ok;
+    }
+
+    Object.keys(rules).forEach(name => {
+        const el = form.elements[name];
+        if (!el) return;
+        const revalidate = () => {
+            if (el.closest('.field').classList.contains('is-bad')) check(el);
+        };
+        el.addEventListener('input', revalidate);
+        el.addEventListener('change', revalidate);
+        el.addEventListener('blur', () => { if (el.value !== '') check(el); });
+    });
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        let firstBad = null;
+        Object.keys(rules).forEach(name => {
+            const el = form.elements[name];
+            if (el && !check(el) && !firstBad) firstBad = el;
+        });
+
+        if (firstBad) { firstBad.focus(); return; }
+
+        const name = form.elements.name.value.trim().split(/\s+/)[0];
+        const drivable = form.elements.drivable.value;
+        const needsTow = form.elements.type.value === 'I need a tow' ||
+                         drivable.startsWith('No');
+
+        document.getElementById('doneHead').textContent = `Thanks, ${name}.`;
+        document.getElementById('doneBody').textContent = needsTow
+            ? "Your request is in. Since the car isn't drivable we'd call you first to arrange the tow, then write up the estimate here at the shop."
+            : "Your request is in. We'd call you back to set a time to look at the vehicle and write up your free estimate.";
+
+        card.classList.add('is-done');
+        done.classList.add('on');
+        done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+})();
+</script>
+
+<script src="../../../assets/js/env.js"></script>
+<script src="../../../assets/js/demo-registry.js"></script>
+<script src="../../../assets/js/demo-live-badge.js" data-slug="auto-craft"></script>
+
+<script src="../../../assets/js/purchase-popup.js"
+        data-ref="auto-craft"
+        data-niche="autobody"
+        data-theme="dark"></script>
+</body>
+</html>

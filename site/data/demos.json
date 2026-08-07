@@ -11,6 +11,16 @@
             "live_url": ""
         },
         {
+            "slug": "auto-craft",
+            "niche": "autobody",
+            "name": "Auto Craft Auto Body & Towing",
+            "tagline": "Collision repair, painting and 24 hour flatbed towing.",
+            "location": "Hyde Park, NY",
+            "thumb": "demos/autobody/auto-craft/img/hero-tow.webp",
+            "purchased": false,
+            "live_url": ""
+        },
+        {
             "slug": "mid-hudson-container",
             "niche": "home-improvement-landscape",
             "name": "Mid-Hudson Container",
