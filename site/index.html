@@ -339,6 +339,19 @@
         .symptom h3 { font-size: var(--text-base); margin-bottom: 0.15rem; }
         .symptom p { font-size: var(--text-sm); color: var(--text-secondary); margin: 0; }
 
+        /* ---------- Demos ---------- */
+        .demos { display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .demo-card {
+            background: var(--bg-primary); border: 1px solid var(--border);
+            border-radius: var(--radius-lg); overflow: hidden;
+            box-shadow: var(--shadow-md); transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .demo-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); border-color: var(--accent-color); }
+        .demo-card__img { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-bottom: 1px solid var(--border); }
+        .demo-card__content { padding: 1.5rem; }
+        .demo-card__content h3 { font-size: var(--text-lg); margin-bottom: 0.25rem; color: var(--text-primary); }
+        .demo-card__content p { color: var(--text-secondary); font-size: var(--text-sm); margin-bottom: 1.25rem; }
+
         /* ---------- Niches ---------- */
         .niches { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
         .niche {
@@ -487,6 +500,7 @@
         </a>
         <div class="nav__links">
             <a href="#work">The difference</a>
+            <a href="#demos">Demos</a>
             <a href="#niches">Who we build for</a>
             <a href="#how">How it works</a>
             <a href="#pricing">Pricing</a>
@@ -607,8 +621,37 @@
     </div>
 </section>
 
+<!-- ---------------- Demos ---------------- -->
+<section class="section section--subtle" id="demos">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">See our work</span>
+            <h2>Preview our latest redesigns</h2>
+            <p>Explore real demos we've built for businesses just like yours. Click to experience them live.</p>
+        </div>
+
+        <div class="demos reveal">
+            <a href="demos/autobody/showroom-reflections/" class="demo-card card--link" target="_blank">
+                <img src="demos/autobody/showroom-reflections/img/hero-rolls.webp" alt="Showroom Reflections Demo" class="demo-card__img" loading="lazy">
+                <div class="demo-card__content">
+                    <h3>Showroom Reflections</h3>
+                    <p>High-end mobile auto detailing and ceramic coating.</p>
+                    <span class="btn btn--ghost btn--block">View Demo &rarr;</span>
+                </div>
+            </a>
+            
+            <!-- Future demos can be added here -->
+            <div class="demo-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; background: transparent; border: 2px dashed var(--border-strong); padding: 3rem 1.5rem; text-align: center;">
+                <h3 style="color: var(--text-secondary);">Your Business Here</h3>
+                <p style="color: var(--text-inverse-muted);">Request a mockup to see your trade in action.</p>
+                <a href="request/" class="btn btn--primary" style="margin-top: 1rem;">Get a mockup</a>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ---------------- Symptoms ---------------- -->
-<section class="section section--subtle">
+<section class="section">
     <div class="container">
         <div class="section-head reveal">
             <span class="eyebrow">Sound familiar?</span>
