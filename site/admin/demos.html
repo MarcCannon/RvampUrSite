@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demos — Admin</title>
+    <link rel="stylesheet" href="../assets/css/tokens.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script src="../assets/js/env.js"></script>
+    <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/settings-client.js"></script>
+    <script src="../assets/js/admin-auth.js"></script>
+
+    <style>
+        .demo-editor {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            margin-bottom: var(--space-md);
+            box-shadow: var(--shadow-sm);
+        }
+        .demo-editor--live { border-color: #6ee7b7; background: #f0fdf9; }
+
+        .demo-editor__head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-md);
+            margin-bottom: var(--space-md);
+        }
+        .demo-editor__head h3 { font-size: var(--text-base); margin: 0; }
+        .demo-editor__head .sub { font-size: var(--text-xs); color: var(--text-secondary); }
+
+        .paid-row {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            background: var(--bg-subtle);
+            margin-bottom: var(--space-md);
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+        .paid-row input { width: 18px; height: 18px; accent-color: var(--success); }
+
+        .badge-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: var(--radius-full);
+            background: #059669;
+            color: #fff;
+            font-size: var(--text-xs);
+            font-weight: 700;
+        }
+        .badge-off {
+            display: inline-block;
+            padding: 0.25rem 0.65rem;
+            border-radius: var(--radius-full);
+            background: var(--slate-100);
+            color: var(--slate-500);
+            font-size: var(--text-xs);
+            font-weight: 600;
+        }
+
+        .warn-inline {
+            font-size: var(--text-xs);
+            color: var(--warning);
+            margin-top: 0.35rem;
+        }
+    </style>
+</head>
+<body class="admin">
+
+<aside class="sidebar">
+    <div class="sidebar__brand">
+        <span class="sidebar__mark">BS</span> Admin
+    </div>
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="tickets.html">Tickets</a>
+        <a href="demos.html" aria-current="page">Demos</a>
+        <a href="prospects.html">Prospects</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="playbooks.html">Playbooks</a>
+    </nav>
+    <div class="sidebar__foot">
+        <button id="logoutBtn" type="button">Sign out</button>
+    </div>
+</aside>
+
+<main class="content">
+    <div class="page-head">
+        <div>
+            <h1>Demo library</h1>
+            <p>What shows at <a href="../demos/" target="_blank">/demos/</a>. Tick “they paid for it” and add their real URL to stamp it as live — takes effect the moment you save, no redeploy.</p>
+        </div>
+        <div class="page-head__actions">
+            <span class="status" id="status"></span>
+            <button class="btn btn--primary" id="saveBtn" type="button">Save changes</button>
+        </div>
+    </div>
+
+    <div id="alertSlot"></div>
+
+    <div id="demos"></div>
+    <button class="btn btn--ghost" id="addBtn" type="button">+ Add a demo</button>
+</main>
+
+<script>
+(function () {
+    'use strict';
+
+    const SETTING_KEY = 'demos';
+
+    // Mirrors site/data/demos.json, which is the public fallback.
+    const DEFAULTS = {
+        demos: [
+            {
+                slug: 'showroom-reflections',
+                niche: 'autobody',
+                name: 'Showroom Reflections',
+                tagline: 'High-end mobile auto detailing and ceramic coating.',
+                location: 'Fishkill, NY',
+                thumb: 'demos/autobody/showroom-reflections/img/hero-rolls.webp',
+                purchased: false,
+                live_url: ''
+            }
+        ]
+    };
+
+    let state = { demos: [] };
+    let dirty = false;
+
+    const $demos = document.getElementById('demos');
+    const $status = document.getElementById('status');
+    const $saveBtn = document.getElementById('saveBtn');
+    const $alertSlot = document.getElementById('alertSlot');
+
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+
+    function setStatus(text, cls) {
+        $status.textContent = text;
+        $status.className = 'status' + (cls ? ' status--' + cls : '');
+    }
+    function showAlert(msg, kind) {
+        $alertSlot.innerHTML = `<div class="alert alert--${kind || 'error'}">${esc(msg)}</div>`;
+    }
+    function clearAlert() { $alertSlot.innerHTML = ''; }
+    function markDirty() { dirty = true; setStatus('Unsaved changes'); }
+
+    // A demo only advertises itself as live when both halves are present.
+    const isLive = (d) => Boolean(d.purchased && (d.live_url || '').trim());
+
+    function editorHtml(d, i) {
+        const live = isLive(d);
+        const needsUrl = d.purchased && !(d.live_url || '').trim();
+
+        return `
+            <div class="demo-editor${live ? ' demo-editor--live' : ''}">
+                <div class="demo-editor__head">
+                    <div>
+                        <h3>${esc(d.name) || 'Untitled demo'}</h3>
+                        <div class="sub">demos/${esc(d.niche)}/${esc(d.slug)}/</div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:0.6rem">
+                        ${live
+                            ? '<span class="badge-live">&#10003; Live site</span>'
+                            : '<span class="badge-off">Demo only</span>'}
+                        <button class="icon-btn icon-btn--ghost" data-remove="${i}"
+                                type="button" aria-label="Remove this demo">&times;</button>
+                    </div>
+                </div>
+
+                <label class="paid-row">
+                    <input type="checkbox" data-i="${i}" data-field="purchased" ${d.purchased ? 'checked' : ''}>
+                    They paid for it &mdash; show the verified sticker
+                </label>
+
+                <div class="form-group">
+                    <label>Their real website</label>
+                    <input type="text" value="${esc(d.live_url)}" data-i="${i}" data-field="live_url"
+                           placeholder="showroomreflections.com">
+                    <p class="hint">Where the &ldquo;Visit the real site&rdquo; button goes. Needed before the sticker shows.</p>
+                    ${needsUrl ? '<p class="warn-inline">Marked paid, but there is no URL yet &mdash; nothing will show until you add one.</p>' : ''}
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Business name</label>
+                        <input type="text" value="${esc(d.name)}" data-i="${i}" data-field="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" value="${esc(d.location)}" data-i="${i}" data-field="location"
+                               placeholder="Fishkill, NY">
+                    </div>
+                </div>
+
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label>Niche folder</label>
+                        <input type="text" value="${esc(d.niche)}" data-i="${i}" data-field="niche"
+                               placeholder="autobody">
+                    </div>
+                    <div class="form-group">
+                        <label>Slug folder</label>
+                        <input type="text" value="${esc(d.slug)}" data-i="${i}" data-field="slug"
+                               placeholder="showroom-reflections">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>One-line description</label>
+                    <input type="text" value="${esc(d.tagline)}" data-i="${i}" data-field="tagline">
+                </div>
+
+                <div class="form-group">
+                    <label>Thumbnail path</label>
+                    <input type="text" value="${esc(d.thumb)}" data-i="${i}" data-field="thumb"
+                           placeholder="demos/autobody/showroom-reflections/img/hero-rolls.webp">
+                    <p class="hint">Relative to the site root. Leave blank for a plain card.</p>
+                </div>
+            </div>
+        `;
+    }
+
+    function render() {
+        $demos.innerHTML = state.demos.length
+            ? state.demos.map(editorHtml).join('')
+            : '<div class="alert alert--warn">No demos yet. Add one below.</div>';
+    }
+
+    // ---------- Editing ----------
+
+    $demos.addEventListener('input', (e) => {
+        const el = e.target;
+        if (el.dataset.i === undefined) return;
+
+        const d = state.demos[+el.dataset.i];
+        if (!d) return;
+
+        d[el.dataset.field] = (el.type === 'checkbox') ? el.checked : el.value;
+        markDirty();
+
+        // Re-render only for the toggle, which changes the badge and the warning.
+        // Doing it on every keystroke would steal focus mid-typing.
+        if (el.type === 'checkbox') render();
+    });
+
+    $demos.addEventListener('change', (e) => {
+        // Blur on the URL field can flip the "needs a URL" warning.
+        if (e.target.dataset.field === 'live_url') render();
+    });
+
+    $demos.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-remove]');
+        if (!btn) return;
+
+        const d = state.demos[+btn.dataset.remove];
+        if (!confirm(`Remove "${d && d.name ? d.name : 'this demo'}" from the library?\n\nThe demo files stay on disk — this only hides it from /demos/.`)) return;
+
+        state.demos.splice(+btn.dataset.remove, 1);
+        render();
+        markDirty();
+    });
+
+    document.getElementById('addBtn').addEventListener('click', () => {
+        state.demos.push({
+            slug: '', niche: '', name: 'New demo', tagline: '',
+            location: '', thumb: '', purchased: false, live_url: ''
+        });
+        render();
+        markDirty();
+    });
+
+    // ---------- Load & save ----------
+
+    $saveBtn.addEventListener('click', async () => {
+        clearAlert();
+
+        // A demo with no slug or niche has no URL to point at, so it would render
+        // a broken card. Refuse rather than shipping one.
+        const broken = state.demos.filter(d => !(d.slug || '').trim() || !(d.niche || '').trim());
+        if (broken.length) {
+            showAlert('Every demo needs both a niche folder and a slug folder — that is how its URL is built. Fill those in or remove the entry.');
+            setStatus('Not saved', 'error');
+            return;
+        }
+
+        $saveBtn.disabled = true;
+        setStatus('Saving…', 'saving');
+
+        const payload = {
+            demos: state.demos.map(d => ({
+                slug: (d.slug || '').trim(),
+                niche: (d.niche || '').trim(),
+                name: (d.name || '').trim(),
+                tagline: (d.tagline || '').trim(),
+                location: (d.location || '').trim(),
+                thumb: (d.thumb || '').trim(),
+                purchased: Boolean(d.purchased),
+                live_url: (d.live_url || '').trim()
+            }))
+        };
+
+        const { ok, error } = await saveSetting(SETTING_KEY, payload);
+        $saveBtn.disabled = false;
+
+        if (ok) {
+            dirty = false;
+            const liveCount = payload.demos.filter(isLive).length;
+            setStatus(`Saved — ${liveCount} marked live`, 'ok');
+            setTimeout(() => { if (!dirty) setStatus(''); }, 4000);
+        } else {
+            setStatus('Not saved', 'error');
+            showAlert(error);
+        }
+    });
+
+    window.addEventListener('beforeunload', (e) => {
+        if (dirty) { e.preventDefault(); e.returnValue = ''; }
+    });
+
+    async function init() {
+        setStatus('Loading…', 'saving');
+        const value = await getSetting(SETTING_KEY, null);
+
+        if (value && Array.isArray(value.demos)) {
+            state = value;
+        } else {
+            state = structuredClone(DEFAULTS);
+            showAlert(
+                'No demo registry saved yet, so this is a starting template built from ' +
+                'site/data/demos.json. Edit it and hit Save to create the row.',
+                'warn'
+            );
+        }
+
+        state.demos.forEach(d => { d.purchased = Boolean(d.purchased); });
+
+        render();
+        setStatus('');
+    }
+
+    // admin-auth.js replaces the body when signed out, so only boot once in.
+    document.addEventListener('DOMContentLoaded', () => {
+        if (sbIsSignedIn()) init();
+    });
+})();
+</script>
+
+</body>
+</html>

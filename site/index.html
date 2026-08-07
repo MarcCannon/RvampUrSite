@@ -656,6 +656,9 @@
             <span class="eyebrow">See our work</span>
             <h2>Preview our latest redesigns</h2>
             <p>Explore real demos we've built for businesses just like yours. Click to experience them live.</p>
+            <p style="margin-top:0.75rem">
+                <a href="demos/" style="font-weight:600">Browse the full demo library &rarr;</a>
+            </p>
         </div>
 
         <div class="demos reveal">
@@ -888,7 +891,7 @@
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>2 rounds of revisions</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Live in about a week</li>
                 </ul>
-                <a href="request/" class="btn btn--ghost btn--block">Get a quote</a>
+                <a href="request/?plan=starter" class="btn btn--ghost btn--block">Get a quote</a>
             </div>
 
             <div class="card plan plan--featured">
@@ -903,7 +906,7 @@
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Google Business Profile setup help</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>3 rounds of revisions</li>
                 </ul>
-                <a href="request/" class="btn btn--primary btn--block">Get a quote</a>
+                <a href="request/?plan=complete" class="btn btn--primary btn--block">Get a quote</a>
             </div>
 
             <div class="card plan">
@@ -917,7 +920,7 @@
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>We handle domain &amp; hosting renewals</li>
                     <li><svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 010 1.4l-7.5 7.5a1 1 0 01-1.4 0L3.3 9.7a1 1 0 011.4-1.4l3.8 3.8 6.8-6.8a1 1 0 011.4 0z" clip-rule="evenodd"/></svg>Month to month &mdash; cancel anytime</li>
                 </ul>
-                <a href="request/" class="btn btn--ghost btn--block">Ask about it</a>
+                <a href="request/?plan=care" class="btn btn--ghost btn--block">Ask about it</a>
             </div>
         </div>
 
@@ -1066,7 +1069,7 @@
                 <p class="plan__desc">${esc(p.desc)}</p>
                 <div class="plan__price">${esc(p.price)}<small>&nbsp;${esc(p.period)}</small></div>
                 <ul>${(p.features || []).map(f => `<li>${CHECK}${esc(f)}</li>`).join('')}</ul>
-                <a href="request/" class="btn ${p.featured ? 'btn--primary' : 'btn--ghost'} btn--block">${esc(p.cta) || 'Get started'}</a>
+                <a href="request/?plan=${encodeURIComponent(p.id || '')}" class="btn ${p.featured ? 'btn--primary' : 'btn--ghost'} btn--block">${esc(p.cta) || 'Get started'}</a>
             </div>`;
 
         const CACHE_KEY = 'bss.pricing.v1';

@@ -13,6 +13,7 @@
 
     <script src="../assets/js/env.js"></script>
     <script src="../assets/js/supabase-client.js"></script>
+    <script src="../assets/js/settings-client.js"></script>
     <script src="../assets/js/ticket-client.js"></script>
 
     <style>
@@ -155,6 +156,14 @@
             </div>
 
             <div class="form-group">
+                <label for="planChoice">Which plan are you after?</label>
+                <select id="planChoice" name="planChoice">
+                    <option value="unsure">Not sure yet — recommend one</option>
+                </select>
+                <p class="hint">Already filled in if you came from the pricing page. Change it freely — nothing is locked in until you approve a quote.</p>
+            </div>
+
+            <div class="form-group">
                 <label for="bizUrl">Current website <span class="optional">(optional)</span></label>
                 <input type="text" id="bizUrl" name="bizUrl" inputmode="url" placeholder="yourbusiness.com">
                 <p class="hint">If you have one. It helps us quote accurately.</p>
@@ -220,6 +229,55 @@
         .then(r => r.ok ? r.json() : Promise.reject())
         .then(d => fillNiches(d.niches))
         .catch(() => fillNiches(FALLBACK_NICHES));
+
+    // ---- Plans --------------------------------------------------------------
+    // Options come from the live pricing row so this select never drifts from
+    // whatever is in the CMS. Same fallback pattern as the niches above: if the
+    // request dies, the three standing plans are still offered.
+    const FALLBACK_PLANS = [
+        { id: 'starter',  name: 'Starter' },
+        { id: 'complete', name: 'Complete' },
+        { id: 'care',     name: 'Care Plan' }
+    ];
+
+    const planSelect = document.getElementById('planChoice');
+
+    function fillPlans(list) {
+        list.forEach(p => {
+            if (!p || !p.id) return;
+            const opt = document.createElement('option');
+            opt.value = p.id;
+            // Show the price when we have it, so the option matches the card
+            // they just clicked rather than making them second-guess it.
+            opt.textContent = p.price
+                ? `${p.name} — ${p.price} ${p.period || ''}`.trim()
+                : p.name;
+            planSelect.appendChild(opt);
+        });
+
+        const wanted = params.get('plan');
+        if (!wanted) return;
+
+        // A plan renamed or removed in the CMS should still be recorded rather
+        // than silently falling back to "not sure".
+        if (!Array.from(planSelect.options).some(o => o.value === wanted)) {
+            const opt = document.createElement('option');
+            opt.value = wanted;
+            opt.textContent = wanted;
+            planSelect.appendChild(opt);
+        }
+        planSelect.value = wanted;
+    }
+
+    if (typeof getSetting === 'function') {
+        // getSetting resolves to the fallback on any failure, never rejects.
+        getSetting('pricing', null).then(d => {
+            const plans = (d && Array.isArray(d.plans) && d.plans.length) ? d.plans : FALLBACK_PLANS;
+            fillPlans(plans);
+        });
+    } else {
+        fillPlans(FALLBACK_PLANS);
+    }
 
     if (params.get('type')) document.getElementById('demoType').value = params.get('type');
     if (params.get('ref')) document.getElementById('demoReference').value = params.get('ref');
@@ -291,6 +349,7 @@
             url:           url,
             niche:         document.getElementById('bizNiche').value,
             project_type:  document.getElementById('projectType').value,
+            plan:          document.getElementById('planChoice').value,
             notes:         document.getElementById('notes').value.trim(),
             type:          document.getElementById('demoType').value,
             reference:     document.getElementById('demoReference').value,

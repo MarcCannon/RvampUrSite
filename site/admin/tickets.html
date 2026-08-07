@@ -10,6 +10,82 @@
     <script src="../assets/js/supabase-client.js"></script>
     <script src="../assets/js/ticket-client.js"></script>
     <script src="../assets/js/admin-auth.js"></script>
+
+    <style>
+        /* Source of the lead: which demo button they came through. */
+        .pill--claim  { background: #ecfdf5; color: #047857; }
+        .pill--demo   { background: #eff6ff; color: #1d4ed8; }
+        .pill--direct { background: var(--slate-100); color: var(--slate-700); }
+
+        /* Lifecycle status. */
+        .pill--new       { background: #fef3c7; color: #92400e; }
+        .pill--contacted { background: #eff6ff; color: #1d4ed8; }
+        .pill--won       { background: #ecfdf5; color: #047857; }
+        .pill--lost      { background: var(--slate-100); color: var(--slate-500); }
+
+        .pill--plan { background: #f5f3ff; color: #6d28d9; }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: var(--space-md);
+        }
+        .filters button {
+            padding: 0.45rem 0.9rem;
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            background: var(--surface);
+            font: inherit;
+            font-size: var(--text-sm);
+            font-weight: 550;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+        .filters button[aria-pressed="true"] {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #fff;
+        }
+
+        table.data td.wrap { white-space: normal; min-width: 200px; }
+
+        .biz { font-weight: 650; color: var(--text-primary); }
+        .sub { color: var(--text-secondary); font-size: var(--text-xs); }
+
+        .row-detail td {
+            background: var(--bg-subtle);
+            white-space: normal;
+        }
+        .detail-grid {
+            display: grid;
+            gap: 0.6rem 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            margin-bottom: var(--space-md);
+        }
+        .detail-grid div { font-size: var(--text-sm); }
+        .detail-grid dt {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+            font-weight: 600;
+            margin-bottom: 0.1rem;
+        }
+        .detail-grid dd { margin: 0; }
+        .detail-notes {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 0.8rem 1rem;
+            font-size: var(--text-sm);
+            white-space: pre-wrap;
+            margin-bottom: var(--space-md);
+        }
+        .status-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+
+        .empty { padding: var(--space-lg); text-align: center; color: var(--text-secondary); }
+    </style>
 </head>
 <body class="admin">
 
@@ -20,6 +96,7 @@
     <nav>
         <a href="index.html">Dashboard</a>
         <a href="tickets.html" aria-current="page">Tickets</a>
+        <a href="demos.html">Demos</a>
         <a href="prospects.html">Prospects</a>
         <a href="pricing.html">Pricing</a>
         <a href="playbooks.html">Playbooks</a>
@@ -32,38 +109,279 @@
 <main class="content">
     <div class="page-head">
         <div>
-            <h1>Ticket queue</h1>
-            <p>Mockup requests submitted through the public form.</p>
+            <h1>Tickets</h1>
+            <p>Every quote request, newest first. Click a row for the full details.</p>
+        </div>
+        <div class="page-head__actions">
+            <span class="status" id="status"></span>
+            <button class="btn btn--ghost" id="refreshBtn" type="button">Refresh</button>
         </div>
     </div>
 
-    <!-- NOTE: still the original mock row. Wiring this to the tickets table is
-         a separate job from the pricing CMS. -->
+    <div id="alertSlot"></div>
+
+    <div class="filters" id="filters">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="new" aria-pressed="false">New</button>
+        <button type="button" data-filter="contacted" aria-pressed="false">Contacted</button>
+        <button type="button" data-filter="won" aria-pressed="false">Won</button>
+        <button type="button" data-filter="lost" aria-pressed="false">Lost</button>
+    </div>
+
     <div class="table-wrap">
         <table class="data">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>Received</th>
                     <th>Business</th>
-                    <th>Niche</th>
-                    <th>Type</th>
+                    <th>Contact</th>
+                    <th>Trade</th>
+                    <th>Plan</th>
+                    <th>Source</th>
                     <th>Status</th>
-                    <th>Actions</th>
                 </tr>
             </thead>
-            <tbody id="ticketsBody">
-                <tr>
-                    <td>tk_1a2b</td>
-                    <td>Bob's Autobody</td>
-                    <td>autobody</td>
-                    <td>new</td>
-                    <td><span class="pill">New</span></td>
-                    <td><button class="btn btn--ghost" style="padding:0.4rem 0.8rem;font-size:var(--text-sm)">View</button></td>
-                </tr>
+            <tbody id="rows">
+                <tr><td colspan="7" class="empty">Loading…</td></tr>
             </tbody>
         </table>
     </div>
 </main>
+
+<script>
+(function () {
+    'use strict';
+
+    // The coded values the public forms write. Kept in one place so the table
+    // never shows raw slugs like "inspired-by" to a human.
+    const SOURCE_LABELS = {
+        'claim':       { text: 'This is my business', cls: 'pill--claim' },
+        'inspired-by': { text: 'Wants one like it',   cls: 'pill--demo' },
+        'new':         { text: 'Direct',              cls: 'pill--direct' }
+    };
+
+    const PLAN_LABELS = {
+        starter:  'Starter',
+        complete: 'Complete',
+        care:     'Care Plan',
+        unsure:   'Not sure yet'
+    };
+
+    const PROJECT_LABELS = {
+        rebuild: 'Rebuild existing site',
+        new:     'First website',
+        refresh: 'Freshen up what they have',
+        unsure:  'Not sure yet'
+    };
+
+    const STATUSES = ['new', 'contacted', 'won', 'lost'];
+
+    const $rows = document.getElementById('rows');
+    const $status = document.getElementById('status');
+    const $alertSlot = document.getElementById('alertSlot');
+    const $filters = document.getElementById('filters');
+
+    let tickets = [];
+    let filter = 'all';
+    let openId = null;
+
+    const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => (
+        { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+    ));
+
+    function setStatus(text, cls) {
+        $status.textContent = text;
+        $status.className = 'status' + (cls ? ' status--' + cls : '');
+    }
+
+    function showAlert(message) {
+        $alertSlot.innerHTML = `<div class="alert alert--error">${esc(message)}</div>`;
+    }
+
+    function when(iso) {
+        if (!iso) return '—';
+        const d = new Date(iso);
+        if (isNaN(d)) return '—';
+        return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }) +
+               ' ' + d.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit' });
+    }
+
+    function sourcePill(t) {
+        const meta = SOURCE_LABELS[t.type] || SOURCE_LABELS['new'];
+        const ref = t.reference
+            ? `<div class="sub">${esc(t.reference)}</div>`
+            : '';
+        return `<span class="pill ${meta.cls}">${meta.text}</span>${ref}`;
+    }
+
+    function planCell(t) {
+        if (!t.plan) return '<span class="sub">—</span>';
+        return `<span class="pill pill--plan">${esc(PLAN_LABELS[t.plan] || t.plan)}</span>`;
+    }
+
+    // ---- Rendering ---------------------------------------------------------
+
+    function rowHtml(t) {
+        const status = STATUSES.includes(t.status) ? t.status : 'new';
+        return `
+            <tr data-id="${esc(t.id)}" style="cursor:pointer">
+                <td class="sub">${when(t.created_at)}</td>
+                <td>
+                    <span class="biz">${esc(t.business_name) || '—'}</span>
+                    ${t.url ? `<div class="sub">${esc(t.url.replace(/^https?:\/\//, ''))}</div>` : ''}
+                </td>
+                <td>
+                    ${esc(t.contact_name) || '—'}
+                    <div class="sub">${esc(t.phone) || ''}</div>
+                </td>
+                <td class="sub">${esc(t.niche) || '—'}</td>
+                <td>${planCell(t)}</td>
+                <td>${sourcePill(t)}</td>
+                <td><span class="pill pill--${status}">${status}</span></td>
+            </tr>
+        `;
+    }
+
+    function detailHtml(t) {
+        const status = STATUSES.includes(t.status) ? t.status : 'new';
+        const buttons = STATUSES
+            .filter(s => s !== status)
+            .map(s => `<button class="btn btn--ghost" data-set-status="${s}" data-id="${esc(t.id)}"
+                               style="padding:0.4rem 0.8rem;font-size:var(--text-sm)">Mark ${s}</button>`)
+            .join('');
+
+        return `
+            <tr class="row-detail" data-detail-for="${esc(t.id)}">
+                <td colspan="7">
+                    <div class="detail-grid">
+                        <div><dt>Email</dt><dd><a href="mailto:${esc(t.email)}">${esc(t.email) || '—'}</a></dd></div>
+                        <div><dt>Phone</dt><dd><a href="tel:${esc(t.phone)}">${esc(t.phone) || '—'}</a></dd></div>
+                        <div><dt>Current site</dt><dd>${t.url ? `<a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.url)}</a>` : '—'}</dd></div>
+                        <div><dt>Wants</dt><dd>${esc(PROJECT_LABELS[t.project_type] || t.project_type || '—')}</dd></div>
+                        <div><dt>Plan</dt><dd>${esc(PLAN_LABELS[t.plan] || t.plan || '—')}</dd></div>
+                        <div><dt>From demo</dt><dd>${esc(t.reference) || '—'}</dd></div>
+                        <div><dt>Ticket id</dt><dd class="sub">${esc(t.id)}</dd></div>
+                    </div>
+
+                    ${t.notes ? `<div class="detail-notes">${esc(t.notes)}</div>` : ''}
+
+                    <div class="status-actions">
+                        <span class="sub">Status:</span>
+                        <span class="pill pill--${status}">${status}</span>
+                        ${buttons}
+                    </div>
+                </td>
+            </tr>
+        `;
+    }
+
+    function render() {
+        const list = filter === 'all'
+            ? tickets
+            : tickets.filter(t => (t.status || 'new') === filter);
+
+        if (!list.length) {
+            $rows.innerHTML = `<tr><td colspan="7" class="empty">${
+                tickets.length ? 'Nothing with that status.' : 'No tickets yet.'
+            }</td></tr>`;
+            return;
+        }
+
+        $rows.innerHTML = list.map(t =>
+            rowHtml(t) + (openId === t.id ? detailHtml(t) : '')
+        ).join('');
+    }
+
+    // ---- Data --------------------------------------------------------------
+
+    async function load() {
+        setStatus('Loading…', 'saving');
+        $alertSlot.innerHTML = '';
+
+        try {
+            const res = await sbFetch('/rest/v1/tickets?select=*&order=created_at.desc');
+
+            if (!res.ok) {
+                const body = await res.text();
+                if (res.status === 401 || res.status === 403) {
+                    showAlert('Your session expired, or this account is not in the admins allowlist. Sign out and back in.');
+                } else {
+                    showAlert(`Could not load tickets (${res.status}). ${body}`);
+                }
+                setStatus('Failed', 'error');
+                $rows.innerHTML = '<tr><td colspan="7" class="empty">—</td></tr>';
+                return;
+            }
+
+            tickets = await res.json();
+            render();
+            setStatus(`${tickets.length} ticket${tickets.length === 1 ? '' : 's'}`, 'ok');
+        } catch {
+            showAlert('Could not reach the server. Check your connection and try Refresh.');
+            setStatus('Offline', 'error');
+        }
+    }
+
+    async function setTicketStatus(id, status) {
+        setStatus('Saving…', 'saving');
+        try {
+            const res = await sbFetch(`/rest/v1/tickets?id=eq.${encodeURIComponent(id)}`, {
+                method: 'PATCH',
+                headers: { 'Prefer': 'return=minimal' },
+                body: JSON.stringify({ status })
+            });
+
+            if (!res.ok) {
+                showAlert(`Could not update that ticket (${res.status}).`);
+                setStatus('Failed', 'error');
+                return;
+            }
+
+            const t = tickets.find(x => x.id === id);
+            if (t) t.status = status;
+            render();
+            setStatus('Saved', 'ok');
+        } catch {
+            showAlert('Could not reach the server. The status was not changed.');
+            setStatus('Offline', 'error');
+        }
+    }
+
+    // ---- Events ------------------------------------------------------------
+
+    $filters.addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-filter]');
+        if (!btn) return;
+        filter = btn.dataset.filter;
+        $filters.querySelectorAll('button').forEach(b =>
+            b.setAttribute('aria-pressed', String(b === btn))
+        );
+        render();
+    });
+
+    $rows.addEventListener('click', (e) => {
+        const statusBtn = e.target.closest('button[data-set-status]');
+        if (statusBtn) {
+            setTicketStatus(statusBtn.dataset.id, statusBtn.dataset.setStatus);
+            return;
+        }
+
+        const row = e.target.closest('tr[data-id]');
+        if (!row) return;
+        // Let links inside a row behave like links.
+        if (e.target.closest('a')) return;
+
+        openId = (openId === row.dataset.id) ? null : row.dataset.id;
+        render();
+    });
+
+    document.getElementById('refreshBtn').addEventListener('click', load);
+
+    document.addEventListener('DOMContentLoaded', () => {
+        if (sbIsSignedIn()) load();
+    });
+})();
+</script>
 
 </body>
 </html>
