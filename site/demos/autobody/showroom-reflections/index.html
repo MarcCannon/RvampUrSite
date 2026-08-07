@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Showroom Reflections | Luxury Mobile Auto Detailing</title>
+    <meta name="description" content="White-glove mobile auto detailing, paint correction, and IGL Ceramic Coating in Fishkill and the Hudson Valley.">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="img/favicon.png">
+
+    <!-- Fonts: Cinzel for luxury headers, Inter for clean body -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Shared Design Tokens -->
+    <link rel="stylesheet" href="../../../assets/css/tokens.css">
+
+    <style>
+        /* Base & Resets - Ultra Luxury Vibe */
+        :root {
+            --brand-primary: #b91c1c; /* Deep, rich red */
+            --brand-dark: #0a0a0a; /* True black/dark grey */
+            --brand-chrome: #e5e7eb; /* Soft silver/chrome */
+            --gold-accent: #d4af37; /* Subtle metallic gold for luxury touch */
+        }
+        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: var(--brand-dark); color: #f8fafc; line-height: 1.7; font-weight: 300; }
+        a { text-decoration: none; color: inherit; }
+        
+        /* Typography */
+        h1, h2, h3, h4 { font-family: 'Cinzel', serif; font-weight: 600; letter-spacing: 1px; }
+        
+        /* Navbar */
+        .navbar {
+            position: fixed; top: 0; width: 100%; z-index: 100;
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1.2rem 6%;
+            transition: all 0.4s ease;
+        }
+        .navbar .logo img { height: 50px; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-size: 0.9rem; letter-spacing: 2px; text-transform: uppercase; color: var(--brand-chrome); transition: color 0.3s; }
+        .nav-links a:hover { color: var(--brand-primary); }
+        .cta-button {
+            background: transparent; color: #fff;
+            padding: 0.8rem 2rem; border-radius: 2px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+            border: 1px solid var(--brand-primary);
+            transition: all 0.4s ease;
+            position: relative; overflow: hidden;
+        }
+        .cta-button:hover {
+            background: var(--brand-primary);
+            box-shadow: 0 0 20px rgba(185, 28, 28, 0.5);
+        }
+
+        /* Hero */
+        .hero {
+            display: flex; align-items: center; min-height: 100vh;
+            padding: 0 6%; gap: 5rem;
+            background: radial-gradient(circle at 30% 30%, rgba(185,28,28,0.08) 0%, transparent 60%);
+        }
+        .hero-text { flex: 1; padding-top: 6rem; }
+        .hero-text h1 { font-size: 4.5rem; line-height: 1.1; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: -2px; }
+        .hero-text h1 span { color: var(--brand-primary); display: block; font-size: 3rem; margin-top: 0.5rem; }
+        .hero-text p { font-size: 1.2rem; color: #94a3b8; margin-bottom: 3rem; max-width: 500px; font-weight: 300; }
+        .hero-image { flex: 1; display: flex; justify-content: center; position: relative; }
+        .hero-image::after {
+            content: ''; position: absolute; inset: -20px;
+            border: 1px solid rgba(185,28,28,0.3); border-radius: 4px;
+            z-index: -1;
+        }
+        .hero-image img {
+            width: 100%; max-width: 650px; border-radius: 2px;
+            box-shadow: 0 30px 60px -20px rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.08);
+            filter: contrast(1.05) saturate(1.1);
+        }
+        
+        /* Trust Ribbon */
+        .trust-ribbon {
+            background: #050505; padding: 3rem 6%;
+            display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.02);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+        .trust-item { display: flex; align-items: center; gap: 1rem; color: var(--brand-chrome); font-family: 'Cinzel', serif; font-size: 1.1rem; letter-spacing: 1px;}
+        .trust-item svg { fill: var(--brand-primary); width: 20px; height: 20px; }
+
+        /* Services */
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-header h2 { font-size: 3.2rem; margin-bottom: 1rem; color: #fff; }
+        .section-header p { color: var(--brand-primary); font-size: 1rem; text-transform: uppercase; letter-spacing: 3px; }
+        
+        .services { padding: 10rem 6%; background: var(--brand-dark); }
+        .service-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+        .service-card {
+            background: #080808; border: 1px solid rgba(255,255,255,0.03);
+            padding: 4rem 3rem; border-radius: 2px; text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: var(--brand-primary); transform: scaleX(0); transition: transform 0.4s ease;
+        }
+        .service-card:hover { transform: translateY(-10px); background: #0c0c0c; }
+        .service-card:hover::before { transform: scaleX(1); }
+        .service-card h3 { font-size: 1.6rem; margin-bottom: 1.5rem; color: #e2e8f0; }
+        .service-card p { color: #64748b; margin-bottom: 2.5rem; font-size: 0.95rem; }
+        .service-card a { font-size: 0.85rem; letter-spacing: 2px; text-transform: uppercase; color: var(--brand-chrome); border-bottom: 1px solid var(--brand-primary); padding-bottom: 4px; transition: color 0.3s; }
+        .service-card a:hover { color: #fff; }
+
+        /* Gallery */
+        .gallery-section { padding: 10rem 6%; background: #050505; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 2rem;
+        }
+        .gallery-item { overflow: hidden; border-radius: 2px; position: relative; aspect-ratio: 4/3; }
+        .gallery-item::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 50%);
+            opacity: 0; transition: opacity 0.4s ease;
+        }
+        .gallery-item:hover::after { opacity: 1; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; filter: grayscale(20%); }
+        .gallery-item:hover img { transform: scale(1.08); filter: grayscale(0%); }
+
+        /* Reviews */
+        .reviews { padding: 10rem 6%; background: var(--brand-dark); }
+        .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 3rem; }
+        .review-card {
+            background: transparent; padding: 0; border: none;
+            border-left: 2px solid var(--brand-primary); padding-left: 2rem;
+        }
+        .stars { color: var(--brand-primary); margin-bottom: 1.5rem; font-size: 1.1rem; letter-spacing: 2px; }
+        .review-text { font-family: 'Cinzel', serif; font-size: 1.2rem; color: #cbd5e1; margin-bottom: 2rem; line-height: 1.8; }
+        .reviewer { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: #64748b; }
+
+        /* Form */
+        .quote-section { padding: 10rem 6%; background: #050505; text-align: center; }
+        .form-container { max-width: 600px; margin: 0 auto; }
+        .form-container input, .form-container textarea {
+            width: 100%; padding: 1.2rem 1.5rem; margin-bottom: 1.5rem;
+            background: transparent; border: 1px solid rgba(255,255,255,0.1);
+            color: #fff; border-radius: 0; font-family: inherit; font-weight: 300;
+            transition: border-color 0.3s;
+        }
+        .form-container input:focus, .form-container textarea:focus { outline: none; border-color: var(--brand-primary); }
+        .form-container button {
+            width: 100%; padding: 1.2rem; background: var(--brand-primary); color: #fff;
+            border: none; font-family: 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 2px; cursor: pointer;
+            transition: all 0.4s; margin-top: 1rem;
+        }
+        .form-container button:hover { background: #991b1b; }
+
+        /* Footer */
+        footer { padding: 6rem 6% 3rem; background: #020202; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-info { margin-bottom: 4rem; color: #64748b; font-weight: 300; }
+        .footer-info p { margin-bottom: 0.8rem; font-size: 0.9rem; letter-spacing: 1px; }
+        .footer-info strong { color: #fff; font-family: 'Cinzel', serif; font-size: 1.5rem; letter-spacing: 2px; font-weight: 600; display: block; margin-bottom: 1rem;}
+        .disclaimer { font-size: 0.75rem; color: #475569; max-width: 800px; margin: 0 auto; padding-top: 3rem; border-top: 1px solid rgba(255,255,255,0.02); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; padding-top: 8rem; gap: 3rem;}
+            .hero-text h1 { font-size: 3rem; }
+            .hero-text h1 span { font-size: 2rem; }
+            .hero-image::after { display: none; }
+            .nav-links { display: none; }
+            .trust-ribbon { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="logo">
+            <img src="img/logo.webp" alt="Showroom Reflections Logo">
+        </div>
+        <nav class="nav-links">
+            <a href="#services">Expertise</a>
+            <a href="#gallery">Portfolio</a>
+            <a href="#reviews">Clients</a>
+        </nav>
+        <a href="#quote" class="cta-button">Reserve a Detail</a>
+    </header>
+
+    <!-- Hero -->
+    <main>
+        <section class="hero">
+            <div class="hero-text">
+                <h1>Showroom Shine <span>Delivered.</span></h1>
+                <p>White-glove mobile auto detailing, elite paint correction, and certified IGL Ceramic Coating. We bring uncompromising perfection directly to your estate in Fishkill and the Hudson Valley.</p>
+                <a href="#quote" class="cta-button" style="display: inline-block; background: var(--brand-primary); margin-top: 1rem;">Reserve Your Appointment</a>
+            </div>
+            <div class="hero-image">
+                <img src="img/hero-rolls.webp" alt="Detailed Rolls Royce">
+            </div>
+        </section>
+
+        <!-- Trust Ribbon -->
+        <section class="trust-ribbon">
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                IGL Ceramic Certified
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                Elite Paint Correction
+            </div>
+            <div class="trust-item">
+                <svg viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+                Bespoke Mobile Service
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section id="services" class="services">
+            <div class="section-header">
+                <p>Our Expertise</p>
+                <h2>Uncompromising Perfection</h2>
+            </div>
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>Concierge Interior Detailing</h3>
+                    <p>A meticulous restoration of your cabin. We extract, sanitize, and condition every surface, leaving the interior looking and smelling as if it just left the showroom floor.</p>
+                    <a href="#quote">Request Consultation</a>
+                </div>
+                <div class="service-card">
+                    <h3>Bespoke Paint Correction</h3>
+                    <p>Multi-stage compounding and polishing executed with surgical precision. We eliminate swirl marks and oxidation to reveal a flawless, mirror-like finish.</p>
+                    <a href="#quote">Request Consultation</a>
+                </div>
+                <div class="service-card">
+                    <h3>IGL Ceramic Coating</h3>
+                    <p>The ultimate shield for your investment. Our certified coatings offer years of unmatched gloss, hydrophobic protection, and resistance to the elements.</p>
+                    <a href="#quote">Request Consultation</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery -->
+        <section id="gallery" class="gallery-section">
+            <div class="section-header">
+                <p>The Portfolio</p>
+                <h2>A Masterclass in Gloss</h2>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="img/work-mercedes.webp" alt="Mercedes Detailing"></div>
+                <div class="gallery-item"><img src="img/work-bmw.webp" alt="BMW Paint Correction"></div>
+                <div class="gallery-item"><img src="img/work-cadillac.webp" alt="Cadillac Detail"></div>
+                <div class="gallery-item"><img src="img/work-macan.webp" alt="Porsche Macan Ceramic Coating"></div>
+                <div class="gallery-item"><img src="img/work-colorado.webp" alt="Chevy Colorado ZR2"></div>
+                <div class="gallery-item"><img src="img/work-focusrs.webp" alt="Ford Focus RS"></div>
+            </div>
+        </section>
+
+        <!-- Reviews -->
+        <section id="reviews" class="reviews">
+            <div class="section-header">
+                <p>Clientele</p>
+                <h2>Trusted by the Hudson Valley Elite</h2>
+            </div>
+            <div class="review-grid">
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"Incredible convenience. Matt arrived at my workplace and meticulously transformed my vehicle while I was in the office. White-glove service at its finest."</p>
+                    <p class="reviewer">— Diane M.</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The ceramic coating application is flawless. My vehicle possesses a depth and gloss that exceeds the day I purchased it. True artisans."</p>
+                    <p class="reviewer">— Client in Wappingers Falls</p>
+                </div>
+                <div class="review-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="review-text">"The premier paint correction service in the region. They surgically removed years of wash damage. The resulting mirror finish is staggering."</p>
+                    <p class="reviewer">— Client in Hopewell Junction</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quote Form -->
+        <section id="quote" class="quote-section">
+            <div class="section-header">
+                <p>Inquiries</p>
+                <h2>Commission a Detail</h2>
+            </div>
+            <div class="form-container">
+                <form onsubmit="event.preventDefault(); alert('In a live environment, this would submit to the Business Site Studio intake system.');">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="tel" placeholder="Phone Number" required>
+                    <input type="text" placeholder="Vehicle Make, Model, and Year" required>
+                    <textarea rows="4" placeholder="Detail your service requirements (e.g. Paint Correction, Ceramic Coating)" required></textarea>
+                    <button type="submit">Submit Inquiry</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-info">
+            <img src="img/logo-mark.webp" alt="SR Mark" style="height: 60px; margin-bottom: 2rem; opacity: 0.3;">
+            <strong>Showroom Reflections</strong>
+            <p>Matt Gentile | (845) 380-2426</p>
+            <p>Exclusive Mobile Detailing across Fishkill & the Hudson Valley</p>
+        </div>
+        
+        <!-- CRITICAL DISCLAIMER -->
+        <div class="disclaimer">
+            <p>Disclaimer: We do not own the rights to the materials and images on this page. They are used strictly for demonstration purposes to show what our web design product looks like.</p>
+        </div>
+    </footer>
+
+    <!-- Agent Handoff popup injection -->
+    <script src="../../../assets/js/purchase-popup.js"></script>
+    <script>
+        if (typeof initPurchasePopup === 'function') {
+            initPurchasePopup('Showroom Reflections', 'showroom-reflections');
+        }
+    </script>
+</body>
+</html>
