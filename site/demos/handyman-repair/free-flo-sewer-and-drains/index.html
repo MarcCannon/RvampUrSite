@@ -627,6 +627,126 @@ h1, h2, h3, h4 {
 }
 .emerg__num:hover { transform: translateY(-2px); }
 
+/* ---------- the system diagram ----------
+   Cross-section of the water's journey through a Hudson Valley property.
+   Each numbered node is one of their services, pinned where it actually sits. */
+.sys { margin-top: 2.4rem; }
+.sys__scroll {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    border-radius: var(--r);
+    border: 1px solid var(--line-dark);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.01));
+}
+.sys__svg { display: block; width: 100%; min-width: 860px; height: auto; }
+.sys__hint {
+    display: none;
+    font-size: 0.8rem;
+    color: var(--dim);
+    margin: 0.7rem 0 0;
+    text-align: center;
+}
+@media (max-width: 900px) { .sys__hint { display: block; } }
+
+/* soil + structure */
+.sys .ground { fill: rgba(255, 255, 255, 0.045); }
+.sys .soil { stroke: rgba(255, 255, 255, 0.09); stroke-width: 2; }
+.sys .house { fill: none; stroke: rgba(255, 255, 255, 0.3); stroke-width: 2.5; stroke-linejoin: round; }
+.sys .fixture { fill: none; stroke: rgba(255, 255, 255, 0.42); stroke-width: 2.5; stroke-linecap: round; }
+.sys .vessel { fill: rgba(255, 255, 255, 0.06); stroke: rgba(255, 255, 255, 0.38); stroke-width: 2.5; }
+.sys .lbl { fill: var(--dim); font-family: var(--body); font-size: 13px; font-weight: 500; }
+.sys .lbl--dim { fill: rgba(255, 255, 255, 0.32); font-size: 12px; }
+
+/* pipe runs — supply flows cyan, waste runs steel */
+.sys .pipe { fill: none; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+.sys .pipe--supply { stroke: var(--flo-hot); opacity: 0.55; }
+.sys .pipe--waste { stroke: #7E99AB; opacity: 0.6; }
+.sys .flowdash {
+    fill: none;
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-dasharray: 3 22;
+    animation: flowdash 1.5s linear infinite;
+}
+.sys .flowdash--supply { stroke: var(--flo-cyan); }
+.sys .flowdash--waste { stroke: #C7DCE9; animation-duration: 2.1s; }
+@keyframes flowdash { to { stroke-dashoffset: -50; } }
+
+/* nodes */
+.sys .node { cursor: pointer; }
+.sys .node__hit { fill: transparent; }
+.sys .node__ring {
+    fill: var(--abyss);
+    stroke: var(--flo-hot);
+    stroke-width: 2.5;
+    transition: r 0.22s var(--ease), stroke 0.22s var(--ease), fill 0.22s var(--ease);
+}
+.sys .node__n {
+    fill: var(--flo-hot);
+    font-family: var(--display);
+    font-size: 14px;
+    font-weight: 800;
+    text-anchor: middle;
+    dominant-baseline: central;
+    pointer-events: none;
+    transition: fill 0.22s var(--ease);
+}
+.sys .node.is-on .node__ring,
+.sys .node:hover .node__ring { fill: var(--flo-hot); r: 19; }
+.sys .node.is-on .node__n,
+.sys .node:hover .node__n { fill: #04222F; }
+.sys .node:focus-visible .node__ring { stroke: #fff; }
+
+/* legend */
+.sys__key {
+    list-style: none;
+    margin: 1.4rem 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+    gap: 0.55rem;
+}
+.sys__key li { margin: 0; }
+.sys__key button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-align: left;
+    font-family: var(--body);
+    font-size: 0.9rem;
+    color: var(--dim2);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--line-dark);
+    border-radius: 11px;
+    padding: 0.6rem 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s var(--ease), border-color 0.2s var(--ease),
+                color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.sys__key button:hover, .sys__key button.is-on {
+    background: rgba(79, 195, 247, 0.14);
+    border-color: var(--flo-hot);
+    color: #fff;
+    transform: translateY(-2px);
+}
+.sys__key b {
+    flex: none;
+    width: 25px; height: 25px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: rgba(79, 195, 247, 0.16);
+    color: var(--flo-hot);
+    font-family: var(--display);
+    font-size: 0.8rem;
+    font-weight: 800;
+}
+.sys__key button:hover b, .sys__key button.is-on b { background: var(--flo-hot); color: #04222F; }
+
+@media (prefers-reduced-motion: reduce) { .sys .flowdash { animation: none; } }
+
 /* ---------- services ---------- */
 .svc {
     display: grid;
@@ -1079,6 +1199,7 @@ h1, h2, h3, h4 {
             </span>
         </a>
         <nav class="nav" aria-label="Main">
+            <a href="#system">The system</a>
             <a href="#services">Services</a>
             <a href="#camera">Sewer camera</a>
             <a href="#septic">Septic</a>
@@ -1180,7 +1301,138 @@ h1, h2, h3, h4 {
         </div>
     </section>
 
+    <section class="sect sect--dark" id="system">
+        <div class="wrap">
+            <p class="eyebrow rise">The whole system</p>
+            <h2 class="h2 rise">From the well <span class="flow">to the leach field.</span></h2>
+            <p class="lede rise">
+                Most drain companies stop at the foundation wall. Most plumbers do not own an
+                excavator. Free Flo works the entire run &mdash; the water that comes into your
+                house and the water that leaves it. Here is where each job sits.
+            </p>
+
+            <div class="sys rise">
+                <div class="sys__scroll">
+                    <svg class="sys__svg" viewBox="0 0 1180 520" role="img"
+                         aria-label="Cross-section of a property's plumbing: a well feeds a pressure tank, filtration and water heater inside the house, fixtures drain to a main sewer line with a cleanout, which runs to a septic tank and leach field.">
+
+                        <!-- ground -->
+                        <rect class="ground" x="0" y="300" width="1180" height="220"></rect>
+                        <line class="soil" x1="0" y1="300" x2="1180" y2="300"></line>
+
+                        <!-- house shell -->
+                        <path class="house" d="M215 300 V170 L360 92 L505 170 V300"></path>
+                        <line class="house" x1="215" y1="228" x2="505" y2="228"></line>
+
+                        <!-- ============ SUPPLY SIDE ============ -->
+                        <!-- well casing -->
+                        <path class="vessel" d="M78 292 h44 v190 h-44 z"></path>
+                        <path class="fixture" d="M70 292 h60"></path>
+                        <path class="pipe pipe--supply" d="M100 470 V282 H215"></path>
+                        <path class="flowdash flowdash--supply" d="M100 470 V282 H215"></path>
+
+                        <!-- pressure tank -->
+                        <rect class="vessel" x="243" y="243" width="34" height="57" rx="7"></rect>
+                        <!-- filter / UV -->
+                        <rect class="vessel" x="308" y="248" width="26" height="52" rx="5"></rect>
+                        <rect class="vessel" x="344" y="256" width="20" height="44" rx="4"></rect>
+                        <!-- water heater -->
+                        <rect class="vessel" x="404" y="238" width="40" height="62" rx="8"></rect>
+
+                        <path class="pipe pipe--supply" d="M215 282 H243 M277 268 H308 M334 268 H344 M364 268 H404 M444 262 H478 V196 H392"></path>
+                        <path class="flowdash flowdash--supply" d="M215 282 H243 M277 268 H308 M364 268 H404 M444 262 H478 V196 H392"></path>
+
+                        <!-- fixtures upstairs: sink + toilet -->
+                        <path class="fixture" d="M300 196 h56 v20 h-56 z M328 196 v-14 h-14"></path>
+                        <path class="fixture" d="M392 214 h30 v-22 h-30 z M400 192 v-14 h16 v14"></path>
+                        <path class="pipe pipe--supply" d="M392 196 H356"></path>
+
+                        <!-- ============ WASTE SIDE ============ -->
+                        <path class="pipe pipe--waste" d="M328 216 V262 H560 V286 H648 L720 330 H900"></path>
+                        <path class="flowdash flowdash--waste" d="M328 216 V262 H560 V286 H648 L720 330 H900"></path>
+                        <path class="pipe pipe--waste" d="M407 214 V262"></path>
+
+                        <!-- cleanout riser -->
+                        <path class="pipe pipe--waste" d="M792 352 V296"></path>
+                        <path class="fixture" d="M780 296 h24"></path>
+
+                        <!-- septic tank -->
+                        <rect class="vessel" x="900" y="306" width="112" height="72" rx="8"></rect>
+                        <line class="soil" x1="900" y1="330" x2="1012" y2="330"></line>
+                        <path class="fixture" d="M924 306 v-12 M988 306 v-12"></path>
+
+                        <!-- distribution to leach field -->
+                        <path class="pipe pipe--waste" d="M1012 342 H1062 V392 H1160 M1062 392 V440 H1160 M1062 440 V486 H1160"></path>
+                        <path class="flowdash flowdash--waste" d="M1012 342 H1062 V392 H1160 M1062 440 H1160"></path>
+
+                        <!-- labels -->
+                        <text class="lbl--dim" x="70" y="278">Well</text>
+                        <text class="lbl--dim" x="248" y="128">House</text>
+                        <text class="lbl--dim" x="906" y="296">Septic tank</text>
+                        <text class="lbl--dim" x="1064" y="372">Leach field</text>
+                        <text class="lbl--dim" x="16" y="322">Grade</text>
+
+                        <!-- ============ NODES ============ -->
+                        <g class="node" data-k="1" tabindex="0" role="button" aria-label="1. Well pump and pressure tank">
+                            <circle class="node__hit" cx="100" cy="400" r="26"></circle>
+                            <circle class="node__ring" cx="100" cy="400" r="16"></circle>
+                            <text class="node__n" x="100" y="400">1</text>
+                        </g>
+                        <g class="node" data-k="2" tabindex="0" role="button" aria-label="2. Filtration, softener and UV">
+                            <circle class="node__hit" cx="321" cy="222" r="26"></circle>
+                            <circle class="node__ring" cx="321" cy="222" r="16"></circle>
+                            <text class="node__n" x="321" y="222">2</text>
+                        </g>
+                        <g class="node" data-k="3" tabindex="0" role="button" aria-label="3. Water heater">
+                            <circle class="node__hit" cx="466" cy="272" r="26"></circle>
+                            <circle class="node__ring" cx="466" cy="272" r="16"></circle>
+                            <text class="node__n" x="466" y="272">3</text>
+                        </g>
+                        <g class="node" data-k="4" tabindex="0" role="button" aria-label="4. Fixtures and general plumbing">
+                            <circle class="node__hit" cx="356" cy="158" r="26"></circle>
+                            <circle class="node__ring" cx="356" cy="158" r="16"></circle>
+                            <text class="node__n" x="356" y="158">4</text>
+                        </g>
+                        <g class="node" data-k="5" tabindex="0" role="button" aria-label="5. Drain lines">
+                            <circle class="node__hit" cx="596" cy="262" r="26"></circle>
+                            <circle class="node__ring" cx="596" cy="262" r="16"></circle>
+                            <text class="node__n" x="596" y="262">5</text>
+                        </g>
+                        <g class="node" data-k="6" tabindex="0" role="button" aria-label="6. Sewer camera and cleanout">
+                            <circle class="node__hit" cx="792" cy="268" r="26"></circle>
+                            <circle class="node__ring" cx="792" cy="268" r="16"></circle>
+                            <text class="node__n" x="792" y="268">6</text>
+                        </g>
+                        <g class="node" data-k="7" tabindex="0" role="button" aria-label="7. Main sewer line">
+                            <circle class="node__hit" cx="700" cy="344" r="26"></circle>
+                            <circle class="node__ring" cx="700" cy="344" r="16"></circle>
+                            <text class="node__n" x="700" y="344">7</text>
+                        </g>
+                        <g class="node" data-k="8" tabindex="0" role="button" aria-label="8. Septic tank and leach field">
+                            <circle class="node__hit" cx="1040" cy="440" r="26"></circle>
+                            <circle class="node__ring" cx="1040" cy="440" r="16"></circle>
+                            <text class="node__n" x="1040" y="440">8</text>
+                        </g>
+                    </svg>
+                </div>
+                <p class="sys__hint">Swipe the diagram to follow the run &rarr;</p>
+
+                <ul class="sys__key">
+                    <li><button type="button" data-k="1"><b>1</b> Well pump &amp; pressure tank</button></li>
+                    <li><button type="button" data-k="2"><b>2</b> Filtration, softener &amp; UV</button></li>
+                    <li><button type="button" data-k="3"><b>3</b> Water heater</button></li>
+                    <li><button type="button" data-k="4"><b>4</b> Fixtures &amp; general plumbing</button></li>
+                    <li><button type="button" data-k="5"><b>5</b> Drain lines</button></li>
+                    <li><button type="button" data-k="6"><b>6</b> Sewer camera &amp; cleanout</button></li>
+                    <li><button type="button" data-k="7"><b>7</b> Main sewer line</button></li>
+                    <li><button type="button" data-k="8"><b>8</b> Septic tank &amp; leach field</button></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <section class="sect sect--paper" id="services">
+        <span class="joint" aria-hidden="true"><span class="joint__flow"></span></span>
         <div class="wrap">
             <p class="eyebrow rise">What we do</p>
             <h2 class="h2 rise">Plumbing, drains and septic &mdash; <span class="flow">start to finish.</span></h2>
@@ -1921,6 +2173,31 @@ h1, h2, h3, h4 {
         window.requestAnimationFrame(flow);
     }, { passive: true });
     flow();
+
+    /* system diagram: hovering a node highlights its legend entry and vice versa */
+    var sys = document.querySelector('.sys');
+    if (sys) {
+        var nodes = sys.querySelectorAll('.node');
+        var keys = sys.querySelectorAll('.sys__key button');
+
+        var mark = function (k, on) {
+            nodes.forEach(function (n) {
+                if (n.getAttribute('data-k') === k) n.classList.toggle('is-on', on);
+            });
+            keys.forEach(function (b) {
+                if (b.getAttribute('data-k') === k) b.classList.toggle('is-on', on);
+            });
+        };
+        var bind = function (el) {
+            var k = el.getAttribute('data-k');
+            el.addEventListener('mouseenter', function () { mark(k, true); });
+            el.addEventListener('mouseleave', function () { mark(k, false); });
+            el.addEventListener('focus', function () { mark(k, true); });
+            el.addEventListener('blur', function () { mark(k, false); });
+        };
+        nodes.forEach(bind);
+        keys.forEach(bind);
+    }
 
     var form = document.getElementById('quoteForm');
     if (!form) return;
