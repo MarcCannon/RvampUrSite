@@ -31,6 +31,16 @@
             "live_url": ""
         },
         {
+            "slug": "hyde-park-auto-repair",
+            "niche": "autobody",
+            "name": "Hyde Park Auto Repair",
+            "tagline": "Auto and motorcycle service, NYS inspection and custom metal flake paint.",
+            "location": "Hyde Park, NY",
+            "thumb": "demos/autobody/hyde-park-auto-repair/img/thumb.webp",
+            "purchased": false,
+            "live_url": ""
+        },
+        {
             "slug": "free-flo-sewer-and-drains",
             "niche": "handyman-repair",
             "name": "Free Flo Sewer and Drains LLC",

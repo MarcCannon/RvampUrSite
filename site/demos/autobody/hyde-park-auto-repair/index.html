@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hyde Park Auto Repair | Auto &amp; Motorcycle Service, NYS Inspection &amp; Custom Paint in Hyde Park, NY</title>
+<meta name="description" content="Small business. Big heart. ASE certified auto and motorcycle repair, NYS inspection, tires, brakes and show-quality custom paint at 4152 Albany Post Road, Hyde Park NY. 5.0 on Google. Call 845-233-4910.">
+<meta name="theme-color" content="#0A0A0D">
+<link rel="icon" type="image/png" href="img/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hyde Park Auto Repair | Hyde Park, NY">
+<meta property="og:description" content="Caring in full color. ASE certified auto and motorcycle repair, NYS inspection and custom metal flake paint on Albany Post Road since day one.">
+<meta property="og:image" content="img/og.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="preload" as="image" href="img/hero-ghost.webp" fetchpriority="high">
+
+<style>
+:root {
+    --ink0: #0A0A0D;
+    --ink1: #101015;
+    --ink2: #17171E;
+    --ink3: #23232C;
+    --ink4: #30303B;
+
+    --paper:  #F7F5F2;
+    --paper2: #EBE7E1;
+    --paper3: #DDD8D0;
+    --white:  #FFFFFF;
+
+    --text:     #131318;
+    --text-mid: #55555F;
+    --text-dim: #7A7A86;
+
+    --dim:  #93939F;
+    --dim2: #C8C8D2;
+
+    --red:      #C0202A;
+    --red-hot:  #E33742;
+    --red-deep: #831517;
+
+    --mag:  #E967DD;
+    --vio:  #8A5AE0;
+    --blu:  #2E8FD6;
+    --tea:  #2FC6B6;
+    --gld:  #E8B23C;
+
+    --grad-flake: linear-gradient(100deg, var(--mag) 0%, var(--vio) 26%, var(--blu) 52%, var(--tea) 75%, var(--gld) 100%);
+    --grad-red:   linear-gradient(100deg, var(--red-hot), var(--red) 60%, var(--red-deep));
+
+    --line:      #DAD5CD;
+    --line-dark: rgba(255, 255, 255, 0.10);
+    --line-dark2:rgba(255, 255, 255, 0.19);
+
+    --display: 'Oswald', 'Arial Narrow', system-ui, sans-serif;
+    --body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    --wrap: 1220px;
+    --pad: clamp(1.15rem, 4vw, 2.6rem);
+    --sect: clamp(3.6rem, 7.5vw, 6.8rem);
+    --r: 14px;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --shadow: 0 1px 2px rgba(10, 10, 13, 0.06), 0 12px 34px rgba(10, 10, 13, 0.10);
+    --shadow-lg: 0 2px 10px rgba(10, 10, 13, 0.10), 0 30px 80px rgba(10, 10, 13, 0.26);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 82px;
+}
+
+body {
+    margin: 0;
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--text);
+    background: var(--ink0);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+    font-family: var(--display);
+    font-weight: 600;
+    line-height: 1.03;
+    letter-spacing: 0.005em;
+    text-transform: uppercase;
+    margin: 0 0 0.6rem;
+}
+
+.wrap { width: 100%; max-width: var(--wrap); margin: 0 auto; padding: 0 var(--pad); }
+.sect { padding: var(--sect) 0; position: relative; overflow-x: clip; }
+.sect--dark  { background: var(--ink1); color: var(--dim2); }
+.sect--dark2 { background: var(--ink0); color: var(--dim2); }
+.sect--paper { background: var(--paper); color: var(--text); }
+.sect--paper2{ background: var(--paper2); color: var(--text); }
+.sect--dark h2, .sect--dark h3, .sect--dark h4,
+.sect--dark2 h2, .sect--dark2 h3, .sect--dark2 h4 { color: #fff; }
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: var(--display);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin: 0 0 0.9rem;
+}
+.eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 3px;
+    border-radius: 2px;
+    background: var(--grad-flake);
+}
+.sect--dark .eyebrow, .sect--dark2 .eyebrow { color: var(--dim); }
+
+.h2 { font-size: clamp(2.1rem, 5.2vw, 3.6rem); font-weight: 700; letter-spacing: -0.005em; }
+.h2 .flake {
+    background: var(--grad-flake);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.lede {
+    font-size: clamp(1.02rem, 1.5vw, 1.14rem);
+    color: var(--text-mid);
+    max-width: 62ch;
+    margin: 0 0 1.4rem;
+}
+.sect--dark .lede, .sect--dark2 .lede { color: var(--dim2); }
+
+.rise {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.rise.seen { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise { opacity: 1; transform: none; transition: none; }
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-height: 52px;
+    padding: 0.85rem 1.6rem;
+    border: 0;
+    border-radius: 8px;
+    font-family: var(--display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease), background 0.18s var(--ease);
+}
+.btn svg { width: 20px; height: 20px; fill: currentColor; flex: none; }
+.btn:hover { transform: translateY(-2px); }
+.btn--call {
+    background: var(--grad-red);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(192, 32, 42, 0.36);
+}
+.btn--call:hover { box-shadow: 0 16px 40px rgba(192, 32, 42, 0.48); }
+.btn--ghost {
+    background: transparent;
+    color: #fff;
+    box-shadow: inset 0 0 0 2px var(--line-dark2);
+}
+.btn--ghost:hover { background: rgba(255, 255, 255, 0.08); }
+.btn--ink {
+    background: var(--ink1);
+    color: #fff;
+    box-shadow: 0 10px 28px rgba(10, 10, 13, 0.24);
+}
+
+.head {
+    position: sticky;
+    top: 0;
+    z-index: 60;
+    background: rgba(10, 10, 13, 0.82);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line-dark);
+}
+.head::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    height: 2px;
+    width: var(--flow, 0%);
+    background: var(--grad-flake);
+}
+.head__in {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    min-height: 72px;
+}
+.brand { display: flex; align-items: center; gap: 0.65rem; margin-right: auto; }
+.brand img { width: 60px; height: 27px; object-fit: contain; flex: none; }
+.brand__txt { display: flex; flex-direction: column; line-height: 1; }
+.brand__name {
+    font-family: var(--display);
+    font-size: 1.03rem;
+    font-weight: 600;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: #fff;
+}
+.brand__sub {
+    font-size: 0.63rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--dim);
+    margin-top: 4px;
+}
+.nav { display: flex; gap: 1.5rem; }
+.nav a {
+    font-family: var(--display);
+    font-size: 0.87rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dim2);
+    padding: 0.35rem 0;
+    position: relative;
+    transition: color 0.18s;
+}
+.nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    height: 2px;
+    background: var(--grad-flake);
+    transition: right 0.28s var(--ease);
+}
+.nav a:hover { color: #fff; }
+.nav a:hover::after { right: 0; }
+.head__call {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0.55rem 1.05rem;
+    border-radius: 8px;
+    background: var(--grad-red);
+    color: #fff;
+    font-family: var(--display);
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+.head__call svg { width: 17px; height: 17px; fill: currentColor; }
+@media (max-width: 1080px) { .nav { display: none; } }
+@media (max-width: 620px) {
+    .head__in { min-height: 64px; }
+    .brand img { width: 46px; height: 21px; }
+    .brand__sub { display: none; }
+    .brand__name { font-size: 0.94rem; line-height: 1.12; }
+    .brand__nb { display: block; }
+}
+@media (max-width: 560px) {
+    .head__call span { display: none; }
+    .head__call { padding: 0.55rem 0.95rem; }
+    .head__call::after { content: 'Call'; }
+}
+
+.hero {
+    position: relative;
+    background: var(--ink0);
+    padding: clamp(2.6rem, 6vw, 4.6rem) 0 clamp(3rem, 6vw, 5rem);
+    overflow: hidden;
+}
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: -30% -10% auto -10%;
+    height: 90%;
+    background:
+        radial-gradient(60% 60% at 20% 30%, rgba(233, 103, 221, 0.16), transparent 70%),
+        radial-gradient(55% 55% at 78% 22%, rgba(46, 143, 214, 0.16), transparent 72%),
+        radial-gradient(45% 45% at 52% 60%, rgba(47, 198, 182, 0.10), transparent 70%);
+    pointer-events: none;
+}
+.hero__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.06fr 0.94fr;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: center;
+}
+.hero__flag {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.42rem 0.9rem 0.42rem 0.6rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px var(--line-dark);
+    font-size: 0.78rem;
+    letter-spacing: 0.04em;
+    color: var(--dim2);
+    margin-bottom: 1.3rem;
+}
+.hero__flag b { color: #fff; font-weight: 600; }
+.pulse {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--tea);
+    box-shadow: 0 0 0 0 rgba(47, 198, 182, 0.7);
+    animation: pulse 2.4s infinite;
+}
+@keyframes pulse {
+    70% { box-shadow: 0 0 0 11px rgba(47, 198, 182, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(47, 198, 182, 0); }
+}
+.hero h1 {
+    font-size: clamp(2.9rem, 7.6vw, 5.6rem);
+    font-weight: 700;
+    line-height: 0.94;
+    color: #fff;
+    margin: 0 0 1.1rem;
+    letter-spacing: -0.008em;
+}
+.hero h1 em {
+    display: block;
+    font-style: normal;
+    background: var(--grad-flake);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.hero__sub {
+    font-size: clamp(1.03rem, 1.7vw, 1.18rem);
+    color: var(--dim2);
+    max-width: 46ch;
+    margin: 0 0 1.7rem;
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-bottom: 1.7rem; }
+.hero__proof {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.85rem 1.1rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05);
+    box-shadow: inset 0 0 0 1px var(--line-dark);
+    max-width: 27rem;
+}
+.hero__score {
+    font-family: var(--display);
+    font-size: 2.1rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+}
+.stars { display: inline-flex; gap: 2px; }
+.stars svg { width: 15px; height: 15px; fill: var(--gld); }
+.hero__proofTxt { font-size: 0.83rem; color: var(--dim2); line-height: 1.45; }
+.hero__proofTxt b { color: #fff; }
+
+.hero__shot { position: relative; margin: 0; }
+.hero__frame {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg), inset 0 0 0 1px var(--line-dark2);
+}
+.hero__frame img { width: 100%; aspect-ratio: 848 / 1080; object-fit: cover; object-position: 50% 46%; }
+.hero__tag {
+    position: absolute;
+    left: 0.9rem;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    padding: 0.7rem 0.95rem;
+    border-radius: 10px;
+    background: rgba(10, 10, 13, 0.74);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: 0.8rem;
+    color: var(--dim2);
+    line-height: 1.5;
+}
+.hero__tag b { color: #fff; display: block; font-family: var(--display); letter-spacing: 0.05em; text-transform: uppercase; font-weight: 500; }
+@media (max-width: 900px) {
+    .hero__grid { grid-template-columns: 1fr; }
+    .hero__shot { order: -1; max-width: 460px; }
+    .hero__frame img { aspect-ratio: 4 / 3; object-position: 50% 38%; }
+}
+
+.strip { background: var(--ink2); border-block: 1px solid var(--line-dark); }
+.strip__in {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--line-dark);
+}
+.fact { background: var(--ink2); padding: 1.5rem 1.2rem; text-align: center; }
+.fact__n {
+    font-family: var(--display);
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.05;
+}
+.fact__n span {
+    background: var(--grad-flake);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.fact__l {
+    font-size: 0.76rem;
+    color: var(--dim);
+    line-height: 1.45;
+    margin-top: 0.35rem;
+    letter-spacing: 0.02em;
+}
+@media (max-width: 860px) { .strip__in { grid-template-columns: repeat(2, 1fr); } .fact:last-child { grid-column: 1 / -1; } }
+
+.rig { display: grid; grid-template-columns: 1fr 320px; gap: clamp(1.4rem, 3vw, 2.4rem); align-items: start; }
+.rig__stage {
+    position: relative;
+    border-radius: var(--r);
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 16 / 10;
+    cursor: crosshair;
+    box-shadow: inset 0 0 0 1px var(--line-dark2), var(--shadow-lg);
+    touch-action: none;
+}
+.rig__stage img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.5s var(--ease);
+}
+.rig__stage img.is-on { opacity: 1; }
+.rig__shade, .rig__light, .rig__glint {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+.rig__shade {
+    background: radial-gradient(680px 540px at var(--lx, 50%) var(--ly, 45%), rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.28) 46%, rgba(0, 0, 0, 0.7) 100%);
+}
+.rig__light {
+    background:
+        radial-gradient(170px 170px at var(--lx, 50%) var(--ly, 45%), rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.2) 44%, transparent 72%),
+        radial-gradient(460px 380px at var(--lx, 50%) var(--ly, 45%), rgba(255, 255, 255, 0.2), transparent 70%);
+    mix-blend-mode: overlay;
+}
+.rig__glint {
+    background: radial-gradient(110px 110px at var(--lx, 50%) var(--ly, 45%), rgba(255, 255, 255, 0.5), transparent 66%);
+    mix-blend-mode: color-dodge;
+}
+.rig__hint {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: rgba(10, 10, 13, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: var(--display);
+    font-size: 0.78rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #fff;
+    pointer-events: none;
+    transition: opacity 0.4s;
+}
+.rig__hint svg { width: 16px; height: 16px; fill: currentColor; }
+.rig.is-live .rig__hint { opacity: 0; }
+.rig__side { display: flex; flex-direction: column; }
+.rig__chips { display: flex; flex-direction: column; gap: 0.55rem; }
+.chip {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    width: 100%;
+    padding: 0.75rem 0.9rem;
+    border: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 0 0 1px var(--line-dark);
+    color: var(--dim2);
+    font-family: var(--body);
+    font-size: 0.86rem;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+.chip:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.chip[aria-selected="true"] {
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: inset 0 0 0 1px var(--line-dark2), 0 0 0 1px rgba(233, 103, 221, 0.4);
+    color: #fff;
+}
+.chip__sw { width: 30px; height: 30px; border-radius: 7px; flex: none; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28); }
+.chip b { display: block; font-family: var(--display); font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; font-size: 0.82rem; }
+.chip small { color: var(--dim); font-size: 0.74rem; }
+.chip[aria-selected="true"] small { color: var(--dim2); }
+.rig__note { margin: 1rem 0 0; font-size: 0.87rem; color: var(--dim); line-height: 1.6; }
+.rig__cta { margin-top: 0.9rem; width: 100%; }
+@media (max-width: 900px) {
+    .rig { grid-template-columns: 1fr; }
+    .rig__chips { display: flex; gap: 0.55rem; overflow-x: auto; padding-bottom: 0.3rem; }
+    .chip { width: auto; flex: none; }
+    .chip small { display: none; }
+}
+
+.gal { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.gal figure { position: relative; margin: 0; border-radius: 12px; overflow: hidden; background: var(--ink3); }
+.gal img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+.gal figure:hover img { transform: scale(1.045); }
+.gal figcaption {
+    position: absolute;
+    inset: auto 0 0 0;
+    padding: 1.6rem 0.9rem 0.75rem;
+    background: linear-gradient(transparent, rgba(10, 10, 13, 0.88));
+    font-size: 0.78rem;
+    color: #fff;
+    line-height: 1.4;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.gal figure:hover figcaption, .gal figure:focus-within figcaption { opacity: 1; transform: none; }
+.gal figcaption b { font-family: var(--display); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; display: block; }
+.g-3 { grid-column: span 3; aspect-ratio: 4 / 3; }
+.g-2 { grid-column: span 2; aspect-ratio: 1 / 1; }
+.g-4 { grid-column: span 4; aspect-ratio: 16 / 10; }
+.g-6 { grid-column: span 6; aspect-ratio: 21 / 9; }
+@media (max-width: 820px) {
+    .gal { grid-template-columns: repeat(2, 1fr); }
+    .g-3, .g-2, .g-4 { grid-column: span 1; aspect-ratio: 4 / 3; }
+    .g-6 { grid-column: span 2; aspect-ratio: 16 / 9; }
+    .gal figcaption { opacity: 1; transform: none; }
+}
+
+.guitar { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: clamp(1.6rem, 3.4vw, 3.2rem); align-items: center; }
+.guitar__shots { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.guitar__shots figure { margin: 0; border-radius: 12px; overflow: hidden; background: var(--ink3); }
+.guitar__shots figure:first-child { grid-column: span 2; }
+.guitar__shots img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.guitar__shots figure:first-child img { aspect-ratio: 16 / 10; }
+.quotebox {
+    margin: 1.4rem 0 0;
+    padding: 1.1rem 1.3rem;
+    border-left: 3px solid transparent;
+    border-image: var(--grad-flake) 1;
+    background: rgba(255, 255, 255, 0.04);
+    font-size: 1.02rem;
+    color: #fff;
+    line-height: 1.6;
+}
+.quotebox cite { display: block; margin-top: 0.5rem; font-style: normal; font-size: 0.8rem; color: var(--dim); }
+@media (max-width: 880px) { .guitar { grid-template-columns: 1fr; } }
+
+.svc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.card {
+    background: var(--white);
+    border-radius: var(--r);
+    padding: 1.5rem 1.4rem;
+    box-shadow: 0 1px 2px rgba(10, 10, 13, 0.05), 0 8px 24px rgba(10, 10, 13, 0.06);
+    border: 1px solid var(--line);
+    transition: transform 0.22s var(--ease), box-shadow 0.22s var(--ease);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.card__ico {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: var(--paper2);
+    margin-bottom: 0.9rem;
+}
+.card__ico svg { width: 24px; height: 24px; fill: none; stroke: var(--text); stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.card h3 { font-size: 1.12rem; font-weight: 600; letter-spacing: 0.04em; margin-bottom: 0.35rem; }
+.card p { margin: 0; font-size: 0.92rem; color: var(--text-mid); }
+.card .price {
+    display: inline-block;
+    margin-top: 0.7rem;
+    font-family: var(--display);
+    font-size: 1.02rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--red);
+}
+.card .price small { color: var(--text-dim); font-family: var(--body); font-weight: 400; letter-spacing: 0; }
+@media (max-width: 900px) { .svc { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .svc { grid-template-columns: 1fr; } }
+
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.6rem; }
+.tag {
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    font-size: 0.85rem;
+    color: var(--text-mid);
+}
+
+.moto { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(1.6rem, 3.4vw, 3rem); align-items: center; }
+.moto__shots { display: grid; grid-template-columns: 1.35fr 1fr; gap: 12px; align-items: start; }
+.moto__shots figure { margin: 0; border-radius: 12px; overflow: hidden; background: var(--ink3); }
+.moto__shots img { width: 100%; object-fit: cover; }
+.moto__shots figure:first-child img { aspect-ratio: 4 / 3; }
+.moto__shots figure:last-child img { aspect-ratio: 1 / 1; }
+.ticks { list-style: none; margin: 1.2rem 0 0; padding: 0; display: grid; gap: 0.55rem; }
+.ticks li { display: flex; gap: 0.65rem; align-items: flex-start; font-size: 0.96rem; }
+.ticks svg { width: 19px; height: 19px; flex: none; margin-top: 3px; fill: none; stroke: var(--tea); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+@media (max-width: 880px) { .moto { grid-template-columns: 1fr; } }
+
+.heart { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: clamp(1.6rem, 3.4vw, 3.2rem); align-items: center; }
+.heart__shots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.heart__shots figure { margin: 0; border-radius: 10px; overflow: hidden; background: var(--paper3); }
+.heart__shots img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.heart__shots figure:first-child { grid-column: span 3; }
+.heart__shots figure:first-child img { aspect-ratio: 16 / 9; }
+.letter {
+    margin: 1.5rem 0 0;
+    padding: 1.2rem 1.4rem;
+    border-radius: 12px;
+    background: var(--white);
+    border: 1px solid var(--line);
+    font-size: 0.99rem;
+    line-height: 1.62;
+    color: var(--text);
+}
+.letter p { margin: 0 0 0.7rem; }
+.letter p:last-child { margin: 0; }
+.letter cite { font-style: normal; font-size: 0.82rem; color: var(--text-dim); }
+@media (max-width: 880px) { .heart { grid-template-columns: 1fr; } }
+
+.revs { columns: 3; column-gap: 14px; }
+@media (max-width: 980px) { .revs { columns: 2; } }
+@media (max-width: 640px) { .revs { columns: 1; } }
+.rev {
+    break-inside: avoid;
+    margin: 0 0 14px;
+    padding: 1.25rem 1.3rem;
+    border-radius: var(--r);
+    background: rgba(255, 255, 255, 0.045);
+    box-shadow: inset 0 0 0 1px var(--line-dark);
+}
+.rev__top { display: flex; align-items: center; justify-content: space-between; gap: 0.7rem; margin-bottom: 0.6rem; }
+.rev__who { font-family: var(--display); font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: #fff; font-size: 0.94rem; }
+.rev__where {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dim);
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    box-shadow: inset 0 0 0 1px var(--line-dark);
+    white-space: nowrap;
+}
+.rev p { margin: 0; font-size: 0.92rem; color: var(--dim2); line-height: 1.62; }
+.rev .stars { margin-bottom: 0.5rem; }
+.rev__city { display: block; font-size: 0.75rem; color: var(--dim); margin-top: 0.55rem; }
+
+.book { display: grid; grid-template-columns: 0.92fr 1.08fr; gap: clamp(1.8rem, 4vw, 3.4rem); align-items: start; }
+.hours {
+    margin: 1.3rem 0 0;
+    padding: 1.15rem 1.3rem;
+    border-radius: 12px;
+    background: var(--white);
+    border: 1px solid var(--line);
+}
+.hours dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.35rem 1.2rem; font-size: 0.94rem; }
+.hours dt { color: var(--text-mid); }
+.hours dd { margin: 0; font-weight: 600; text-align: right; }
+.hours__note { margin: 0.9rem 0 0; font-size: 0.87rem; color: var(--text-mid); padding-top: 0.9rem; border-top: 1px solid var(--line); }
+
+.form {
+    background: var(--white);
+    border-radius: 16px;
+    padding: clamp(1.4rem, 3vw, 2.1rem);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line);
+    position: relative;
+}
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+@media (max-width: 520px) { .form__row { grid-template-columns: 1fr; } }
+.field { margin-bottom: 0.9rem; }
+.field label { display: block; font-size: 0.83rem; font-weight: 600; margin-bottom: 0.35rem; color: var(--text); }
+.field input, .field select, .field textarea {
+    width: 100%;
+    min-height: 50px;
+    padding: 0.7rem 0.85rem;
+    border: 1.5px solid var(--line);
+    border-radius: 9px;
+    background: var(--paper);
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    transition: border-color 0.18s, box-shadow 0.18s, background 0.18s;
+}
+.field textarea { min-height: 88px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus {
+    outline: none;
+    background: var(--white);
+    border-color: var(--vio);
+    box-shadow: 0 0 0 3px rgba(138, 90, 224, 0.16);
+}
+.field__err {
+    display: none;
+    font-size: 0.8rem;
+    color: var(--red);
+    margin-top: 0.3rem;
+}
+.field.is-bad input, .field.is-bad select { border-color: var(--red); background: #FDF4F4; }
+.field.is-bad .field__err { display: block; }
+.form__note { margin: 0.85rem 0 0; font-size: 0.81rem; color: var(--text-dim); text-align: center; }
+.done {
+    display: none;
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    background: var(--white);
+    padding: clamp(1.6rem, 4vw, 2.6rem);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.form.is-done .done { display: flex; }
+.done__ico {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: var(--grad-flake);
+    margin-bottom: 1rem;
+}
+.done__ico svg { width: 30px; height: 30px; fill: #fff; }
+.done p { color: var(--text-mid); max-width: 34ch; margin: 0.3rem 0 0; }
+
+.foot { background: var(--ink0); color: var(--dim); padding: clamp(3rem, 6vw, 4.6rem) 0 6.5rem; border-top: 1px solid var(--line-dark); }
+.foot__grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2rem; }
+.foot h4 { color: #fff; font-size: 0.86rem; letter-spacing: 0.16em; margin-bottom: 0.9rem; font-weight: 500; }
+.foot ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.3rem; font-size: 0.9rem; }
+.foot ul a { display: inline-flex; align-items: center; min-height: 44px; }
+.foot a:hover { color: #fff; }
+.foot__logo { width: 92px; height: 41px; object-fit: contain; margin-bottom: 0.9rem; }
+.foot__legal { margin-top: 2.6rem; padding-top: 1.5rem; border-top: 1px solid var(--line-dark); font-size: 0.8rem; }
+.disclaimer { color: var(--text-dim); max-width: 78ch; margin: 0 0 0.7rem; }
+@media (max-width: 860px) { .foot__grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 520px) { .foot__grid { grid-template-columns: 1fr; } }
+
+.callbar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 70;
+    display: none;
+    background: rgba(10, 10, 13, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-top: 1px solid var(--line-dark);
+    padding: 0.55rem 0.7rem calc(0.55rem + env(safe-area-inset-bottom));
+    gap: 0.55rem;
+}
+.callbar a {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    min-height: 50px;
+    border-radius: 9px;
+    font-family: var(--display);
+    font-size: 0.98rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #fff;
+}
+.callbar a:first-child { background: var(--grad-red); }
+.callbar a:last-child { box-shadow: inset 0 0 0 2px var(--line-dark2); }
+.callbar svg { width: 18px; height: 18px; fill: currentColor; }
+@media (max-width: 780px) { .callbar { display: flex; } }
+@media (min-width: 781px) { .foot { padding-bottom: clamp(3rem, 6vw, 4.6rem); } }
+
+.speck { position: absolute; inset: 0; pointer-events: none; opacity: 0.5; }
+</style>
+<noscript><style>.rise { opacity: 1; transform: none; }</style></noscript>
+</head>
+<body>
+
+<header class="head">
+    <div class="wrap head__in">
+        <a class="brand" href="#top" aria-label="Hyde Park Auto Repair, home">
+            <img src="img/logo.webp" alt="" width="60" height="27" decoding="async">
+            <span class="brand__txt">
+                <span class="brand__name">Hyde Park <span class="brand__nb">Auto Repair</span></span>
+                <span class="brand__sub">Auto &middot; Motorcycle &middot; Custom paint</span>
+            </span>
+        </a>
+        <nav class="nav" aria-label="Main">
+            <a href="#paint">Custom paint</a>
+            <a href="#guitars">The guitars</a>
+            <a href="#service">Service</a>
+            <a href="#moto">Motorcycle</a>
+            <a href="#heart">Big heart</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#book">Book</a>
+        </nav>
+        <a class="head__call" href="tel:+18452334910">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+            <span>845-233-4910</span>
+        </a>
+    </div>
+</header>
+
+<main id="top">
+
+    <section class="hero">
+        <div class="wrap hero__grid">
+            <div>
+                <span class="hero__flag">
+                    <span class="pulse" aria-hidden="true"></span>
+                    <b>Open Mon&ndash;Fri 8&ndash;5</b>
+                    <span>4152 Albany Post Road &middot; Hyde Park, NY</span>
+                </span>
+                <h1>Small business.<em>Big heart.</em></h1>
+                <p class="hero__sub">
+                    Honest auto and motorcycle repair, NYS inspection, and show-quality custom
+                    paint &mdash; from the neighbourhood garage beside the Gulf station.
+                    Caring in full colour, for almost twenty years.
+                </p>
+                <div class="hero__cta">
+                    <a class="btn btn--call" href="tel:+18452334910">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+                        Call 845-233-4910
+                    </a>
+                    <a class="btn btn--ghost" href="#book">Book a visit</a>
+                </div>
+                <div class="hero__proof">
+                    <div class="hero__score">5.0</div>
+                    <div class="hero__proofTxt">
+                        <span class="stars" aria-hidden="true">
+                            <svg viewBox="0 0 24 24"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                            <svg viewBox="0 0 24 24"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        </span>
+                        <b>80 reviews on Google</b> &mdash; and 96% recommend on Facebook.
+                    </div>
+                </div>
+            </div>
+
+            <figure class="hero__shot">
+                <div class="hero__frame">
+                    <img src="img/hero-ghost.webp" alt="A classic two-door in the Hyde Park Auto Repair paint bay, finished in a ghost pearl that flips from lavender to gold to pink across the hood" width="827" height="1200" fetchpriority="high" decoding="async">
+                    <figcaption class="hero__tag">
+                        <b>Ghost pearl, in the booth</b>
+                        The colour is different from every angle you stand at. That is the point.
+                    </figcaption>
+                </div>
+            </figure>
+        </div>
+    </section>
+
+    <section class="strip" aria-label="Credentials">
+        <div class="wrap">
+            <div class="strip__in">
+                <div class="fact">
+                    <div class="fact__n">5.0 <span>&#9733;</span></div>
+                    <div class="fact__l">80 reviews<br>on Google</div>
+                </div>
+                <div class="fact">
+                    <div class="fact__n">ASE</div>
+                    <div class="fact__l">Certified technicians<br>Master tech on site</div>
+                </div>
+                <div class="fact">
+                    <div class="fact__n">NYS</div>
+                    <div class="fact__l">Inspection station<br>auto <b>and</b> motorcycle</div>
+                </div>
+                <div class="fact">
+                    <div class="fact__n">~20</div>
+                    <div class="fact__l">Years on<br>Albany Post Road</div>
+                </div>
+                <div class="fact">
+                    <div class="fact__n">30+</div>
+                    <div class="fact__l">Years experience<br>behind the spray gun</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect sect--dark" id="paint">
+        <div class="wrap">
+            <p class="eyebrow rise">Custom paint</p>
+            <h2 class="h2 rise">Caring in <span class="flake">full colour.</span></h2>
+            <p class="lede rise">
+                Metal flake, monster flake, custom kandy colours and pearls &mdash; sprayed
+                in-house by Mike. Flake does not photograph. It only comes alive when light
+                moves across it, so move the light and watch.
+            </p>
+
+            <div class="rig rise" id="rig">
+                <div class="rig__stage" id="rigStage">
+                    <img src="img/flake-teal.webp" class="is-on" data-k="teal" alt="A motorcycle tank in deep teal metal flake, the flake catching the light across the whole panel" width="960" height="528" loading="lazy" decoding="async">
+                    <img src="img/flake-silver.webp" data-k="silver" alt="A tank in coarse silver monster flake, the individual flakes clearly visible" width="308" height="410" loading="lazy" decoding="async">
+                    <img src="img/flake-confetti.webp" data-k="confetti" alt="A black tank shot through with multi-coloured flake, seen over the handlebars" width="537" height="843" loading="lazy" decoding="async">
+                    <img src="img/flake-blue-set.webp" data-k="pearl" alt="A tank and two fenders in a turquoise pearl, laid out on a sheet after clearcoat" width="1100" height="1229" loading="lazy" decoding="async">
+                    <span class="rig__shade" aria-hidden="true"></span>
+                    <span class="rig__light" aria-hidden="true"></span>
+                    <span class="rig__glint" aria-hidden="true"></span>
+                    <span class="rig__hint" id="rigHint">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 7a5 5 0 0 0-3 9v2a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-2a5 5 0 0 0-3-9zm-2 14h4v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1zM11 1h2v3h-2zM3.5 4.9l1.4-1.4 2.1 2.1-1.4 1.4zM16.9 5.6 19 3.5l1.4 1.4-2.1 2.1zM1 11h3v2H1zm19 0h3v2h-3z"/></svg>
+                        Move the light
+                    </span>
+                </div>
+
+                <div class="rig__side">
+                    <div class="rig__chips" role="tablist" aria-label="Choose a finish">
+                    <button class="chip" role="tab" aria-selected="true" data-k="teal" type="button">
+                        <span class="chip__sw" style="background:linear-gradient(135deg,#2FC6B6,#0E4F5C)" aria-hidden="true"></span>
+                        <span><b>Metal flake</b><small>Teal, over black base</small></span>
+                    </button>
+                    <button class="chip" role="tab" aria-selected="false" data-k="silver" type="button">
+                        <span class="chip__sw" style="background:linear-gradient(135deg,#E8E8EC,#7C7C88)" aria-hidden="true"></span>
+                        <span><b>Monster flake</b><small>Coarse silver</small></span>
+                    </button>
+                    <button class="chip" role="tab" aria-selected="false" data-k="confetti" type="button">
+                        <span class="chip__sw" style="background:linear-gradient(135deg,#E967DD,#E8B23C 45%,#2FC6B6)" aria-hidden="true"></span>
+                        <span><b>Multi flake</b><small>Colour shot through black</small></span>
+                    </button>
+                    <button class="chip" role="tab" aria-selected="false" data-k="pearl" type="button">
+                        <span class="chip__sw" style="background:linear-gradient(135deg,#4FC7E8,#0D6198)" aria-hidden="true"></span>
+                        <span><b>Pearl</b><small>Tank and fenders, cleared</small></span>
+                    </button>
+                    </div>
+                    <p class="rig__note">
+                        Every panel above was sprayed at 4152 Albany Post Road. Colour is a
+                        conversation, not a form &mdash; bring the tank in, or call and describe it.
+                    </p>
+                    <a class="btn btn--ghost rig__cta" href="#book">Ask about a paint job</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect sect--dark2">
+        <div class="wrap">
+            <p class="eyebrow rise">The work</p>
+            <h2 class="h2 rise">Twenty years of <span class="flake">other people's dream cars.</span></h2>
+            <p class="lede rise">
+                Baggers, sport bikes, muscle cars and one very patient El Camino. Every
+                photograph here came off Mike's own camera roll.
+            </p>
+
+            <div class="gal rise">
+                <figure class="g-3">
+                    <img src="img/kandy-rod.webp" alt="The rear quarter of a hot rod in deep kandy red, the reflection running clean down the fender" width="550" height="550" loading="lazy" decoding="async">
+                    <figcaption><b>Kandy red</b>Layer on layer until the colour has depth you can look into.</figcaption>
+                </figure>
+                <figure class="g-3">
+                    <img src="img/ghost-hood.webp" alt="The hood and roof of a car in ghost pearl inside the shop, shifting pink and green under the lights" width="840" height="1100" loading="lazy" decoding="async">
+                    <figcaption><b>Ghost pearl</b>Pink from here, green from two steps left.</figcaption>
+                </figure>
+                <figure class="g-2">
+                    <img src="img/cutlass-magenta.webp" alt="A Cutlass in a hot magenta with darker hood stripes, parked on grass" width="504" height="355" loading="lazy" decoding="async">
+                    <figcaption><b>Custom kandy</b>Cutlass, magenta over a silver base.</figcaption>
+                </figure>
+                <figure class="g-2">
+                    <img src="img/glide-red.webp" alt="A Harley Electra Glide finished in a deep candy red with a two-tone tank" width="1200" height="900" loading="lazy" decoding="async">
+                    <figcaption><b>Full bagger</b>Tank, fenders, fairing and bags, all matched.</figcaption>
+                </figure>
+                <figure class="g-2">
+                    <img src="img/bagger-copper.webp" alt="The fairing of a bagger in a burnt copper kandy, headlights and chrome catching the sun" width="308" height="547" loading="lazy" decoding="async">
+                    <figcaption><b>Copper kandy</b>Fairing and headlight nacelle.</figcaption>
+                </figure>
+                <figure class="g-4">
+                    <img src="img/elcamino-1.webp" alt="A 1964 Chevrolet El Camino in turquoise, photographed against autumn trees" width="1200" height="900" loading="lazy" decoding="async">
+                    <figcaption><b>The El Camino</b>Turquoise, straight panels, and no rush.</figcaption>
+                </figure>
+                <figure class="g-2">
+                    <img src="img/purple-hood.webp" alt="The front fender and headlight of a car in a deep purple pearl" width="308" height="547" loading="lazy" decoding="async">
+                    <figcaption><b>Purple pearl</b>Nose and headlight bezel.</figcaption>
+                </figure>
+                <figure class="g-2">
+                    <img src="img/sportbike-magenta.webp" alt="A sport bike in a magenta to violet fade with the fairings back on" width="326" height="298" loading="lazy" decoding="async">
+                    <figcaption><b>Fade</b>Magenta into violet, full fairing set.</figcaption>
+                </figure>
+                <figure class="g-2">
+                    <img src="img/dyna-blue.webp" alt="A Harley Dyna in a bright blue flake parked on a driveway" width="1000" height="605" loading="lazy" decoding="async">
+                    <figcaption><b>Blue flake</b>Tank, fenders and side covers.</figcaption>
+                </figure>
+                <figure class="g-2">
+                    <img src="img/sportbike-teal.webp" alt="A sport bike in teal green metal flake against a stone wall" width="900" height="506" loading="lazy" decoding="async">
+                    <figcaption><b>Teal flake</b>The same colour as the tank up top.</figcaption>
+                </figure>
+                <figure class="g-3">
+                    <img src="img/chevelle-silver.webp" alt="The front of a silver Chevelle with black hood stripes" width="700" height="933" loading="lazy" decoding="async">
+                    <figcaption><b>Silver and black</b>Stripes laid by hand, not vinyl.</figcaption>
+                </figure>
+                <figure class="g-3">
+                    <img src="img/monte-shop.webp" alt="A silver Monte Carlo parked outside the Hyde Park Auto Repair shop front" width="900" height="675" loading="lazy" decoding="async">
+                    <figcaption><b>Out front on Albany Post Road</b>Finished, and going home.</figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect sect--dark" id="guitars">
+        <div class="wrap guitar">
+            <div>
+                <p class="eyebrow rise">Not only cars</p>
+                <h2 class="h2 rise">Mike painted a guitar. <span class="flake">Then it went on tour.</span></h2>
+                <p class="lede rise">
+                    In April and June of this year two guitar bodies came through the booth for
+                    guitarist Jimi Bell &mdash; one in violet flake, one in white. The same gun,
+                    the same clearcoat and the same cut-and-buff that goes on a tank. They were
+                    handed over across a diner table and photographed on stage a few weeks later.
+                </p>
+                <blockquote class="quotebox rise">
+                    &ldquo;Definitely one AWSOME paint job picture doesn&rsquo;t do it justice up
+                    close its fenomonal&rdquo;
+                    <cite>Billy Durling, commenting on their post</cite>
+                </blockquote>
+                <p class="lede rise" style="margin-top:1.4rem">
+                    If it holds paint, they will paint it. Tanks, fairings, fenders, hoods,
+                    helmets, guitar bodies.
+                </p>
+            </div>
+            <div class="guitar__shots rise">
+                <figure>
+                    <img src="img/guitar-handover.webp" alt="Guitarist Jimi Bell holding the finished violet flake guitar body and neck across a diner table" width="1000" height="1000" loading="lazy" decoding="async">
+                </figure>
+                <figure>
+                    <img src="img/guitar-body.webp" alt="The bare guitar body in violet flake on the bench, pickups not yet fitted" width="825" height="1100" loading="lazy" decoding="async">
+                </figure>
+                <figure>
+                    <img src="img/guitar-stage.webp" alt="Jimi Bell playing the finished guitar on stage under blue light" width="760" height="1013" loading="lazy" decoding="async">
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect sect--paper" id="service">
+        <div class="wrap">
+            <p class="eyebrow rise">Everyday service</p>
+            <h2 class="h2 rise">The stuff that keeps you moving.</h2>
+            <p class="lede rise">
+                Show paint is the fun half. The other half is the oil change, the inspection
+                sticker and the noise you heard on the way to work. Same shop, same people,
+                same prices they will tell you before they touch it.
+            </p>
+
+            <div class="svc rise">
+                <div class="card">
+                    <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h4l2-5 3 10 3-7 2 2h4"/></svg></div>
+                    <h3>Oil change special</h3>
+                    <p>Five quarts conventional, filter and a look underneath while it is up.</p>
+                    <span class="price">$42.00 <small>&middot; +$4.50 per extra qt</small></span>
+                </div>
+                <div class="card">
+                    <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div>
+                    <h3>Full synthetic</h3>
+                    <p>Full synthetic oil changes, and AMSOIL synthetics if you ask for them.</p>
+                    <span class="price">From $77.99 <small>&middot; AMSOIL, call for pricing</small></span>
+                </div>
+                <div class="card">
+                    <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v4M12 16v4M4 12h4M16 12h4"/></svg></div>
+                    <h3>Brake special</h3>
+                    <p>Premium brake pads, rotors and labour in one price.</p>
+                    <span class="price">Call for pricing</span>
+                </div>
+                <div class="card">
+                    <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div>
+                    <h3>Tires</h3>
+                    <p>Buy your tires here and mounting and balancing is free. Ask about the alignment special with a tire purchase.</p>
+                    <span class="price">Free mount &amp; balance</span>
+                </div>
+                <div class="card">
+                    <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 11l2 2 4-4"/><path d="M5 4h14v16l-7-3-7 3z"/></svg></div>
+                    <h3>NYS inspection</h3>
+                    <p>Registered New York State inspection station &mdash; cars and motorcycles, by appointment.</p>
+                    <span class="price">Auto &amp; motorcycle</span>
+                </div>
+                <div class="card">
+                    <div class="card__ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 9 9"/><path d="M12 7v5l3 2"/></svg></div>
+                    <h3>Wellness check</h3>
+                    <p>Going on a road trip, or buying a used car? Have it looked over before you go, or before you sign.</p>
+                    <span class="price">Book ahead</span>
+                </div>
+            </div>
+
+            <div class="tags rise">
+                <span class="tag">Exhaust &amp; muffler</span>
+                <span class="tag">Wheel alignment</span>
+                <span class="tag">AC service</span>
+                <span class="tag">Interstate Batteries dealer</span>
+                <span class="tag">Timing belts &amp; water pumps</span>
+                <span class="tag">Starters &amp; alternators</span>
+                <span class="tag">Radiators</span>
+                <span class="tag">Shocks &amp; struts</span>
+                <span class="tag">Engine &amp; transmission install</span>
+                <span class="tag">Bodywork</span>
+                <span class="tag">Computerised engine diagnostics</span>
+                <span class="tag">All makes &amp; models</span>
+            </div>
+
+            <p class="lede rise" style="margin:1.7rem 0 0">
+                Cash discounts are offered to save you the credit card processing fee, and all
+                repair work is guaranteed. Broken down and not going anywhere? Just In Time
+                Towing runs 24 hours on
+                <a href="tel:+18454543800" style="text-decoration:underline;text-underline-offset:3px"><strong>845-454-3800</strong></a>.
+            </p>
+        </div>
+    </section>
+
+    <section class="sect sect--dark" id="moto">
+        <div class="wrap moto">
+            <div>
+                <p class="eyebrow rise">Bikers welcome</p>
+                <h2 class="h2 rise">One of the few that <span class="flake">inspects bikes.</span></h2>
+                <p class="lede rise">
+                    Plenty of shops will service a motorcycle. Far fewer are a registered New York
+                    State inspection station for one. Hyde Park Auto is both, and the neon in the
+                    window has said so for years.
+                </p>
+                <ul class="ticks rise">
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9 17.5 20 6.5"/></svg> NYS motorcycle inspections</li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9 17.5 20 6.5"/></svg> Motorcycle tires, mounted and balanced</li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9 17.5 20 6.5"/></svg> Service, repair and general maintenance</li>
+                    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12.5 9 17.5 20 6.5"/></svg> Custom paint for tanks, fenders and fairings</li>
+                </ul>
+                <blockquote class="quotebox rise">
+                    &ldquo;Mike treated my bike like his own! Oil changed, new master cylinder rear
+                    brake &amp; brake light. Cleaned her up too!!&rdquo;
+                    <cite>Felice Robin &middot; Facebook</cite>
+                </blockquote>
+            </div>
+            <div class="moto__shots rise">
+                <figure>
+                    <img src="img/bay-bikes.webp" alt="A row of motorcycles lined up inside the Hyde Park Auto Repair service bay" width="1250" height="938" loading="lazy" decoding="async">
+                </figure>
+                <figure>
+                    <img src="img/sign-neon.webp" alt="The shop's window sign reading Hyde Park Auto Repair, 845 233 4910, Motorcycle Repair and Service, N.Y. State Inspections" width="960" height="956" loading="lazy" decoding="async">
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect sect--paper2" id="heart">
+        <div class="wrap heart">
+            <div class="heart__shots rise">
+                <figure>
+                    <img src="img/heart-food.webp" alt="The shop floor stacked with bags of dog and cat food collected for the shelter drive" width="850" height="1133" loading="lazy" decoding="async">
+                </figure>
+                <figure>
+                    <img src="img/heart-boxes.webp" alt="Chewy delivery boxes piled up outside the shop, sent in by customers for the drive" width="1000" height="750" loading="lazy" decoding="async">
+                </figure>
+                <figure>
+                    <img src="img/heart-bags.webp" alt="Stacked sacks of dog food and cat treats collected at the shop" width="800" height="1067" loading="lazy" decoding="async">
+                </figure>
+                <figure>
+                    <img src="img/heart-card.webp" alt="A handwritten thank you card from Hudson Valley Animal Rescue and Sanctuary signed by the whole team" width="800" height="1067" loading="lazy" decoding="async">
+                </figure>
+            </div>
+            <div>
+                <p class="eyebrow rise">Big heart</p>
+                <h2 class="h2 rise">Every December, the bays fill up with dog food.</h2>
+                <p class="lede rise">
+                    Hyde Park Auto and Just In Time Towing run an annual Christmas shelter pet
+                    food drive out of 4152 Albany Post Road. Customers send Chewy boxes straight
+                    to the shop or drop off food, treats, toys and cleaning supplies through
+                    December. It has gone to Hudson Valley Animal Rescue &amp; Sanctuary and to
+                    Compassionate Animal Rescue Efforts of Dutchess County.
+                </p>
+                <div class="letter rise">
+                    <p>
+                        &ldquo;Dear Maddie and friends from Hyde Park Auto and Jeff from Just in
+                        Time Towing, we are writing to express our heartfelt gratitude for your
+                        generous support of our shelter. Thanks to all of you, we were able to
+                        provide nutritious meals and fun activities for our furry friends during
+                        the holidays.&rdquo;
+                    </p>
+                    <p>
+                        &ldquo;Your generosity made a huge difference in the lives of the animals
+                        that are still waiting to find their forever homes.&rdquo;
+                    </p>
+                    <p><cite>Karen and the team at CARE of Dutchess County</cite></p>
+                </div>
+                <p class="lede rise" style="margin:1.3rem 0 0">
+                    They also make donations in memory of customers&rsquo; pets, and they will put
+                    a lost dog poster on the page before they put up an advert for themselves.
+                    &ldquo;Small business. Big heart&rdquo; is on their homepage. This is the receipt.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect sect--dark2" id="reviews">
+        <div class="wrap">
+            <p class="eyebrow rise">What people say</p>
+            <h2 class="h2 rise">Fifteen reviews, <span class="flake">and not one of them is about paint.</span></h2>
+            <p class="lede rise">
+                Every review below is real and reproduced word for word, with the platform it
+                came from on the card. They almost all say the same two things: Mike explains
+                it, and the bill is what he said it would be.
+            </p>
+
+            <div class="revs rise">
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Kaju ski</span><span class="rev__where">Google</span></div>
+                    <span class="stars" aria-label="5 out of 5">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                    </span>
+                    <p>
+                        How much honesty is worth to you? How much would you pay for it? In today's
+                        world where everyone seems to be trying to take advantage of everyone else,
+                        Hyde Park Auto Repair in Hyde Park, NY will take care of your vehicle or bike
+                        and will include their honesty and professionalism free of charge. Based on my
+                        experience, there are very few businesses that operate that way. I am sure that
+                        if you care about your vehicle, its safety, its maintenance and the repairs that
+                        it may need, Hyde Park Auto Repair is the place to trust. I have for the past
+                        five year and would not go anywhere else.
+                    </p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Allysia M.</span><span class="rev__where">Their site</span></div>
+                    <p>
+                        This is honestly one of the first times I have ever felt so comfortable going to
+                        an auto shop by myself as a woman! Maddie is so awesome and courteous! The
+                        mechanics are very friendly and knowledgeable! Again I truly have never felt so
+                        comfortable! Oh and the prices are great! (I'm not even just saying that, they
+                        really are! Got my alignment for $120) They do referrals, which got me $10 off
+                        and my friend $10 off! I will definitely be recommending Hyde Park Auto Repair
+                        to anyone in need of car work!
+                    </p>
+                    <span class="rev__city">Hyde Park, NY</span>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Belinda Joyce Post</span><span class="rev__where">Facebook</span></div>
+                    <p>
+                        I have been going to Hyde Park Auto Repair since they opened their shop in Hyde
+                        Park which has been almost 20 years at this point. I've stuck with them because
+                        Maddie and Mike are honest and trustworthy. The first time I ever visited the
+                        shop, Mike brought me in the back to show me what needed to be done with my car
+                        and explained why it's important to do so. And then there have been many
+                        instances where it wasn't necessary to do anything at that time (unlike several
+                        other auto shops that always tell you that it is necessary to change the air
+                        filter, etc.). Thank you to Maddie and Mike for their continued success and honesty.
+                    </p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">David S.</span><span class="rev__where">Their site</span></div>
+                    <p>
+                        The one word for this place is GREAT! Knowledgable, generous, and kind would
+                        also be apt. My wife and I were in Hyde Park and about to drive back to NYC when
+                        an ominous noise began in what sounded like our right front wheel. Despite the
+                        fact that they had no time &mdash; they were backed up with jobs from last week
+                        because a mechanic was now out sick for a second week &mdash; Mike didn't let us
+                        leave without taking a quick look. He'd heard us drive up and thought we might
+                        have a stone trapped in the brake mechanism. He listened again, got down on the
+                        ground, found the culprit &mdash; some caked mud and rust scraping the rotor
+                        &mdash; and removed it. Voila. Test drive. No noise. And after all that, when I
+                        tried to pay them something, they wouldn't take any money! I didn't know there
+                        were any businesses like this still around!
+                    </p>
+                    <span class="rev__city">Manhattan, NY</span>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Susan T.</span><span class="rev__where">Yelp</span></div>
+                    <span class="stars" aria-label="5 out of 5">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 17.3-6.2 3.7 1.6-7L2 9.2l7.1-.6L12 2l2.9 6.6 7.1.6-5.4 4.8 1.6 7z"/></svg>
+                    </span>
+                    <p>
+                        My husband and I have been dealing with Hyde Park Auto Repair for many years.
+                        Our most recent service was a new exhaust system. The automobiles that we
+                        brought there for service have been both newer and vintage models. The service
+                        has always been excellent and the prices are always fair. We recommended them to
+                        our daughter and her family. We always know that they will make sure our
+                        automobiles are safe and reliable. Thank you Maddie and Mike. We also love
+                        seeing your adorable pups. Thank you for being such a valuable part of our
+                        business community in Hyde Park.
+                    </p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Ken F.</span><span class="rev__where">Their site</span></div>
+                    <p>
+                        First of all, make an appointment, which I greatly appreciate. It was my first
+                        trip to this establishment, it's located right off of route 9. When I arrived,
+                        Mike was working on a beautiful Harley. I took a seat in the lobby, explained
+                        that I had an appointment and they got busy on my vehicle. Mike is very
+                        personable as well as knowledgeable and we hit it off. Before you knew it, my
+                        vehicle had been serviced (inspection, oil/filter change and tire rotation). The
+                        pricing was very reasonable and the service was very prompt. I'm thrilled that I
+                        listened to the reviews and I will be going here from now on. Thanks Mike and Brian.
+                    </p>
+                    <span class="rev__city">Wappingers Falls, NY</span>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Marina R.</span><span class="rev__where">Their site</span></div>
+                    <p>
+                        This place is great! I brought my car there for some body work after it was side
+                        swiped. They were very helpful. They were flexible with times, so I could fit
+                        the repair into my schedule and they were patient with me and my insurance
+                        company. The repair itself only took a few hours and they are conveniently
+                        located, so I could walk to a number of places while I waited. I would use this
+                        shop again and recommend it to friends.
+                    </p>
+                    <span class="rev__city">New Paltz, NY</span>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Tina Marie Smith</span><span class="rev__where">Facebook</span></div>
+                    <p>Mike and Maddie are the best! This estimate was nearly 3x the cost of the work done at Hyde Park Auto Repair.</p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Mike Gee</span><span class="rev__where">Facebook</span></div>
+                    <p>There is nothing Mike can't fix! So called auto techs from places Mike worked before still call &amp; ask him how to fix cars.</p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Susan Lydiard</span><span class="rev__where">Facebook</span></div>
+                    <p>I know that I can trust Hyde Park Auto Repair to do good work on our cars and give us a fair, competitive price!</p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Felice Robin</span><span class="rev__where">Facebook</span></div>
+                    <p>Mike treated my bike like his own! Oil changed, new master cylinder rear brake &amp; brake light. Cleaned her up too!!</p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Johnny Rottenilli</span><span class="rev__where">Facebook</span></div>
+                    <p>Had my brakes done on my truck. Great customer service with a very knowledgeable and professional staff.</p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Julia Wilson</span><span class="rev__where">Facebook</span></div>
+                    <p>Great people and great prices. took me right away when my car was giving me trouble and were super friendly.</p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Benito Ugricich</span><span class="rev__where">Facebook</span></div>
+                    <p>Got my Springer back on road the. Highly recommend.</p>
+                </article>
+
+                <article class="rev">
+                    <div class="rev__top"><span class="rev__who">Andrew Spadaro</span><span class="rev__where">Facebook</span></div>
+                    <p>Great shop very helpful and great customer service!</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="sect sect--paper" id="book">
+        <div class="wrap book">
+            <div>
+                <p class="eyebrow rise">Book a visit</p>
+                <h2 class="h2 rise">Tell them what it&rsquo;s doing.</h2>
+                <p class="lede rise">
+                    Four questions, no account, no CAPTCHA. If it is something you would rather
+                    describe out loud &mdash; and with a noise, it usually is &mdash; call
+                    instead and ask for Maddie.
+                </p>
+                <a class="btn btn--call rise" href="tel:+18452334910">
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+                    845-233-4910
+                </a>
+
+                <div class="hours rise">
+                    <dl>
+                        <dt>Monday &ndash; Friday</dt><dd>8 am &ndash; 5 pm</dd>
+                        <dt>Saturday &amp; Sunday</dt><dd>Closed</dd>
+                    </dl>
+                    <p class="hours__note">
+                        <strong>4152 Albany Post Road, Hyde Park, NY 12538.</strong>
+                        Right off Route 9 &mdash; on the side of the Gulf station.
+                        Broken down? Just In Time Towing runs 24 hours on
+                        <a href="tel:+18454543800" style="text-decoration:underline;text-underline-offset:3px">845-454-3800</a>.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form rise" id="bookCard">
+                <form id="bookForm" novalidate>
+                    <div class="form__row">
+                        <div class="field">
+                            <label for="bName">Your name</label>
+                            <input id="bName" name="name" type="text" autocomplete="name" required>
+                            <span class="field__err">Please tell us your name.</span>
+                        </div>
+                        <div class="field">
+                            <label for="bPhone">Phone</label>
+                            <input id="bPhone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="845-000-0000" required>
+                            <span class="field__err">A 10 digit phone number, please.</span>
+                        </div>
+                    </div>
+                    <div class="form__row">
+                        <div class="field">
+                            <label for="bVehicle">Year, make and model</label>
+                            <input id="bVehicle" name="vehicle" type="text" placeholder="e.g. 2016 Silverado, or a 2004 Road King" required>
+                            <span class="field__err">What are we looking at?</span>
+                        </div>
+                        <div class="field">
+                            <label for="bJob">What do you need?</label>
+                            <select id="bJob" name="job" required>
+                                <option value="">Choose one&hellip;</option>
+                                <option>Oil change</option>
+                                <option>NYS inspection &mdash; car</option>
+                                <option>NYS inspection &mdash; motorcycle</option>
+                                <option>Brakes</option>
+                                <option>Tires or alignment</option>
+                                <option>Exhaust</option>
+                                <option>A noise I can't identify</option>
+                                <option>Check engine light</option>
+                                <option>Motorcycle service</option>
+                                <option>Bodywork after a bump</option>
+                                <option>Custom paint quote</option>
+                                <option>Something else</option>
+                            </select>
+                            <span class="field__err">Pick the closest match.</span>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label for="bNotes">Anything else? <span style="font-weight:400;color:var(--text-dim)">(optional)</span></label>
+                        <textarea id="bNotes" name="notes" rows="3" placeholder="When it started, what it sounds like, whether the sticker has run out, what colour you had in mind&hellip;"></textarea>
+                    </div>
+                    <button class="btn btn--ink" type="submit" style="width:100%">Send my request</button>
+                </form>
+                <p class="form__note">No obligation &middot; Mon&ndash;Fri 8&ndash;5 &middot; We never share your details.</p>
+
+                <div class="done" id="bookDone" role="status" aria-live="polite">
+                    <div class="done__ico">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>
+                    </div>
+                    <h3 id="doneHead">Request received</h3>
+                    <p id="doneBody">Thanks &mdash; we'll be in touch to book you in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer class="foot">
+    <div class="wrap">
+        <div class="foot__grid">
+            <div>
+                <img class="foot__logo" src="img/logo.webp" alt="Hyde Park Auto Repair" width="92" height="41" loading="lazy" decoding="async">
+                <p style="max-width:36ch;margin:0">
+                    Your neighbourhood garage. Locally owned and operated &mdash; you are our
+                    neighbours and we treat you as such. Your car moves your family, and that is
+                    precious cargo.
+                </p>
+            </div>
+            <div>
+                <h4>Visit</h4>
+                <ul>
+                    <li>4152 Albany Post Road<br>Hyde Park, NY 12538</li>
+                    <li>On the side of the Gulf station</li>
+                    <li>Mon &ndash; Fri, 8 am &ndash; 5 pm</li>
+                    <li>Closed Saturday &amp; Sunday</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="tel:+18452334910">845-233-4910</a></li>
+                    <li>Fax 845-233-4911</li>
+                    <li><a href="mailto:hydeparkautorepair@gmail.com">hydeparkautorepair@gmail.com</a></li>
+                    <li><a href="https://www.facebook.com/hydeparkautorepair" target="_blank" rel="noopener">Facebook</a></li>
+                    <li>Towing &middot; <a href="tel:+18454543800">845-454-3800</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#service">Oil, brakes &amp; tires</a></li>
+                    <li><a href="#service">NYS inspection</a></li>
+                    <li><a href="#moto">Motorcycle service</a></li>
+                    <li><a href="#paint">Custom paint</a></li>
+                    <li><a href="#paint">Bodywork</a></li>
+                    <li><a href="#heart">Shelter pet food drive</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="foot__legal">
+            <p class="disclaimer">
+                Disclaimer: We do not own the rights to the materials and images on this page. They
+                are used strictly for demonstration purposes to show what our web design product
+                looks like.
+            </p>
+            <p style="margin:0">&copy; 2026 Hyde Park Auto Repair. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<nav class="callbar" aria-label="Quick actions">
+    <a href="tel:+18452334910">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"/></svg>
+        Call the shop
+    </a>
+    <a href="#book">Book a visit</a>
+</nav>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "@id": "#business",
+    "name": "Hyde Park Auto Repair",
+    "description": "Honest, quality auto and motorcycle repair and general maintenance for the life of your vehicle. ASE certified technicians, registered New York State inspection station for cars and motorcycles, and custom metal flake, kandy and pearl paint. Locally owned and operated in Hyde Park, NY.",
+    "slogan": "Small business. Big Heart",
+    "telephone": "+1-845-233-4910",
+    "faxNumber": "+1-845-233-4911",
+    "email": "hydeparkautorepair@gmail.com",
+    "url": "https://www.hydeparkautorepair.com/",
+    "image": "img/og.jpg",
+    "logo": "img/logo.webp",
+    "priceRange": "$",
+    "currenciesAccepted": "USD",
+    "paymentAccepted": "Cash, Credit Card",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "4152 Albany Post Road",
+        "addressLocality": "Hyde Park",
+        "addressRegion": "NY",
+        "postalCode": "12538",
+        "addressCountry": "US"
+    },
+    "openingHoursSpecification": [{
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "08:00",
+        "closes": "17:00"
+    }],
+    "areaServed": [
+        { "@type": "City", "name": "Hyde Park, NY" },
+        { "@type": "City", "name": "Poughkeepsie, NY" },
+        { "@type": "City", "name": "Staatsburg, NY" },
+        { "@type": "City", "name": "Rhinebeck, NY" },
+        { "@type": "City", "name": "New Paltz, NY" },
+        { "@type": "City", "name": "Wappingers Falls, NY" },
+        { "@type": "AdministrativeArea", "name": "Dutchess County, NY" }
+    ],
+    "sameAs": ["https://www.facebook.com/hydeparkautorepair"],
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "80",
+        "bestRating": "5",
+        "worstRating": "1"
+    },
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Auto and motorcycle services",
+        "itemListElement": [
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Oil change" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brakes" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tires, mounting and balancing" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wheel alignment" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "New York State inspection, auto and motorcycle" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Exhaust and muffler" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "AC service" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Interstate Batteries" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Timing belts and water pumps" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Starters and alternators" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Radiators" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Shocks and struts" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Engine and transmission installation" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motorcycle service and motorcycle tires" } },
+            { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bodywork and custom paint" } }
+        ]
+    }
+}
+</script>
+
+<script>
+(function () {
+    'use strict';
+
+    var rising = document.querySelectorAll('.rise');
+    if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('seen');
+                io.unobserve(e.target);
+            });
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.04 });
+        rising.forEach(function (el) { io.observe(el); });
+    } else {
+        rising.forEach(function (el) { el.classList.add('seen'); });
+    }
+
+    var root = document.documentElement;
+    var ticking = false;
+    function flow() {
+        var max = root.scrollHeight - root.clientHeight;
+        root.style.setProperty('--flow', (max > 0 ? (root.scrollTop / max) * 100 : 0).toFixed(2) + '%');
+        ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(flow);
+    }, { passive: true });
+    flow();
+
+    var rig = document.getElementById('rig');
+    if (rig) {
+        var stage = document.getElementById('rigStage');
+        var shots = stage.querySelectorAll('img');
+        var chips = rig.querySelectorAll('.chip');
+        var still = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var live = false;
+        var drift = null;
+
+        function put(x, y) {
+            stage.style.setProperty('--lx', x.toFixed(2) + '%');
+            stage.style.setProperty('--ly', y.toFixed(2) + '%');
+        }
+        put(50, 42);
+
+        function wander(t) {
+            if (live) return;
+            var x = 50 + Math.sin(t / 2600) * 27;
+            var y = 44 + Math.cos(t / 1900) * 15;
+            put(x, y);
+            drift = window.requestAnimationFrame(wander);
+        }
+        if (!still) drift = window.requestAnimationFrame(wander);
+
+        function track(e) {
+            var r = stage.getBoundingClientRect();
+            var p = e.touches ? e.touches[0] : e;
+            put(((p.clientX - r.left) / r.width) * 100, ((p.clientY - r.top) / r.height) * 100);
+            if (!live) {
+                live = true;
+                rig.classList.add('is-live');
+                if (drift) window.cancelAnimationFrame(drift);
+            }
+        }
+        stage.addEventListener('pointermove', track);
+        stage.addEventListener('pointerdown', track);
+        stage.addEventListener('touchmove', function (e) { e.preventDefault(); track(e); }, { passive: false });
+
+        chips.forEach(function (chip) {
+            chip.addEventListener('click', function () {
+                var k = chip.getAttribute('data-k');
+                chips.forEach(function (c) { c.setAttribute('aria-selected', String(c === chip)); });
+                shots.forEach(function (img) { img.classList.toggle('is-on', img.getAttribute('data-k') === k); });
+            });
+        });
+    }
+
+    var form = document.getElementById('bookForm');
+    if (!form) return;
+
+    var card = document.getElementById('bookCard');
+
+    var rules = {
+        name:    function (v) { return v.trim().length > 1; },
+        phone:   function (v) { return (v.match(/\d/g) || []).length >= 10; },
+        vehicle: function (v) { return v.trim().length > 2; },
+        job:     function (v) { return v !== ''; }
+    };
+
+    function check(el) {
+        var rule = rules[el.name];
+        if (!rule) return true;
+        var ok = rule(el.value);
+        el.closest('.field').classList.toggle('is-bad', !ok);
+        el.setAttribute('aria-invalid', ok ? 'false' : 'true');
+        return ok;
+    }
+
+    Object.keys(rules).forEach(function (name) {
+        var el = form.elements[name];
+        if (!el) return;
+        var revalidate = function () {
+            if (el.closest('.field').classList.contains('is-bad')) check(el);
+        };
+        el.addEventListener('input', revalidate);
+        el.addEventListener('change', revalidate);
+        el.addEventListener('blur', function () { if (el.value !== '') check(el); });
+    });
+
+    var PAINT = 'Custom paint quote';
+    var MYSTERY = "A noise I can't identify";
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        var firstBad = null;
+        Object.keys(rules).forEach(function (name) {
+            var el = form.elements[name];
+            if (el && !check(el) && !firstBad) firstBad = el;
+        });
+        if (firstBad) { firstBad.focus(); return; }
+
+        var first = form.elements.name.value.trim().split(/\s+/)[0];
+        var job = form.elements.job.value;
+        var body;
+
+        if (job === PAINT) {
+            body = 'Your request is in. Mike would call you back to talk through colour, ' +
+                   'what is coming off the vehicle and how long the booth is booked out — ' +
+                   'paint quotes are a conversation, not a form.';
+        } else if (job === MYSTERY) {
+            body = 'Your request is in. Bring it in and Mike will listen to it with you — ' +
+                   'that is usually faster than describing it.';
+        } else {
+            body = 'Your request is in. We would call you back to find a slot, Monday to ' +
+                   'Friday between 8 and 5.';
+        }
+
+        document.getElementById('doneHead').textContent = 'Thanks, ' + first + '.';
+        document.getElementById('doneBody').textContent = body;
+        card.classList.add('is-done');
+        document.getElementById('bookDone').focus && document.getElementById('bookDone').focus();
+    });
+})();
+</script>
+
+</body>
+</html>
