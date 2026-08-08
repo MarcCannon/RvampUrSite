@@ -29,6 +29,16 @@
             "thumb": "demos/home-improvement-landscape/mid-hudson-container/img/thumb.webp",
             "purchased": false,
             "live_url": ""
+        },
+        {
+            "slug": "free-flo-sewer-and-drains",
+            "niche": "handyman-repair",
+            "name": "Free Flo Sewer and Drains LLC",
+            "tagline": "Drain cleaning, sewer camera inspections and septic work.",
+            "location": "Hopewell Junction, NY",
+            "thumb": "demos/handyman-repair/free-flo-sewer-and-drains/img/thumb.webp",
+            "purchased": false,
+            "live_url": ""
         }
     ]
 }
